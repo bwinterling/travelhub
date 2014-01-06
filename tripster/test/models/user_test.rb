@@ -15,4 +15,11 @@ class UserTest < ActiveSupport::TestCase
     assert @user.save
   end
 
+  def test_validates_uniqueness_of_email
+    @user.update(:email => "test@example.com")
+    assert @user.save
+    assert_raise ActiveRecord::RecordInvalid do 
+      User.create!(:email => "test@example.com")
+    end
+  end
 end
