@@ -8,7 +8,7 @@ require 'spec_helper'
       fill_in 'Name',   :with => "The Trippiest"
       # avatar test
       click_on 'Sign Up'
-      page.should have_content("WizzyWig")
+      page.should have_content("Logout")
 
       expect(User.count).to eq user_count + 1
     end

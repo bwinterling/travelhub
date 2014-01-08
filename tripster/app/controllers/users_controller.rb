@@ -9,11 +9,8 @@ class UsersController < ApplicationController
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
     @user.save
+    session[:email] = @user.email
     redirect_to root_path
-  end
-
-  def index
-    render :text => "WizzyWig"
   end
 
 end
