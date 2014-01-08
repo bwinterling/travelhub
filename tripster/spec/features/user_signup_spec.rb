@@ -11,5 +11,5 @@ require 'spec_helper'
       page.should have_content("Logout")
 
       expect(User.count).to eq user_count + 1
-    end
+    end  
   end
