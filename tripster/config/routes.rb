@@ -3,7 +3,10 @@ Tripster::Application.routes.draw do
   resources :users
   root "users#index"
 
-
+  namespace :feeds do
+    get '/photos/connect', to: 'photos#connect'
+    get '/photos/callback', to: 'photos#callback'
+  end
 
   # Example resource route with options:
   #   resources :products do
