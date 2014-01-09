@@ -1,0 +1,16 @@
+ <script>
+  $(function() {
+          $( ".datepicker" ).datepicker();
+	    });
+ </script>
+ <%= form_for @trip do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br/>
+  <%= f.label :description %>
+  <%= f.text_area :description %> <br/>
+  <%= f.label :starts_at, "Start Date" %>
+  <%= f.text_field :starts_at, class: "datepicker" %>
+  <%= f.label :ends_at, "End Date" %>
+  <%= f.text_field :ends_at, class: "datepicker" %>
+  <%= f.submit "Submit" %>
+<% end %>
