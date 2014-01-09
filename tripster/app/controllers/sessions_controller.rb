@@ -5,12 +5,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:email] = params[:email]
-    redirect_to root_path
+    user = User.from_omniauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    redirect_to root_url, notice: "Signed in!"
   end
 
   def destroy
-    session[:email] = nil
-    redirect_to root_path
+    session[:user_id] = nil
+    redirect_to root_url, notice: "Signed out!"
   end
 end
