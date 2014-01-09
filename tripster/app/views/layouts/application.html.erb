@@ -13,7 +13,7 @@
 <% if current_user %>
   <%= current_user.name %> <%=link_to "Add A Trip", new_trip_path %> <%= link_to "Logout", logout_path, method: "delete" %>
 <% else %>
-  <%= link_to image_tag("sign-in-with-twitter-gray.png"), "/auth/twitter" %>
+  <%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter"), "/auth/twitter" %>
 <% end %>
 </div>
 
