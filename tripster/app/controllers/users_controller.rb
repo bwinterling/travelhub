@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def edit
+    @photos_api = PhotosAPI
+  end
+
+
   # def new
   #   @user = User.new
   # end

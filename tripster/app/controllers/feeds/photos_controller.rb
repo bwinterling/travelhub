@@ -11,11 +11,11 @@ module Feeds
         PhotosAPI.callback(params[:code], current_user.id)
         #redirect to feed sign up page!!
         redirect_to root_path
-        flash[:notice] = "Connection to #{PHOTO_PROVIDER} successful!"
+        flash[:notice] = "Connection to #{PHOTO_PROVIDER} Successful!"
       else
         #redirect to feed sign up page!!
         redirect_to root_path
-        flash[:notice] = "Failed to connect to #{PHOTO_PROVIDER}"
+        flash[:notice] = "Failed to Connect to #{PHOTO_PROVIDER}"
       end
     end
 
