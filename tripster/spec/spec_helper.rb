@@ -21,9 +21,7 @@ OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
   :provider => 'twitter',
   :uid => '123545',
   :info => {
-    :name => 'rolen',
-    :image => 'http://graph.facebook.com/1234567/picture?type=square'
-  }
+    :name => 'rolen'
 })
 
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

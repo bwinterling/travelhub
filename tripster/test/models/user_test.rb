@@ -3,7 +3,19 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+      :provider => 'twitter',
+      :uid => '123545',
+      :info => {
+        :nickname => 'rolen'}
+    })
+    @user = User.create_from_omniauth(OmniAuth.config.mock_auth[:twitter])
+  end
+
+  def test_mock_user_is_saved
+    assert_equal @user.provider, 'twitter'
+    assert_equal @user.uid, '123545'
   end
 
   # ------ changed login to twitter... tests not needed --------

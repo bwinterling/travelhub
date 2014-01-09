@@ -1,12 +1,5 @@
 require 'spec_helper'
 
-  feature 'Sign in via Twitter' do
-  
-  end
-  #   :provider => 'twitter',
-  # :uid => '123545',
-
-
   # ------- changed to Twitter login ------------------
   # describe 'User signup' do
   #   it 'signup' do
