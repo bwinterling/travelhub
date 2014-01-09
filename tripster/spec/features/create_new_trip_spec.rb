@@ -10,14 +10,8 @@ describe "Creating a Trip" do
 
   context "when logged in" do
     it "can be created" do
-      visit new_session_path
-      User.create!(email: "kat@example.com")
-
-      within ".login" do
-	fill_in "Email", with: "kat@example.com"
-	click_on "Login"
-      end
-
+      visit root_path
+      click_on "Login with Twitter"
       visit new_trip_path
       fill_in "Name", with: "Siam"
       fill_in "Description", with: "ETC ETC ETC"
