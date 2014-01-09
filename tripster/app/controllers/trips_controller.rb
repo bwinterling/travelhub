@@ -9,8 +9,8 @@ class TripsController < ApplicationController
     @trip = current_user.trips.new
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
-    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
-    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
+    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%d/%m/%Y")
+    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%d/%m/%Y")
 
     if @trip.save
       redirect_to trip_path(@trip)

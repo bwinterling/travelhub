@@ -11,7 +11,7 @@
 <% if @current_user %>
   <%= @current_user.email %> <%=link_to "Add A Trip", new_trip_path %> <%= link_to "Logout", logout_path, method: "delete" %>
 <% else %>
-  <%= link_to "Login", new_session_path %>
+  <%= link_to "Sign in with Twitter", "/auth/twitter" %>
 <% end %>
 </div>
 

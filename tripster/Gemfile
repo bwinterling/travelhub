@@ -4,6 +4,8 @@ gem 'rails', '4.0.1'
 
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :doc do
   gem 'sdoc', require: false
