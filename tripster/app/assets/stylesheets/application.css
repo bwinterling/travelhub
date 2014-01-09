@@ -12,3 +12,67 @@
  *= require_tree .
 *= require jquery.ui.all
  */
+
+body#home {
+  background-image: url(home_page.png);
+  background-size: 100% auto;
+  width: 100%;
+  height: 100%;
+  background-repeat:repeat-x;
+}
+
+h5#home {
+   margin: 10px 0px 10px 0px;
+  color: #FFF;
+}
+
+#masthead {
+  height: 80px;
+  background: url(top.png);
+  z-index: 100;
+  top: 20px;
+  left: 0px !important;
+  position: fixed;
+  width: 100%;
+}
+
+#botmenu{
+  height:0px;
+  margin:0px 10px 0px 0px;
+  font-family:BebasNeueRegular,Arial,verdana,Century gothic,sans-serif}
+
+
+.submenu ul{
+  margin:-5px 0px;
+  padding:0px 0px;
+  width:100%;
+  float: right;
+  }
+
+.submenu li { 
+  float:right;
+  list-style:none;
+  margin:10px;
+  padding:0;
+  color:#ccc;
+  text-shadow:1px 1px 0px #000;
+  font-size:20px}
+
+.submenu li a{
+  color:#ccc;
+  display:block;
+  margin:0;
+  text-decoration:none;
+  position:relative;
+  text-shadow:1px 1px 0px #000}
+
+.submenu li.links{
+ padding-right:3.5%;
+}
+
+.submenu li a:hover, .submenu li a:active, .submenu .current_page_item
+a{
+  color:#fff;
+  text-shadow:1px 1px 0px #000}
+
+

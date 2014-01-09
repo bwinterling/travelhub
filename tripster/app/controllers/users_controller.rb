@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     @photos_api = PhotosAPI
   end
 
-
   # def new
   #   @user = User.new
   # end
