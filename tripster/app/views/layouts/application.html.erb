@@ -8,6 +8,8 @@
 </head>
 <body>
 <div class="header">
+  <h2> Triptionary </h2>
+  <p> Welcome to the trip aggregator site.  Compile your Instagram photos, FourSquare check-ins and Twitter tweets from your trip" </p>
 <% if current_user %>
   <%= current_user.name %> <%=link_to "Add A Trip", new_trip_path %> <%= link_to "Logout", logout_path, method: "delete" %>
 <% else %>
