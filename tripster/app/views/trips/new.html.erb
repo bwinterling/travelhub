@@ -3,14 +3,19 @@
           $( ".datepicker" ).datepicker();
 	    });
  </script>
- <%= form_for @trip do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br/>
-  <%= f.label :description %>
-  <%= f.text_area :description %> <br/>
-  <%= f.label :starts_at, "Start Date" %>
-  <%= f.text_field :starts_at, class: "datepicker" %>
-  <%= f.label :ends_at, "End Date" %>
-  <%= f.text_field :ends_at, class: "datepicker" %>
-  <%= f.submit "Submit" %>
+ <fieldset id="newtrip">
+  <%= form_for @trip do |f| %>
+  <ul>
+    <li><%= f.label :name %>
+      <%= f.text_field :name %>
+      <input id="name" name="name" type="text" class="required name"></li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+      <input id="description" name="description"  type="text" class="required email"></li>
+    <li><%= f.label :starts_at, "Start Date" %>
+      <%= f.text_field :starts_at, class: "datepicker" %></li>
+    <li><%= f.label :ends_at, "End Date" %>
+      <%= f.text_field :ends_at, class: "datepicker" %></li></ul>
+  <div id="submitbutton" ><%= f.submit "Submit" %></div>
 <% end %>

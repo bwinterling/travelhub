@@ -14,10 +14,13 @@
     <div><h5 class="submenu" id='home'> Triptionary Logo </h5></div>
   <div class="submenu" >
     <ul>
-      <li><% if current_user %>
-        <%= current_user.name %> <%=link_to "Add A Trip", new_trip_path %> <%= link_to "Logout", logout_path, method: "delete" %>
-      <li><% else %>
-        <%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter"), "/auth/twitter" %>
+      <% if current_user %>
+        <li><%= link_to "Logout", logout_path, method: "delete" %></li>
+        <li><%=link_to "Add A Trip", new_trip_path %> </li>
+        <div>
+        <li><%= image_tag(current_user.avatar_url, id: "profile_image") %><t/> <%= current_user.name %></li></div>
+      <% else %>
+        <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter"), "/auth/twitter" %></li>
       <% end %>
 </div>
  <% if flash[:notice] %>

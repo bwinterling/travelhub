@@ -6,8 +6,12 @@ describe 'User can connect to' do
     visit root_path
     click_on "Login with Twitter"
     click_on "Connect with Instagram"
-    save_and_open_page
+    fill_in "Username", with: "MappingKat"
+    fill_in "Password", with: "eeri44"
+    
+    click_on "Log in"
     expect(page).to have_content "Connection to Instagram Successful!" 
+    binding.pry
   end
 
   #  it 'twitter account' do

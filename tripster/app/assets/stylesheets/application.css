@@ -1,18 +1,10 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
  *= require_tree .
-*= require jquery.ui.all
+ *= require jquery.ui.all
  */
 
+/*------------- homepage --------------------*/
 body#home {
   background-image: url(home_page.png);
   background-size: 100% auto;
@@ -21,9 +13,11 @@ body#home {
   background-repeat:repeat-x;
 }
 
+/*------------- header --------------------*/
 h5#home {
    margin: 10px 0px 10px 0px;
-  color: #FFF;
+   color: #FFF;
+   font: 16px "ClarendonRoman",Georgia,Times,serif;
 }
 
 #masthead {
@@ -39,8 +33,8 @@ h5#home {
 #botmenu{
   height:0px;
   margin:0px 10px 0px 0px;
-  font-family:BebasNeueRegular,Arial,verdana,Century gothic,sans-serif}
-
+  font: 13px "ClarendonRoman",Georgia,Times,serif;
+}
 
 .submenu ul{
   margin:-5px 0px;
@@ -53,10 +47,10 @@ h5#home {
   float:right;
   list-style:none;
   margin:10px;
-  padding:0;
+  padding:10px;
   color:#ccc;
   text-shadow:1px 1px 0px #000;
-  font-size:20px}
+  }
 
 .submenu li a{
   color:#ccc;
@@ -74,5 +68,62 @@ h5#home {
 a{
   color:#fff;
   text-shadow:1px 1px 0px #000}
+
+#profile_image {
+  width: 15%;
+  height: 15%;
+}
+
+/*------------- new trip form --------------------*/
+fieldset#newtrip {
+    padding-bottom: 23px;
+    border-bottom: 1px solid rgb(167, 167, 164);
+}
+
+form label {
+    font: 13px "ClarendonRoman",Georgia,Times,serif;
+    color: rgb(82, 82, 80);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    float: left;
+    position: relative;
+    top: 4px;
+}
+
+input#name {
+    width: 370px;
+}
+
+form input {
+    border-width: medium medium 1px;
+    border-style: none none dashed;
+    border-color: -moz-use-text-color -moz-use-text-color rgb(152, 152, 149);
+    color: rgb(79, 79, 79);
+    background: none repeat scroll 0% 0% transparent;
+    outline: medium none;
+    position: relative;
+    bottom: 13px;
+    font: 16px "SeanRegular",Courier New,Courier New,Courier6,monospace;
+    letter-spacing: 1px;
+}
+
+form select, form input {
+    float: right;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+#submitbutton {
+    cursor: pointer;
+    background: url("../img/submit.png") no-repeat scroll 0% 0% transparent;
+    width: 445px;
+    height: 86px;
+    border: medium none;
+    text-indent: -9999px;
+    position: relative;
+    bottom: 10px;
+}
 
 

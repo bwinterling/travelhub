@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["nickname"]
+      user.avatar_url = auth["info"]["image"].sub("_normal", "")
     end
   end
 end

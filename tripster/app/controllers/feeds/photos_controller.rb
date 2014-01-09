@@ -1,5 +1,6 @@
 module Feeds
   class PhotosController < ApplicationController
+    before_action :current_user
     #check initializers/feeds.rb for setup info
     def connect
       redirect_to PhotosAPI.connect_url
@@ -18,6 +19,5 @@ module Feeds
         flash[:notice] = "Failed to Connect to #{PHOTO_PROVIDER}"
       end
     end
-
   end
 end
