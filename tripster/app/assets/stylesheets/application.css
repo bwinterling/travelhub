@@ -34,13 +34,16 @@ h5#home {
   height:0px;
   margin:0px 10px 0px 0px;
   font: 13px "ClarendonRoman",Georgia,Times,serif;
+
 }
 
+/*------------- left-sided links --------------------*/
 .submenu ul{
   margin:-5px 0px;
   padding:0px 0px;
   width:100%;
   float: right;
+  bottom: 40px;
   }
 
 .submenu li { 
@@ -58,7 +61,8 @@ h5#home {
   margin:0;
   text-decoration:none;
   position:relative;
-  text-shadow:1px 1px 0px #000}
+  text-shadow:1px 1px 0px #000;
+  bottom: 3px;}
 
 .submenu li.links{
  padding-right:3.5%;
@@ -72,6 +76,13 @@ a{
 #profile_image {
   width: 15%;
   height: 15%;
+  border-radius: 15px;
+}
+
+.twitteraccount {
+  position: relative;
+  left: 30%;
+  bottom: 40px;
 }
 
 /*------------- new trip form --------------------*/
