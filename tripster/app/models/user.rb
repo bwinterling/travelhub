@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
 
   has_many :trips
+  has_many :feed_sources
+  has_many :photos
 
   def self.from_omniauth(auth)
     where(auth.slice("provider","uid")).first || create_from_omniauth(auth)
   end
-
-  has_many :feed_sources
 
   def self.create_from_omniauth(auth)
     create! do |user|
