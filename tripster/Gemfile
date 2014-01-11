@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 gem 'instagram'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'twitter'
 
 group :doc do
   gem 'sdoc', require: false

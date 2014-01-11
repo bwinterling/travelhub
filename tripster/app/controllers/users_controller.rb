@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def edit
     @photos_api = PhotosAPI
+    @messageapi = MessagesAPI.new(current_user).client
+    @tweets = @messageapi.user_timeline
   end
 
   # def new

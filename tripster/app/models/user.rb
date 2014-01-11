@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
       user.uid = auth["uid"]
       user.name = auth["info"]["nickname"]
       user.avatar_url = auth["info"]["image"]
+      user.access_token = auth.extra.access_token.token
+      user.access_secret = auth.extra.access_token.secret
     end
   end
 end

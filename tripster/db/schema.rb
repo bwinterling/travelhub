@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140110211259) do
+ActiveRecord::Schema.define(version: 20140111232239) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "feed_sources", force: true do |t|
     t.integer  "user_id"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140110211259) do
     t.datetime "updated_at"
   end
 
-  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id"
+  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 20140110211259) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken"
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken", using: :btree
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "trips", force: true do |t|
     t.string   "name"
@@ -55,6 +58,8 @@ ActiveRecord::Schema.define(version: 20140110211259) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "access_token"
+    t.string   "access_secret"
   end
 
 end

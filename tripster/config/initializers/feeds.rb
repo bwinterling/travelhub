@@ -12,3 +12,6 @@ Instagram.configure do |config|
   config.client_id = ENV["INSTAGRAM_CLIENT_ID"]
   config.client_secret = ENV["INSTAGRAM_CLIENT_SECRET"]
 end
+
+TWITTER_CONSUMER_KEY = ENV["TWITTER_CLIENT_ID"]
+TWITTER_CONSUMER_SECRET = ENV["TWITTER_CLIENT_SECRET"]
