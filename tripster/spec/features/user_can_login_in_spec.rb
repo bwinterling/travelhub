@@ -16,12 +16,14 @@ describe 'User can sign in' do
     click_on "Logout"
     # expect(page).to have_content "Login with Twitter"
     expect(page).not_to have_content "Logout"
-     expect(page).to have_content "Signed out!"  
+    expect(page).to have_content "Signed out!"  
   end
 end
 
 describe 'User directed to dashboard' do
+
   it 'sees most recent trip' do
+    pending
     visit root_path
     click_on "Login with Twitter"
     Trip.create!(name: "The Highlands", 

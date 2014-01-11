@@ -12,7 +12,8 @@ class PhotosAPI < ActiveRecord::Base
 
   def self.feed_for(user_id, start_date, end_date)
     user = User.find(user_id)
-    token = FeedSource.find_by(:user_id => user_id, :provider => PHOTO_PROVIDER).token
+    token = FeedSource.find_by(:user_id => user_id, 
+          :provider => PHOTO_PROVIDER).token
     client = Instagram.client(:access_token => token)
     store_photos(client, user.id)
     #right now, this returns all photos.  Need to figure out how to

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe 'User can connect to' do
 
   it 'instagram account', js: true do
+    pending
     visit root_path
     click_on "Login with Twitter"
     click_on "Connect with Instagram"
