@@ -4,3 +4,8 @@
   <h1>#{current_user.name}'s recent photos:</h1>
   <%= render(@photos) || "There are no photos available." %>
 </div>
+<div id="tweet">
+  <% @tweets.each do |t| %>
+    <p><%= t.text %></p>
+  <% end %>
+</div>
