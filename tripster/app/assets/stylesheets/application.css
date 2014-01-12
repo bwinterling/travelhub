@@ -13,6 +13,10 @@ body#home {
   background-repeat:repeat-x;
 }
 
+.logo_image {
+  width: 200px;
+}
+
 /*------------- header --------------------*/
 h5#home {
    margin: 10px 0px 10px 0px;
@@ -32,25 +36,22 @@ h5#home {
 
 #botmenu{
   height:0px;
-  margin:0px 10px 0px 0px;
+  margin:10px 10px 10px 10px;
   font: 13px "ClarendonRoman",Georgia,Times,serif;
 
 }
 
 /*------------- left-sided links --------------------*/
 .submenu ul{
-  margin:-5px 0px;
-  padding:0px 0px;
   width:100%;
-  float: right;
-  bottom: 40px;
+  padding: 10px 10px 10px 10px;
   }
 
 .submenu li { 
-  float:right;
+  float: right;
   list-style:none;
   margin:10px;
-  padding:10px;
+  padding-right: 100px;
   color:#ccc;
   text-shadow:1px 1px 0px #000;
   }
@@ -81,12 +82,11 @@ a{
 
 .twitteraccount {
   position: relative;
-  left: 30%;
-  bottom: 40px;
 }
 
 /*------------- new trip form --------------------*/
 fieldset#newtrip {
+    margin: 10% 10%;
     padding-bottom: 23px;
     border-bottom: 1px solid rgb(167, 167, 164);
 }
@@ -96,45 +96,14 @@ form label {
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;
-    float: left;
-    position: relative;
     top: 4px;
-}
-
-input#name {
-    width: 370px;
 }
 
 form input {
     border-width: medium medium 1px;
     border-style: none none dashed;
-    border-color: -moz-use-text-color -moz-use-text-color rgb(152, 152, 149);
-    color: rgb(79, 79, 79);
-    background: none repeat scroll 0% 0% transparent;
-    outline: medium none;
-    position: relative;
-    bottom: 13px;
-    font: 16px "SeanRegular",Courier New,Courier New,Courier6,monospace;
-    letter-spacing: 1px;
-}
-
-form select, form input {
-    float: right;
-}
-
-input, select {
     vertical-align: middle;
 }
 
-#submitbutton {
-    cursor: pointer;
-    background: url("../img/submit.png") no-repeat scroll 0% 0% transparent;
-    width: 445px;
-    height: 86px;
-    border: medium none;
-    text-indent: -9999px;
-    position: relative;
-    bottom: 10px;
-}
 
 

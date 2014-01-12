@@ -11,15 +11,16 @@
 <div class="header">
   <div id="masthead" >
     <div id= "botmenu">
-    <div><h5 class="submenu" id='home'> Triptionary Logo </h5></div>
+    <div><%= link_to image_tag("logo.png", class: "logo_image"),root_path %></div>
   <div class="submenu" >
     <ul>
       <% if current_user %>
         <li><%= link_to "Logout", logout_path, method: "delete" %></li>
         <li><%=link_to "Add A Trip", new_trip_path %> </li>
-        <div class="twitteraccount"><li><%= image_tag(current_user.avatar_url, id: "profile_image") %> <t/> <%= current_user.name %></li></div>
+        <div class="twitteraccount">
+          <li><%= image_tag(current_user.avatar_url, id: "profile_image") %> <t/> <%= current_user.name %></li></div>
       <% else %>
-        <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter"), "/auth/twitter" %></li>
+          <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter", class: "twitterlogin"), "/auth/twitter" %></li>
       <% end %>
 </div>
  <% if flash[:notice] %>
