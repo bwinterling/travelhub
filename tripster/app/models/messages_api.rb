@@ -12,8 +12,8 @@ class MessagesAPI < ActiveRecord::Base
 
 
   #using Twitter
-  #check initializers/feeds.rb for setup info
-  def self.connect_url
-    Twitter.authorize_url(:redirect_uri => MESSAGES_CALLBACK_URL)
-  end
+  # #check initializers/feeds.rb for setup info
+  # def self.connect_url
+  #   Twitter.authorize_url(:redirect_uri => MESSAGES_CALLBACK_URL)
+  # end
 end

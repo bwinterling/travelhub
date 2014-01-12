@@ -1,5 +1,12 @@
 <%= link_to "Connect with Instagram", @photos_api.connect_url %>
 
-<% @tweets.each do |t|%>
-<%= t.text %><br/>
-<% end %>
+<div class="modal" aria-hidden="true">
+  <div class="modal-body">
+    <div class="span6">
+      <% @tweets.each do |t|%>
+      <%= t.text %><br/>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
