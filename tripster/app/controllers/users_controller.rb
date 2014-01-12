@@ -2,8 +2,9 @@ class UsersController < ApplicationController
 
   def edit
     @photos_api = PhotosAPI
-    @messageapi = MessagesAPI.new(current_user).client
-    @tweets = @messageapi.user_timeline
+  end
+
+  def index
   end
 
   # def new
@@ -18,5 +19,6 @@ class UsersController < ApplicationController
   #   session[:email] = @user.email
   #   redirect_to root_path
   # end
+  #
 
 end
