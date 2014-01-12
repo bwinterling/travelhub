@@ -10,7 +10,6 @@
 <body>
 <div class="header">
   <div id="masthead" >
-    <div id= "botmenu"> 
     <div><%= link_to image_tag("logo.png", class: "logo_image"),root_path %></div>
   <div class="submenu" >
     <ul>
@@ -27,6 +26,5 @@
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 <%= yield %>
-
 </body>
 </html>
