@@ -4,18 +4,21 @@
 	    });
  </script>
  <fieldset id="newtrip">
-  <%= form_for @trip do |f| %>
-  <ul>
-    <li><%= f.label :name %>
-      <%= f.text_field :name %>
-      <input id="name" name="name" type="text" class="required name"></li>
-    <li>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-      <input id="description" name="description"  type="text" class="required email"></li>
-    <li><%= f.label :starts_at, "Start Date" %>
-      <%= f.text_field :starts_at, class: "datepicker" %></li>
-    <li><%= f.label :ends_at, "End Date" %>
-      <%= f.text_field :ends_at, class: "datepicker" %></li></ul>
-  <div id="submitbutton" ><%= f.submit "Submit" %></div>
+  <legend> Create a New Trip </legend>
+  <form><%= form_for @trip do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+      <%= f.label :name %><t><%= f.text_field :name %></div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.label :description %><t><%= f.text_area :description %></div>
+    <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :starts_at, "Start Date" %>
+      <%= f.text_field :starts_at, class: "datepicker" %></div>
+    <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :ends_at, "End Date" %>
+      <%= f.text_field :ends_at, class: "datepicker" %></div>
+  <div class="alertbutton" ><%= f.submit "Submit" %></form>
 <% end %>
