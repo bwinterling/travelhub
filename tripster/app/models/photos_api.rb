@@ -12,12 +12,15 @@ class PhotosAPI < ActiveRecord::Base
 
   def self.feed_for(user_id, start_date, end_date)
     user = User.find(user_id)
-    token = FeedSource.find_by(:user_id => user_id, :provider => PHOTO_PROVIDER).token
-    client = Instagram.client(:access_token => token)
-    store_photos(client, user.id)
-    #right now, this returns all photos.  Need to figure out how to
-    #limit by date
-    user.photos.all
+    photo_source = user.feed_sources.find_by(:provider => PHOTO_PROVIDER)
+    if photo_source
+      token = photo_source.token
+      client = Instagram.client(:access_token => token)
+      store_photos(client, user.id)
+      user.photos.where(:photo_taken => start_date...end_date)
+    else
+      return nil
+    end
   end
 
   def self.store_photos(client, user_id)
@@ -29,16 +32,8 @@ class PhotosAPI < ActiveRecord::Base
         :thumbnail_url  => photo.images.thumbnail.url,
         :standard_url  => photo.images.standard_resolution.url,
         :caption  => caption,
-        :photo_taken => Time.at(photo.created_time.to_i)
+        :photo_taken => DateTime.strptime(photo.created_time, "%s")
         ).first_or_create
     end
   end
-
-  #EXAMPLE - for how to process the feed in Sinatra
-  # html = "<h1>#{user.username}'s recent photos</h1>"
-  # for media_item in client.user_recent_media
-  #   html << "<img src='#{media_item.images.thumbnail.url}'>"
-  # end
-  # html
-
 end

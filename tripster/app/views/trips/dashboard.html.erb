@@ -2,5 +2,5 @@
 <h5><%= @trip.name %></h5>
 <div id="photos">
   <h1>#{current_user.name}'s recent photos:</h1>
-  <%= render(@photos) || "There are no photos available." %>
+  <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
