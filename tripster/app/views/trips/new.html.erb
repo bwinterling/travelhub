@@ -7,15 +7,15 @@
 
  <fieldset id="newtrip">
   <legend> Create a New Trip </legend>
-  
-  <form><%= form_for @trip do |f| %>   
+
+ <%= form_for @trip do |f| %>
       <div class="row">
         <div class="large-12 columns">
           <%= f.label :name %>
           <%= f.text_field :name %>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="large-12 columns">
           <%= f.label :description %>
@@ -37,5 +37,4 @@
           <%= f.submit "Submit", class: "button" %>
         </div>
       </div>
-  </form>
 <% end %>

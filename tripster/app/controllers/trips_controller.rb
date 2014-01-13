@@ -6,18 +6,22 @@ class TripsController < ApplicationController
 
   def create
     trip_params = params[:trip]
-   
+    @trip = Trip.new
+    @trip.user_id = current_user.id
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
-    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%d/%m/%Y")
-    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%d/%m/%Y")
-    @trip = current_user.trips.new
+    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
+    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
-    # if @trip.save
-    #   redirect_to dashboard_path(@trip)
-    # else
-    #   render :new
-    # end
+     if @trip.save!
+       puts "happy path"
+       flash[:notice] ="Awesome Trip"
+       redirect_to trip_path(@trip)
+     else
+       puts "ASFASFSSAGDFSGFSAGDDFSAHAFDHADFHADHFTADHF"
+       flash[:notice] = "FAIL"
+       redirect_to root_path
+     end
   end
 
   def show

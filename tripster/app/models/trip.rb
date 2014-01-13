@@ -13,12 +13,12 @@ class Trip < ActiveRecord::Base
   def messages
     messages_api = MessagesAPI.new(user)
     client =  messages_api.client
-    @messages ||= client.user_timeline(client.user.id, count: 200).select do |message|
-      if ends_at
-	message.created_at > starts_at && message.created_at < ends_at
-      else
-	message.created_at > starts_at
-      end
+    messages = client.user_timeline(client.user.id, count: 200)
+
+    messages = messages.select { |message| message.created_at > starts_at }
+
+    if ends_at
+      messages.select { |message| message.created_at < ends_at }
     end
   end
 end
