@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  # def new 
+  #   @message
+  # end
+
   def edit
     @photos_api = PhotosAPI
   end

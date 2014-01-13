@@ -32,7 +32,7 @@ class TripsController < ApplicationController
     if current_user.trips.last
       @trip = current_user.trips.last
       @photos = PhotosAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
-      @tweets = @trip.messages
+      @tweets = @trip.messages(current_user)
     else
       flash[:notice] = "You do not have any trips!"
       redirect to root_path

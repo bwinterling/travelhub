@@ -113,6 +113,20 @@ a{
   height: 150px;
 }
 
+/*------------------- connect accounts ---------------*/
 
+#instagram  {
+  width: 200px;
+}
+
+fieldset.accounts {
+  margin: 10% 10%;
+  padding-bottom: 23px;
+  border-bottom: 1px solid rgb(167, 167, 164);
+}
+
+legend{
+  font-size: 1.4em;
+}
 
 
