@@ -14,11 +14,9 @@ class TripsController < ApplicationController
     @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
      if @trip.save!
-       puts "happy path"
        flash[:notice] ="Awesome Trip"
        redirect_to trip_path(@trip)
      else
-       puts "ASFASFSSAGDFSGFSAGDDFSAHAFDHADFHADHFTADHF"
        flash[:notice] = "FAIL"
        redirect_to root_path
      end
