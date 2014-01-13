@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-
 describe 'visitor viewing' do
   it 'trip page' do
     trip = Trip.create!(name: "Tanzania",

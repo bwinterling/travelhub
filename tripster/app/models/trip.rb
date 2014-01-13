@@ -10,8 +10,8 @@ class Trip < ActiveRecord::Base
     end
   end
 
-  def messages
-    messages_api = MessagesAPI.new(user)
+  def messages(current_user)
+    messages_api = MessagesAPI.new(current_user)
     client =  messages_api.client
     @messages ||= client.user_timeline(client.user.id, count: 200).select do |message|
       if ends_at

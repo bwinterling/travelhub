@@ -2,6 +2,6 @@
 <%= @trip.description %><br/>
 <%= @trip.starts_at  %><br/>
 <%= @trip.ends_at  %><br />
-<% @trip.messages.each do |m| %>
+<% @trip.messages(current_user).each do |m| %>
   <%=m.text %> <br/>
 <%end%>
