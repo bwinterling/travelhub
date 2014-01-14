@@ -36,8 +36,9 @@ RSpec.configure do |config|
     :uid => '123545',
     :info => {
       :nickname => 'rolen' },
-      :credentials => {
-	:token => "15334617-RNooHjcKSz92pLcoYLs7VYIlvikGRhihd30KYJB92"}
+    :credentials => {
+      :token => "15334617-RNooHjcKSz92pLcoYLs7VYIlvikGRhihd30KYJB92",
+      :secret => "eXGpFrgcKLKIs7m2h4onJxu1sRWZaeR0uC7leDbP35e"}
   })
 
   OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({

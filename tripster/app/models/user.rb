@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
     user.update_attributes(
       name:          auth["info"]["nickname"],
       avatar_url:    auth["info"]["image"],
-      access_token:  auth.extra.access_token.token,
-      access_secret: auth.extra.access_token.secret
+      access_token:  auth["credentials"]["token"],
+      access_secret: auth["credentials"]["secret"]
       )
 
     user
