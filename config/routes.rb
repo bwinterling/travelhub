@@ -1,7 +1,7 @@
 Tripster::Application.routes.draw do
 
-  # this will need to be changed... 
-  root "users#index" 
+  # this will need to be changed...
+  root "users#index"
 
   resources :users
   resources :trips

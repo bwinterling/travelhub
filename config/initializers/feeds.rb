@@ -1,7 +1,7 @@
 #Instagram
 
 if Rails.env.production?
-  PHOTOS_CALLBACK_URL = "http://triptionary.herokuapp.com/feeds/photos/callback"
+  PHOTOS_CALLBACK_URL = "http://afternoon-chamber-5947.herokuapp.com/feeds/photos/callback"
 else
   PHOTOS_CALLBACK_URL = "http://localhost:3000/feeds/photos/callback"
 end
