@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'visitor viewing' do
   it 'trip page' do
-    user = User.create!
+    user = User.from_omniauth OmniAuth.config.mock_auth[:twitter]
     trip = Trip.create!(name: "Tanzania",
                         user_id: user.id,
                         description: "kili climbing",
