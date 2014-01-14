@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
       :info => {
         :nickname => 'rolen'}
     })
-    @user = User.create_from_omniauth(OmniAuth.config.mock_auth[:twitter])
+    @user = User.from_omniauth(OmniAuth.config.mock_auth[:twitter])
   end
 
   def test_mock_user_is_saved

@@ -1,8 +1,8 @@
 
 <h5><%= @trip.name %></h5>
 <div id="photos">
-  <h1>#{current_user.name}'s recent photos:</h1>
-  <%= render(@photos) || "There are no photos available." %>
+  <h1><%= @current_user.possessive_name %> recent photos:</h1>
+  <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
 <div id="tweet">
   <% @tweets.each do |t| %>

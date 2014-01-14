@@ -17,15 +17,15 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include SeleniumHelper, :type => :request
-  
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
- 
+
   config.before(:each, js: true) do
     DatabaseCleaner.start
   end
- 
+
   config.after(:each, js: true) do
     DatabaseCleaner.clean
   end
@@ -35,7 +35,7 @@ RSpec.configure do |config|
     :provider => 'twitter',
     :uid => '123545',
     :info => {
-      :name => 'rolen' }
+      :nickname => 'rolen' }
   })
 
   OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({
@@ -44,10 +44,15 @@ RSpec.configure do |config|
     :info => {
       :name => 'larry' }
   })
+  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
+  #
+  # config.mock_with :mocha
+  # config.mock_with :flexmock
+  # config.mock_with :rr
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  
+
 
   config.infer_base_class_for_anonymous_controllers = false
 
