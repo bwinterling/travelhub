@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
-  # def new 
+  # def new
   #   @message
   # end
 
   def edit
     @photos_api = PhotosAPI
+    @checkins_api = CheckinsAPI
   end
 
   def index

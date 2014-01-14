@@ -10,6 +10,7 @@ gem 'instagram'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'foursquare2'
 
 group :production do
   gem 'rails_12factor'
