@@ -45,6 +45,11 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    if current_user && @trip.user_id == current_user.id
+      @owner = true
+    # else
+    #   @owner = nil
+    end
     @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
   end
