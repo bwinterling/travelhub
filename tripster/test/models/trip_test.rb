@@ -4,7 +4,7 @@ class TripTest < ActiveSupport::TestCase
   attr_reader :user, :trip
 
   def setup
-    @user = User.create!(email: "test@example.com")
+    @user = User.create!(valid_user_params)
     @trip = user.trips.create!(name: "Jamica",
 			      description: "... Plains, Massachusetts",
 			      starts_at: DateTime.now,
@@ -41,5 +41,12 @@ class TripTest < ActiveSupport::TestCase
 
     assert trip.starts_at < trip.ends_at
     refute trip.starts_at > trip.ends_at
+  end
+
+  def valid_user_params
+    {
+      :email => "user@example.com",
+      :name => "Neck Beard"
+    }
   end
 end

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :feed_sources
   has_many :photos
 
+  validates :name, :presence => true
+
   def possessive_name
     name.ends_with?("s") ? name + "'" : name + "'s"
   end
