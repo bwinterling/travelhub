@@ -16,5 +16,7 @@ Tripster::Application.routes.draw do
   namespace :feeds do
     get '/photos/connect', to: 'photos#connect'
     get '/photos/callback', to: 'photos#callback'
+    get '/checkins/connect', to: 'checkins#connect'
+    get '/checkins/callback', to: 'checkins#callback'
   end
 end
