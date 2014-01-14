@@ -10,8 +10,4 @@ class Trip < ActiveRecord::Base
     end
   end
 
-  def messages
-    messages_api = MessagesAPI.new(user)
-    client =  messages_api.client
-  end
 end
