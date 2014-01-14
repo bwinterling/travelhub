@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe 'visitor viewing' do
   it 'trip page' do
+    user = User.create!
     trip = Trip.create!(name: "Tanzania",
+                        user_id: user.id,
                         description: "kili climbing",
                         starts_at: DateTime.now,
                         ends_at: DateTime.now + 4392095 )
