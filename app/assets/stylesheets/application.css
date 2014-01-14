@@ -6,7 +6,7 @@
 
 /*------------- homepage --------------------*/
 body.home {
-  background: #9edbff url(images/home_page.png);
+  background: #9edbff url(/images/home_page.png);
   background-size: 100% auto;
   width: 100%;
   border-radius: 40px;
@@ -31,7 +31,7 @@ h5#home {
 
 #masthead {
   height: 80px;
-  background: url(images/top.png);
+  background: url(/images/top.png);
   margin-top: 20px;
   width: 100%;
   margin-bottom:50px;
@@ -86,7 +86,7 @@ a{
   color: rgb(82, 82, 80);
   letter-spacing: 2px;
   text-transform: uppercase;
-  background-image: url(images/opacity50.png);
+  background-image: url(/images/opacity50.png);
   border-radius: 40px;
 }
 
