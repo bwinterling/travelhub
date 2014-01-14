@@ -17,4 +17,12 @@ class CheckinsAPI
     code = "&code=" + input_code
     base_url + client_id + client_secret + grant_type + redirect_uri + code
   end
+
+  def self.connect(input_code)
+    access_token_url = self.access_token_url(input_code)
+    response = Faraday.get access_token_url
+    access_token = JSON.parse(response.body)["access_token"]
+    @client = Foursquare2::Client.new(oauth_token: access_token)
+  end
+
 end
