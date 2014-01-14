@@ -35,7 +35,9 @@ RSpec.configure do |config|
     :provider => 'twitter',
     :uid => '123545',
     :info => {
-      :nickname => 'rolen' }
+      :nickname => 'rolen' },
+      :credentials => {
+	:token => "15334617-RNooHjcKSz92pLcoYLs7VYIlvikGRhihd30KYJB92"}
   })
 
   OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({
