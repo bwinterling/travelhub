@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111232239) do
+ActiveRecord::Schema.define(version: 20140114035820) do
 
   create_table "feed_sources", force: true do |t|
     t.integer  "user_id"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20140111232239) do
 
   add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken"
   add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+
+  create_table "statuses", force: true do |t|
+    t.string   "text"
+    t.integer  "user_id"
+    t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "statuses", ["sent_at"], name: "index_statuses_on_sent_at"
+  add_index "statuses", ["user_id"], name: "index_statuses_on_user_id"
 
   create_table "trips", force: true do |t|
     t.string   "name"

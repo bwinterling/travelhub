@@ -5,7 +5,7 @@
   <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
 <div id="tweet">
-  <% @tweets.each do |t| %>
+  <% @statuses.each do |t| %>
     <p><%= t.text %></p>
   <% end %>
 </div>
