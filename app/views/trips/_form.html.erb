@@ -1,0 +1,36 @@
+ <script>
+  $(function() {
+          $( ".datepicker" ).datepicker();
+      });
+ </script>
+
+<%= form_for(@trip) do |f| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :starts_at, "Start Date" %>
+      <%= f.text_field :starts_at, class: "datepicker" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :ends_at, "End Date" %>
+      <%= f.text_field :ends_at, class: "datepicker" %>
+      <%= f.submit "Submit", class: "button" %>
+    </div>
+  </div>
+<% end %>
