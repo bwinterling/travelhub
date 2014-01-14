@@ -6,7 +6,7 @@ Tripster::Application.routes.draw do
   resources :users
   resources :trips
 
-  match "/logout", to: "sessions#destroy", as: "logout", via: "delete"
+  match "/logout", to: "sessions#destroy", as: "logout", via: ["delete", "get"]
   match 'auth/:provider/callback', to: 'sessions#create', via: "get"
 
   match 'auth/failure', to: redirect('/'), via: "get"
