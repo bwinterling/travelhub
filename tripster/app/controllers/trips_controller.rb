@@ -27,13 +27,14 @@ class TripsController < ApplicationController
   end
 
   def dashboard
-    if current_user.trips.last
+
+    if current_user && current_user.trips.last
       @trip = current_user.trips.last
       @photos = PhotosAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
       @tweets = @trip.messages(current_user)
     else
       flash[:notice] = "You do not have any trips!"
-      redirect to root_path
+      redirect_to root_path
     end
   end
 end

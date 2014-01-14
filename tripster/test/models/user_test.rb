@@ -8,7 +8,9 @@ class UserTest < ActiveSupport::TestCase
       :provider => 'twitter',
       :uid => '123545',
       :info => {
-        :nickname => 'rolen'}
+        :nickname => 'rolen'},
+      :credentials => {
+	:token => "15334617-RNooHjcKSz92pLcoYLs7VYIlvikGRhihd30KYJB92"}
     })
     @user = User.from_omniauth(OmniAuth.config.mock_auth[:twitter])
   end
@@ -32,7 +34,7 @@ class UserTest < ActiveSupport::TestCase
   # def test_validates_uniqueness_of_email
   #   @user.update(:email => "test@example.com")
   #   assert @user.save
-  #   assert_raise ActiveRecord::RecordInvalid do 
+  #   assert_raise ActiveRecord::RecordInvalid do
   #     User.create!(:email => "test@example.com")
   #   end
   # end
