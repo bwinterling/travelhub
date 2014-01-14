@@ -1,0 +1,113 @@
+AbstractController::ActionNotFound at /users
+============================================
+
+> The action 'create' could not be found for UsersController
+
+spec/features/user_signup_spec.rb, line 9
+-----------------------------------------
+
+``` ruby
+    4       it 'signup' do
+    5         page.visit new_user_path
+    6         fill_in 'Email', :with => "trippytripster@example.com"
+    7         fill_in 'Name',   :with => "The Trippiest"
+    8         # avatar test
+>   9         click_on 'Sign Up'
+   10         save_and_open_page
+   11         expect(page).to have_content('Blackfish')
+   12       end
+   13     end
+```
+
+App backtrace
+-------------
+
+ - spec/features/user_signup_spec.rb:9:in `block (2 levels) in <top (required)>'
+
+Full backtrace
+--------------
+
+ - actionpack (4.0.1) lib/abstract_controller/base.rb:131:in `process'
+ - actionpack (4.0.1) lib/abstract_controller/rendering.rb:44:in `process'
+ - actionpack (4.0.1) lib/action_controller/metal.rb:195:in `dispatch'
+ - actionpack (4.0.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+ - actionpack (4.0.1) lib/action_controller/metal.rb:231:in `block in action'
+ - actionpack (4.0.1) lib/action_dispatch/routing/route_set.rb:80:in `dispatch'
+ - actionpack (4.0.1) lib/action_dispatch/routing/route_set.rb:48:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/journey/router.rb:71:in `block in call'
+ - actionpack (4.0.1) lib/action_dispatch/journey/router.rb:59:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/routing/route_set.rb:680:in `call'
+ - rack (1.5.2) lib/rack/etag.rb:23:in `call'
+ - rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+ - rack (1.5.2) lib/rack/head.rb:11:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/flash.rb:241:in `call'
+ - rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+ - rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/cookies.rb:486:in `call'
+ - activerecord (4.0.1) lib/active_record/query_cache.rb:36:in `call'
+ - activerecord (4.0.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:626:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+ - activesupport (4.0.1) lib/active_support/callbacks.rb:373:in `_run__2301603021463168889__call__callbacks'
+ - activesupport (4.0.1) lib/active_support/callbacks.rb:80:in `run_callbacks'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+ - better_errors (1.0.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+ - better_errors (1.0.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+ - better_errors (1.0.1) lib/better_errors/middleware.rb:56:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+ - railties (4.0.1) lib/rails/rack/logger.rb:38:in `call_app'
+ - railties (4.0.1) lib/rails/rack/logger.rb:20:in `block in call'
+ - activesupport (4.0.1) lib/active_support/tagged_logging.rb:67:in `block in tagged'
+ - activesupport (4.0.1) lib/active_support/tagged_logging.rb:25:in `tagged'
+ - activesupport (4.0.1) lib/active_support/tagged_logging.rb:67:in `tagged'
+ - railties (4.0.1) lib/rails/rack/logger.rb:20:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+ - rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+ - rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+ - activesupport (4.0.1) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+ - actionpack (4.0.1) lib/action_dispatch/middleware/static.rb:64:in `call'
+ - rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+ - railties (4.0.1) lib/rails/engine.rb:511:in `call'
+ - railties (4.0.1) lib/rails/application.rb:97:in `call'
+ - rack (1.5.2) lib/rack/builder.rb:138:in `call'
+ - rack (1.5.2) lib/rack/urlmap.rb:65:in `block in call'
+ - rack (1.5.2) lib/rack/urlmap.rb:50:in `call'
+ - rack-test (0.6.2) lib/rack/mock_session.rb:30:in `request'
+ - rack-test (0.6.2) lib/rack/test.rb:230:in `process_request'
+ - rack-test (0.6.2) lib/rack/test.rb:66:in `post'
+ - /Users/rolenle/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/2.0.0/forwardable.rb:171:in `post'
+ - capybara (2.2.0) lib/capybara/rack_test/browser.rb:60:in `process'
+ - capybara (2.2.0) lib/capybara/rack_test/browser.rb:35:in `process_and_follow_redirects'
+ - capybara (2.2.0) lib/capybara/rack_test/browser.rb:26:in `submit'
+ - capybara (2.2.0) lib/capybara/rack_test/form.rb:74:in `submit'
+ - capybara (2.2.0) lib/capybara/rack_test/node.rb:56:in `click'
+ - capybara (2.2.0) lib/capybara/node/element.rb:118:in `block in click'
+ - capybara (2.2.0) lib/capybara/node/base.rb:81:in `synchronize'
+ - capybara (2.2.0) lib/capybara/node/element.rb:118:in `click'
+ - capybara (2.2.0) lib/capybara/node/actions.rb:13:in `click_link_or_button'
+ - capybara (2.2.0) lib/capybara/session.rb:396:in `block (2 levels) in <class:Session>'
+ - capybara (2.2.0) lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'
+ - spec/features/user_signup_spec.rb:9:in `block (2 levels) in <top (required)>'
+ - rspec-core (2.14.7) lib/rspec/core/example.rb:114:in `block in run'
+ - rspec-core (2.14.7) lib/rspec/core/example.rb:179:in `run'
+ - rspec-rails (2.14.0) lib/rspec/rails/adapters.rb:51:in `block (2 levels) in <module:MiniTestLifecycleAdapter>'
+ - rspec-core (2.14.7) lib/rspec/core/extensions/instance_eval_with_args.rb:16:in `instance_eval_with_args'
+ - rspec-core (2.14.7) lib/rspec/core/example.rb:247:in `instance_eval_with_args'
+ - rspec-core (2.14.7) lib/rspec/core/hooks.rb:106:in `block (2 levels) in run'
+ - rspec-core (2.14.7) lib/rspec/core/hooks.rb:108:in `run'
+ - rspec-core (2.14.7) lib/rspec/core/hooks.rb:446:in `run_hook'
+ - rspec-core (2.14.7) lib/rspec/core/example_group.rb:340:in `run_around_each_hooks'
+ - rspec-core (2.14.7) lib/rspec/core/example.rb:256:in `with_around_each_hooks'
+ - rspec-core (2.14.7) lib/rspec/core/example.rb:111:in `run'
+ - rspec-core (2.14.7) lib/rspec/core/example_group.rb:390:in `block in run_examples'
+ - rspec-core (2.14.7) lib/rspec/core/example_group.rb:386:in `run_examples'
+ - rspec-core (2.14.7) lib/rspec/core/example_group.rb:371:in `run'
+ - rspec-core (2.14.7) lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+ - rspec-core (2.14.7) lib/rspec/core/command_line.rb:28:in `block in run'
+ - rspec-core (2.14.7) lib/rspec/core/reporter.rb:58:in `report'
+ - rspec-core (2.14.7) lib/rspec/core/command_line.rb:25:in `run'
+ - rspec-core (2.14.7) lib/rspec/core/runner.rb:80:in `run'
+ - rspec-core (2.14.7) lib/rspec/core/runner.rb:17:in `block in autorun'
+
