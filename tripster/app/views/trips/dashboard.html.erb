@@ -5,10 +5,5 @@
   <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
 <div id="tweet">
-  <% @tweets.each do |t| %>
-    <p><%= t.text %></p>
-<!--     <p><% t.media.each do |e| %>
-    		<p><%= e %></p>
-    	<% end %> -->
-  <% end %>
+ <%= @statuses ? render(@statuses) : "There are no statuses available." %>
 </div>

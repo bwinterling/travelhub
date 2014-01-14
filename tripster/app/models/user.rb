@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :trips
   has_many :feed_sources
   has_many :photos
+  has_many :statuses
   validates :name, :presence => true
 
   def possessive_name
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
       )
 
     user.update_attributes(
-      name:          auth["info"]["nickname"], 
+      name:          auth["info"]["nickname"],
       avatar_url:    auth["info"]["image"],
       access_token:  auth.extra.access_token.token,
       access_secret: auth.extra.access_token.secret
