@@ -18,11 +18,11 @@ class CheckinsAPI
     base_url + client_id + client_secret + grant_type + redirect_uri + code
   end
 
-  def self.connect(input_code)
+  def self.callback(input_code, user_id)
     access_token_url = self.access_token_url(input_code)
     response = Faraday.get access_token_url
     access_token = JSON.parse(response.body)["access_token"]
+    User.find(user_id).feed_sources.where(:provider => CHECKIN_PROVIDER, :token => access_token).first_or_create
     @client = Foursquare2::Client.new(oauth_token: access_token)
   end
-
 end
