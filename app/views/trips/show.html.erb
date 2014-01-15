@@ -1,4 +1,7 @@
 <h5><%= @trip.name %></h5>
+<% if @owner %>
+<%= link_to "Edit", edit_trip_path(@trip.id), {class: "trip-edit-link"} %>
+<% end %>
 <div id="photos">
   <h1>Recent photos:</h1>
   <%= @photos ? render(@photos) : "There are no photos available." %>

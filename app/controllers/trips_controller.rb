@@ -4,6 +4,27 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+  def index
+    @trips = current_user.trips
+  end
+
+  def edit
+    @trip = current_user.trips.find(params[:id])
+  end
+
+  def update
+    trip = current_user.trips.find(params[:id])
+    trip_params = params[:trip]
+    if trip.update(:name => trip_params[:name],
+                :description => trip_params[:description],
+                :starts_at => trip_params[:starts_at],
+                :ends_at => trip_params[:ends_at])
+      redirect_to trip, notice: "Trip Updated!"
+    else
+      render action: 'edit', notice: "Update Failed!"
+    end
+  end
+
   def create
     trip_params = params[:trip]
     @trip = Trip.new
@@ -24,16 +45,18 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    if current_user && @trip.user_id == current_user.id
+      @owner = true
+    # else
+    #   @owner = nil
+    end
     @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
   end
 
   def dashboard
-
-    if current_user && current_user.trips.last
-      @trip = current_user.trips.last
-      @photos = PhotosAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
-      @statuses = StatusesAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
+    if current_user && current_user.trips.any?
+      @trips = current_user.trips
     else
       flash[:notice] = "You do not have any trips!"
       redirect_to root_path

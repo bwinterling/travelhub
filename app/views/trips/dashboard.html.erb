@@ -1,9 +1,2 @@
-
-<h5><%= @trip.name %></h5>
-<div id="photos">
-  <h1><%= @current_user.possessive_name %> recent photos:</h1>
-  <%= @photos ? render(@photos) : "There are no photos available." %>
-</div>
-<div id="tweet">
- <%= @statuses ? render(@statuses) : "There are no statuses available." %>
-</div>
+<h2>Your Trips:</h2>
+<%= @trips ? render(@trips) : "There are no trips available." %>
