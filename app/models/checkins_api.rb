@@ -1,5 +1,10 @@
 class CheckinsAPI
 
+  def self.client(user)
+    access_token = user.feed_sources.where(:provider => CHECKIN_PROVIDER).first.token
+    Foursquare2::Client.new(oauth_token: access_token)
+  end
+
   def self.connect_url
     base_url = "https://foursquare.com/oauth2/authenticate"
     client_id = "?client_id=" + FOURSQUARE_CLIENT_ID
@@ -22,7 +27,38 @@ class CheckinsAPI
     access_token_url = self.access_token_url(input_code)
     response = Faraday.get access_token_url
     access_token = JSON.parse(response.body)["access_token"]
-    User.find(user_id).feed_sources.where(:provider => CHECKIN_PROVIDER, :token => access_token).first_or_create
-    @client = Foursquare2::Client.new(oauth_token: access_token)
+    user = User.find(user_id)
+    user.feed_sources.where(:provider => CHECKIN_PROVIDER, :token => access_token).first_or_create
+    @client = self.client(user)
+  end
+
+  def self.feed_for(user_id, starts_at, ends_at)
+    user = User.find(user_id)
+    client = self.client(user)
+    self.store_checkins(client, user_id, starts_at, ends_at)
+    user.checkins.where(:checkins_at => starts_at..ends_at)
+  end
+
+  def self.store_checkins(client,user_id, starts_at, ends_at)
+    user = User.find(user_id)
+    checkin_history = client.user_checkins.items
+
+    checkins = checkin_history.select do |checkin|
+      checkin_time = DateTime.strptime(checkin.createdAt.to_s, "%s")
+      checkin_time > starts_at && checkin_time < ends_at
+    end
+
+    checkins.each do |checkin|
+      location = checkin.venue.location
+      checkins_at = DateTime.strptime(checkin.createdAt.to_s, "%s")
+      user.checkins.where(
+	:user_id => user_id,
+	:venue_name => checkin.venue.name,
+	:venue_street_address => location.address,
+	:shout => checkin.shout,
+	:checkins_at => checkins_at).first_or_create.update_attributes(
+	:venue_latitude => location.lat,
+	:venue_longitude =>location.lng)
+    end
   end
 end

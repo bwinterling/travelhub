@@ -26,6 +26,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
   end
 
   def dashboard

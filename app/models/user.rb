@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :feed_sources
   has_many :photos
   has_many :statuses
+  has_many :checkins
   validates :name, :presence => true
 
   def possessive_name

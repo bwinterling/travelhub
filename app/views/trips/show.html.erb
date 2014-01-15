@@ -1,4 +1,6 @@
 <h5><%= @trip.name %></h5>
+<%=@checkins.count %>
+ <%= @checkins ? render(@checkins) : "There are no checkins available." %>
 <div id="photos">
   <h1>Recent photos:</h1>
   <%= @photos ? render(@photos) : "There are no photos available." %>
