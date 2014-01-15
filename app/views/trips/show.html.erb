@@ -1,11 +1,20 @@
-<h5><%= @trip.name %></h5>
+<h1><%= @trip.name %></h1>
 <% if @owner %>
 <%= link_to "Edit", edit_trip_path(@trip.id), {class: "trip-edit-link"} %>
 <% end %>
 <div id="photos">
-  <h1>Recent photos:</h1>
+  <h4>Recent photos:</h4>
   <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
 <div id="tweet">
+  <h4>Statuses:</h4>
  <%= @statuses ? render(@statuses) : "There are no statuses available." %>
 </div>
+<div id="checkins">
+  <h4>Checkins:</h4>
+</div>
+<div id="tripsters">
+  <h4>Tripsters:</h4>
+  <!-- <%= link_to "Add a Tripster", edit_trip_path(@trip.id), {class: "trip-edit-link"} %> -->
+</div>
+
