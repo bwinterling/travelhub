@@ -50,9 +50,13 @@ class TripsController < ApplicationController
     # else
     #   @owner = nil
     end
-    @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    if @trip.user.feed_sources.include?("Instragram")
+       @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    end
     @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    if @trip.user.feed_sources.include?("Foursquare")
     @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    end
   end
 
   def dashboard
