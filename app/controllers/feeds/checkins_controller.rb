@@ -6,7 +6,7 @@ module Feeds
 
     def callback
       if params[:code]
-	@client  = CheckinsAPI.callback(params[:code], current_user.id)
+	client  = CheckinsAPI.callback(params[:code], current_user.id)
         flash[:notice] = "Connection to #{CHECKIN_PROVIDER} Successful!"
       else
         flash[:notice] = "Failed to Connect to #{CHECKIN_PROVIDER}"
