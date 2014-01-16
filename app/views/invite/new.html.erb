@@ -1,0 +1,26 @@
+<fieldset id="newinvite">
+<legend> Send an Invite </legend>
+
+<%= form_for @invite, url: {action: "create"} do |f| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :handle, "Twitter Handle" %>
+      <%= f.text_field :handle %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.label :message %>
+      <%= f.text_area :message %>
+      <%= f.submit "Invite", class: "button" %>
+    </div>
+  </div>
+<% end %>

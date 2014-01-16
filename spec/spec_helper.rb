@@ -33,12 +33,12 @@ RSpec.configure do |config|
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
     :provider => 'twitter',
-    :uid => '123545',
+    :uid => '2293433683',
     :info => {
-      :nickname => 'rolen' },
+      :nickname => 'TripsterTK' },
     :credentials => {
-      :token => "15334617-RNooHjcKSz92pLcoYLs7VYIlvikGRhihd30KYJB92",
-      :secret => "eXGpFrgcKLKIs7m2h4onJxu1sRWZaeR0uC7leDbP35e"}
+      :token => "2293433683-PYnjCcVQJxol9r7sLTL9R5oDPJ3QbKId0KxlE6q",
+      :secret => "jepLqWMWWXDhyj0D9OlK5HbClHktsVurBlFaX0FC0t1CZ"}
   })
 
   OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({
