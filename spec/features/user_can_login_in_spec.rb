@@ -7,7 +7,7 @@ describe 'User can sign in' do
     click_on "Login with Twitter"
     expect(page).not_to have_content "Login"
     expect(page).to have_content "Logout"
-    expect(page).to have_content "Signed in!"  
+    expect(page).to have_content "Signed in!"
   end
 
   it 'can sign out' do
@@ -16,7 +16,7 @@ describe 'User can sign in' do
     click_on "Logout"
     # expect(page).to have_content "Login with Twitter"
     expect(page).not_to have_content "Logout"
-    expect(page).to have_content "Signed out!"  
+    expect(page).to have_content "Signed out!"
   end
 end
 
@@ -26,10 +26,10 @@ describe 'User directed to dashboard' do
     pending
     visit root_path
     click_on "Login with Twitter"
-    Trip.create!(name: "The Highlands", 
-            description: "To get some pot", 
-            starts_at: DateTime.now, 
-            ends_at: DateTime.now + 5732458, 
+    Trip.create!(name: "The Highlands",
+            description: "To get some pot",
+            starts_at: DateTime.now,
+            ends_at: DateTime.now + 5732458,
             user_id: User.last.id)
     visit dashboard_path
     expect(page).to have_content(User.last.trips.last.name)

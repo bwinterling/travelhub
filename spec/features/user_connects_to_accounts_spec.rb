@@ -9,23 +9,20 @@ describe 'User can connect to' do
     click_on "Connect with Instagram"
     fill_in "Username", with: "MappingKat"
     fill_in "Password", with: "eeri44"
-    
+
     click_on "Log in"
-    expect(page).to have_content "Connection to Instagram Successful!" 
-    binding.pry
+    expect(page).to have_content "Connection to Instagram Successful!"
   end
 
-  #  it 'twitter account' do
-  #   visit root_path
-  #   click_on "Login with Twitter"
-  #   click_on "Connect with Twitter"
-  #   expect(page).to have_content "Connection to Twitter Successful!" 
-  # end
+  it 'foursquare account'  do
+     visit root_path
+     user = User.from_omniauth(OmniAuth.config.mock_auth[:twitter])
+     user.feed_sources.find_or_create_by(:provider => CHECKIN_PROVIDER, :token => "sha16")
 
-  #  it 'foursquare account' do
-  #   visit root_path
-  #   click_on "Login with Foursquare"
-  #   click_on "Connect with Instagram"
-  #   expect(page).to have_content "Connection to Foursquare Successful!" 
-  # end
+     click_on "Login with Twitter"
+     Feeds::CheckinsController.any_instance.stub(:params).and_return(:code =>"md5hash")
+     Feeds::CheckinsController.any_instance.stub(:current_user).and_return(User.first)
+     click_on "Login with Foursquare"
+     expect(page).to have_content "Connection to Foursquare Successful!"
+   end
 end
