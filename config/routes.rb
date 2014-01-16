@@ -4,7 +4,9 @@ Tripster::Application.routes.draw do
   root "users#index"
 
   resources :users
-  resources :trips
+  resources :trips do
+    resources :invite, only: :new
+  end
 
   match "/logout", to: "sessions#destroy", as: "logout", via: ["delete", "get"]
   match 'auth/:provider/callback', to: 'sessions#create', via: "get"
@@ -17,4 +19,6 @@ Tripster::Application.routes.draw do
     get '/photos/connect', to: 'photos#connect'
     get '/photos/callback', to: 'photos#callback'
   end
+
+  match '/trips/:trip_id/invite', to: 'invite#create', as: 'trip_invite', via: "post"
 end
