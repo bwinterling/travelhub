@@ -30,6 +30,19 @@ class StatusesAPI < ActiveRecord::Base
     end
   end
 
+  def self.send_update(user_id, message)
+    user = User.find(user_id)
+    client = self.client(user)
+    client.update(message)
+  end
+
+  def self.valid_handle?(handle)
+    handle.start_with?("@")
+  end
+
+  def self.provider
+    "Twitter"
+  end
 
 
   #using Twitter
