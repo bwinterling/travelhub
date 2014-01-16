@@ -30,8 +30,7 @@ class StatusesAPI < ActiveRecord::Base
     end
   end
 
-  def self.send_update(user_id, message)
-    user = User.find(user_id)
+  def self.send_update(user, message)
     client = self.client(user)
     client.update(message)
   end

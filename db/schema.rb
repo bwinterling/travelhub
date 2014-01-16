@@ -30,9 +30,6 @@ ActiveRecord::Schema.define(version: 20140115213838) do
 
   add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "feed_sources", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
