@@ -12,6 +12,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'foursquare2'
 gem 'faraday'
+gem 'resque'
 
 group :production do
   gem 'rails_12factor'

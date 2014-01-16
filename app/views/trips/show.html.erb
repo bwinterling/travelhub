@@ -20,13 +20,18 @@
 
 <div class="row">
   <div class="large-12 columns">
-   <div id='map'></div>
+    <div id='map'></div>
 
-  <div id="tweets">
-    <h5>Trip tweets:</h5>
-   <%= @statuses ? render(@statuses) : "There are no tweets available." %>
+    <div id="tweets">
+      <h5>Trip tweets:</h5>
+     <%= @statuses ? render(@statuses) : "There are no tweets available." %>
+    </div>
   </div>
-</div>
+
+  <div id="tripsters">
+    <h4>Tripsters:</h4>
+    <%= link_to "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link"} %>
+  </div>
 </div>
 
 <script>

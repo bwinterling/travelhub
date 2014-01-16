@@ -4,6 +4,27 @@ class TripsController < ApplicationController
     @trip = Trip.new
   end
 
+  def index
+    @trips = current_user.trips
+  end
+
+  def edit
+    @trip = current_user.trips.find(params[:id])
+  end
+
+  def update
+    trip = current_user.trips.find(params[:id])
+    trip_params = params[:trip]
+    if trip.update(:name => trip_params[:name],
+                :description => trip_params[:description],
+                :starts_at => trip_params[:starts_at],
+                :ends_at => trip_params[:ends_at])
+      redirect_to trip, notice: "Trip Updated!"
+    else
+      render action: 'edit', notice: "Update Failed!"
+    end
+  end
+
   def create
     trip_params = params[:trip]
     @trip = Trip.new
@@ -24,39 +45,23 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
-    @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    if current_user && @trip.user_id == current_user.id
+      @owner = true
+    # else
+    #   @owner = nil
+    end
+    if @trip.user.feed_sources.find_by(:provider => "Instagram")
+       @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    end
     @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    if @trip.user.feed_sources.find_by(:provider => "Foursquare")
     @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    end
   end
 
   def dashboard
-
-    if current_user && current_user.trips.last
-      @trip = current_user.trips.last
-      @photos = PhotosAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
-      @statuses = StatusesAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
-      @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    else
-      flash[:notice] = "You do not have any trips!"
-      redirect_to root_path
+    if current_user && current_user.trips.any?
+      @trips = current_user.trips
     end
   end
-
-  def map_data
-    @checkins.map do |checkin| 
-    @map_data = [{
-            type: 'Feature',
-            properties: { 
-                    name: checkin.venue_name,
-                    address: checkin.venue_street_address,
-                    comment: checkin.shout,
-                    checkin_at: checkin.checkins_at
-            },
-          geometry: {
-                type: 'Point',
-                coordinates: [checkin.venue_latitude, checkin.venue_longitude]
-                }
-          }]
-      end
-    end
 end

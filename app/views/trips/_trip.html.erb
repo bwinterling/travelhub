@@ -1,0 +1,7 @@
+<div>
+  <p><%= link_to trip.name, trip_path(trip.id), {class: "trip-name"} %><br>
+  <span class="trip-desc"><%= trip.description %></span>
+  <%= link_to "Edit", edit_trip_path(trip.id), {class: "trip-edit-link"} %>
+  </p>
+</div>
+
