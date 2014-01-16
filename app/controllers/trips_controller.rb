@@ -41,22 +41,4 @@ class TripsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def map_data
-    @checkins.map do |checkin| 
-    @map_data = [{
-            type: 'Feature',
-            properties: { 
-                    name: checkin.venue_name,
-                    address: checkin.venue_street_address,
-                    comment: checkin.shout,
-                    checkin_at: checkin.checkins_at
-            },
-          geometry: {
-                type: 'Point',
-                coordinates: [checkin.venue_latitude, checkin.venue_longitude]
-                }
-          }]
-      end
-    end
 end
