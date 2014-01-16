@@ -28,7 +28,8 @@ class CheckinsAPI
     response = Faraday.get access_token_url
     access_token = JSON.parse(response.body)["access_token"]
     user = User.find(user_id)
-    user.feed_sources.where(:provider => CHECKIN_PROVIDER, :token => access_token).first_or_create
+    feed = user.feed_sources.where(:provider => CHECKIN_PROVIDER).first_or_create
+    feed.update(:token => access_token)
     @client = self.client(user)
   end
 

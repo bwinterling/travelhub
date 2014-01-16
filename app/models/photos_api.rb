@@ -7,7 +7,8 @@ class PhotosAPI < ActiveRecord::Base
 
   def self.callback(code, current_user_id)
     response = Instagram.get_access_token(code, :redirect_uri => PHOTOS_CALLBACK_URL)
-    User.find(current_user_id).feed_sources.where(:provider => PHOTO_PROVIDER, :token => response.access_token).first_or_create
+   feed = User.find(current_user_id).feed_sources.where(:provider => PHOTO_PROVIDER).first_or_create
+   feed.update(:token => response.access_token)
   end
 
   def self.feed_for(user_id, start_date, end_date)
