@@ -3,7 +3,7 @@ class Invite
   extend ActiveModel::Naming
 
   attr_reader :trip_id
-  attr_accessor :name, :handle, :message
+  attr_accessor :handle
 
   def initialize(trip_id)
     @trip_id = trip_id
