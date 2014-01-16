@@ -129,6 +129,21 @@ legend{
   font-size: 1.4em;
 }
 
+/*---------------------- */
 
+#map { 
+  float:right;
+  background: #dddddd;
+  height: 600px;
+  margin: 0 0 10px 10px;
+  width: 50%;
+  z-index: 1;}
 
-
+#tweet {
+  float:left;
+  font: 6px "ClarendonRoman",Georgia,Times,serif;
+  color: rgb(82, 82, 80);
+  width:50%;
+  background:#c9c;
+  z-index: 1;
+}

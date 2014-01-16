@@ -62,9 +62,6 @@ class TripsController < ApplicationController
   def dashboard
     if current_user && current_user.trips.any?
       @trips = current_user.trips
-    else
-      flash[:notice] = "You do not have any trips!"
-      redirect_to root_path
     end
   end
 end
