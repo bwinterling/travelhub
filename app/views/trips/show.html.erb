@@ -1,12 +1,13 @@
-<div class = "panel">
-  <div class="row">
-  <div class="large-3 columns" id= "dashboard">
+<div class="row">
+  <div class="large-9 columns" id= "dashboard">
+    <div class= "panel">
     <h1><%= @trip.name %></h1>
-    <%=@checkins.count %>
+    <%= @checkins.count %>
      <%= @checkins ? render(@checkins) : "There are no checkins available." %>
-  </div>
+    </div>
   </div>
 </div>
+<hr>
 
 <div class="row">
   <div class="large-9 columns" id="photos">
@@ -15,13 +16,12 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="large-6 columns" id='map'></div>
-  <pre id='onscreen'></pre>
-</div>
 
 <div class="row">
-  <div class="large-6 columns" id="tweets">
+  <div class="large-12 columns">
+   <div id='map'></div>
+   
+  <div id="tweets">
     <h5>Trip tweets:</h5>
    <%= @statuses ? render(@statuses) : "There are no tweets available." %>
   </div>
@@ -33,7 +33,7 @@
 var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt')
       .setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 13);
 
-      map.dragging.disable();
+      // map.dragging.disable();
       map.touchZoom.disable();
       map.doubleClickZoom.disable();
       map.scrollWheelZoom.disable();
@@ -41,10 +41,10 @@ var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt')
       if (map.tap) map.tap.disable();
 
 
-// L.control.layers({
-//       'Base Map': L.mapbox.tileLayer('rsoden.map-wjcj2udt').addTo(map),
-//       'Grey Map': L.mapbox.tileLayer('examples.map-20v6611k')
-//   }).addTo(map);
+L.control.layers({
+      'Base Map': L.mapbox.tileLayer('rsoden.map-wjcj2udt').addTo(map),
+      'Grey Map': L.mapbox.tileLayer('examples.map-20v6611k')
+  }).addTo(map);
 
 var geoJson = {
         type: 'FeatureCollection',
@@ -53,8 +53,8 @@ var geoJson = {
             properties: {
                 <% @checkins.map do |checkin| %>
                     name: '<%= checkin.venue_name %>',
-                    'marker-color': '#f00',
-                    'marker-size': 'large',
+                    'marker-color': '#ee7600',
+                    'marker-size': 'medium',
                     address: '<%= checkin.venue_street_address %>',
                     comment: '<%= checkin.shout %>',
                     checkin_at: '<%= checkin.checkins_at %>'<% end %>
