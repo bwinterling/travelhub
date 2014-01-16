@@ -11,6 +11,7 @@ class InviteController < ApplicationController
     handle = invite_params[:handle]
     if StatusesAPI.valid_handle?(handle)
       message = handle + " " + invite_msg
+      binding.pry
       StatusesAPI.send_update(current_user, message)
       #update usertrip and user tables
       flash[:notice] = "Your invite to #{handle} was sent via #{provider}"
