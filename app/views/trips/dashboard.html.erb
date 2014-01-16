@@ -44,7 +44,7 @@ L.control.layers({
       'Grey Map': L.mapbox.tileLayer('examples.map-20v6611k')
   }).addTo(map);
 
-var geoJson = {
+var markerLayer = L.mapbox.markerLayer({
         type: 'FeatureCollection',
         features: [{
             type: 'Feature',
@@ -64,17 +64,12 @@ var geoJson = {
                 <% end %>
             }
           }]
-        };
-    map.markerLayer.setGeoJSON(geoJson);
-    map.markerLayer.on('click', function(e) {
-    e.layer.unbindPopup();
+        }).addTo(map);
+
+  markerLayer.eachLayer(function(layer) {
+    var content = '<h5>name: ' + layer.feature.properties.name + '<\/h5>' +
+        '<h6>address: ' + layer.feature.properties.address + '<\/h6>' +
+        '<h6>comment: ' + layer.feature.properties.comment + '<\/h6>';
+    layer.bindPopup(content);
 });
-
-//   markerLayer.eachLayer(function(layer) {
-//     var content = '<h1>name: ' + layer.feature.properties.name + '<\/h1>' +
-//         '<h2>address: ' + layer.feature.properties.address + '<\/h2>' +
-//         '<h2>comment: ' + layer.feature.properties.comment + '<\/h2>';
-//     layer.bindPopup(content);
-// });
-
 </script>
