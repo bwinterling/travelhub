@@ -35,9 +35,28 @@ class TripsController < ApplicationController
       @trip = current_user.trips.last
       @photos = PhotosAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
       @statuses = StatusesAPI.feed_for(current_user.id, @trip.starts_at, @trip.ends_at)
+      @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     else
       flash[:notice] = "You do not have any trips!"
       redirect_to root_path
     end
   end
+
+  def map_data
+    @checkins.map do |checkin| 
+    @map_data = [{
+            type: 'Feature',
+            properties: { 
+                    name: checkin.venue_name,
+                    address: checkin.venue_street_address,
+                    comment: checkin.shout,
+                    checkin_at: checkin.checkins_at
+            },
+          geometry: {
+                type: 'Point',
+                coordinates: [checkin.venue_latitude, checkin.venue_longitude]
+                }
+          }]
+      end
+    end
 end

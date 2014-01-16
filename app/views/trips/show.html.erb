@@ -1,10 +1,61 @@
-<h5><%= @trip.name %></h5>
+<div id='map'></div>
+<pre id='onscreen'></pre>
+<div class = "panel">
+<h1><%= @trip.name %></h1>
 <%=@checkins.count %>
  <%= @checkins ? render(@checkins) : "There are no checkins available." %>
 <div id="photos">
-  <h1>Recent photos:</h1>
+  <h5>Recent photos:</h5>
   <%= @photos ? render(@photos) : "There are no photos available." %>
 </div>
 <div id="tweet">
- <%= @statuses ? render(@statuses) : "There are no statuses available." %>
+ <h6><%= @statuses ? render(@statuses) : "There are no statuses available." %></h6>
 </div>
+</div>
+
+<script>
+var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt')
+      .setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 18);
+
+       map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      // disable tap handler, if present.
+      if (map.tap) map.tap.disable();
+
+
+L.control.layers({
+      'Base Map': L.mapbox.tileLayer('rsoden.map-wjcj2udt').addTo(map),
+      'Grey Map': L.mapbox.tileLayer('examples.map-20v6611k')
+  }).addTo(map);
+
+var markerLayer = L.mapbox.markerLayer({
+   type: 'FeatureCollection',
+        features: [{
+            type: 'Feature',
+            properties: {
+                <% @checkins.map do |checkin| %>
+                    name: '<%= checkin.venue_name %>',
+                    address: '<%= checkin.venue_street_address %>',
+                    comment: '<%= checkin.shout %>',
+                    checkin_at: '<%= checkin.checkins_at %>'<% end %>
+            },
+          geometry: {
+                type: 'Point',
+                <% @checkins.map do |checkin| %>
+                coordinates: [<%= checkin.venue_latitude %>, <%= checkin.venue_longitude %>]
+                <% end %>
+                
+            }
+          }]
+        }).addTo(map);
+
+  markerLayer.eachLayer(function(layer) {
+    var content = '<h1>name: ' + layer.feature.properties.name + '<\/h1>' +
+        '<h2>address: ' + layer.feature.properties.address + '<\/h2>' +
+        '<h2>comment: ' + layer.feature.properties.comment + '<\/h2>';
+    layer.bindPopup(content);
+});
+
+</script>
