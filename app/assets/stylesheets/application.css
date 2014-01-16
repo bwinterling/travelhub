@@ -134,23 +134,20 @@ legend{
 #map { 
   float:right;
   background: #dddddd;
-  height: 340px;
-  margin: 0 0 30px 20px;
-  position: relative;
-  width: 340px;
-  z-index: .5;}
-
-.panel {
-  float: right;
-}
+  height: 600px;
+  margin: 0 0 10px 10px;
+  width: 50%;
+  z-index: 1;}
 
 #tweet {
+  float:left;
   font: 6px "ClarendonRoman",Georgia,Times,serif;
   color: rgb(82, 82, 80);
-  float:left;
   width:50%;
   background:#c9c;
+  z-index: 1;
 }
+
 
 /*#onscreen {
     position: absolute;
