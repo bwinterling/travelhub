@@ -14,13 +14,6 @@ class FeedSourceTest < ActiveSupport::TestCase
     }
   end
 
-  def test_validates_presence_of_token
-    @feed_source.update(valid_params)
-    assert @feed_source.save
-    @feed_source.update(:token => nil)
-    refute @feed_source.save
-  end
-
   def test_validates_presence_of_provider
     @feed_source.update(valid_params)
     assert @feed_source.save
