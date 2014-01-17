@@ -16,19 +16,6 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
-  config.include SeleniumHelper, :type => :request
-
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:each, js: true) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each, js: true) do
-    DatabaseCleaner.clean
-  end
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
@@ -37,8 +24,8 @@ RSpec.configure do |config|
     :info => {
       :nickname => 'TripsterTK' },
     :credentials => {
-      :token => "2293433683-PYnjCcVQJxol9r7sLTL9R5oDPJ3QbKId0KxlE6q",
-      :secret => "jepLqWMWWXDhyj0D9OlK5HbClHktsVurBlFaX0FC0t1CZ"}
+      :token => "2293433683-zQSaSAzfJdnw0HgAFhrK3QHqkFsKGklmQtL8pzv",
+      :secret => "wjXincL0RYCvh2ZgdRjX97VFZKjXBPxfQ380WFsiXDU9N"}
   })
 
   OmniAuth.config.mock_auth[:instagram] = OmniAuth::AuthHash.new({

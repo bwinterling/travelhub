@@ -2,20 +2,26 @@ require 'spec_helper'
 
 describe "Tripsters"  do
   context "as a trip owner" do
-    before(:each) do
-      user = User.from_omniauth OmniAuth.config.mock_auth[:twitter]
-      trip = Trip.create!(name: "Tanzania",
-                          user_id: user.id,
-                          description: "kili climbing",
-                          starts_at: DateTime.now,
-                          ends_at: DateTime.now + 4392095 )
-      page.visit trip_path(trip)
-    end
-
     it "can invite a tripster from the show page, and sends tweet" do
+      visit root_path
+      click_on "Login with Twitter"
+      #trip = Trip.create!(name: "Tanzania",
+                          #user_id: User.last.id,
+                          #description: "kili climbing",
+                          #starts_at: DateTime.now,
+                          #ends_at: DateTime.now + 4392095 )
+      visit new_trip_path
+      fill_in "Name", with: "Siam"
+      fill_in "Description", with: "ETC ETC ETC"
+      fill_in "Start Date", with: "01/01/14"
+      fill_in "End Date", with: "01/03/14"
+      click_on "Submit"
+
+      page.visit trip_path(Trip.all.last)
+
       click_on "Add Tripster"
       fill_in "Twitter Handle", :with => "@pzula"
-      InviteController.any_instance.stub(:current_user).and_return(User.first)
+      #InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
       page.should have_content("Your invite to @pzula was sent via Twitter")
     end
