@@ -40,19 +40,6 @@ ActiveRecord::Schema.define(version: 20140115213838) do
 
   add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id", using: :btree
 
-  create_table "locations", force: true do |t|
-    t.integer  "user_id"
-    t.text     "check_in"
-    t.text     "friends"
-    t.text     "photos"
-    t.text     "venuehistory"
-    t.text     "todos"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
-
   create_table "photos", force: true do |t|
     t.integer  "user_id"
     t.text     "photo_id"
