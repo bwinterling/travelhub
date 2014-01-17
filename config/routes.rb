@@ -21,6 +21,10 @@ Tripster::Application.routes.draw do
     get '/photos/callback', to: 'photos#callback'
     get '/checkins/connect', to: 'checkins#connect', as: "checkins_connect"
     get '/checkins/callback', to: 'checkins#callback'
+
+    namespace :v1 do
+      resources :statuses
+    end
   end
 
   match '/trips/:trip_id/invite', to: 'invite#create', as: 'trip_invite', via: "post"
