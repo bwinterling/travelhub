@@ -18,7 +18,7 @@ class StatusesAPI < ActiveRecord::Base
 
   def self.store_statuses(client, user_id, starts_at, ends_at)
     user = User.find(user_id)
-    timeline = client.user_timeline(client.user.id, count: 1000)
+    timeline = client.user_timeline(client.user.id, count: 200)
 
     statuses = timeline.select do |status|
       status.created_at > starts_at  && status.created_at < ends_at

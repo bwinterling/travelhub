@@ -1,9 +1,8 @@
 <div class= "panel">
 <div class="row">
-  
+
   <div class="large-9 columns" id= "dashboard">
     <h1><%= @trip.name %></h1>
-    <%= @checkins.count %>
      <%= @checkins ? render(@checkins) : "There are no checkins available." %>
     </div>
   </div>
@@ -34,6 +33,7 @@
   </div>
 </div>
 
+<% if @checkins %>
 <script>
 var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt')
       .setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 13);
@@ -78,3 +78,4 @@ var markerLayer = L.mapbox.markerLayer({
     layer.bindPopup(content);
 });
 </script>
+<% end %>
