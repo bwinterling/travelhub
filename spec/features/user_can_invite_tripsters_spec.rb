@@ -15,6 +15,7 @@ describe "Tripsters"  do
     it "can invite a tripster from the show page, and sends tweet" do
       click_on "Add Tripster"
       fill_in "Twitter Handle", :with => "@pzula"
+      InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
       page.should have_content("Your invite to @pzula was sent via Twitter")
     end

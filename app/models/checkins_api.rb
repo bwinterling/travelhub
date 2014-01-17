@@ -53,13 +53,13 @@ class CheckinsAPI
       location = checkin.venue.location
       checkins_at = DateTime.strptime(checkin.createdAt.to_s, "%s")
       user.checkins.where(
-	:user_id => user_id,
-	:venue_name => checkin.venue.name,
-	:venue_street_address => location.address,
-	:shout => checkin.shout,
-	:checkins_at => checkins_at).first_or_create.update_attributes(
-	:venue_latitude => location.lat,
-	:venue_longitude =>location.lng)
+    	:user_id => user_id,
+    	:venue_name => checkin.venue.name,
+    	:venue_street_address => location.address,
+    	:shout => checkin.shout,
+    	:checkins_at => checkins_at).first_or_create.update_attributes(
+    	:venue_latitude => location.lat,
+    	:venue_longitude =>location.lng)
     end
   end
 end

@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.clear(:id)
     session[:user_id] = nil
     redirect_to root_url
     flash[:error] = "Signed out!"
