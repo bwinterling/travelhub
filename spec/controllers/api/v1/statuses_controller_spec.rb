@@ -4,6 +4,7 @@ describe Api::V1::StatusesController do
   before(:all) do
     User.from_omniauth(OmniAuth.config.mock_auth[:twitter])
   end
+  
   it "index should respond successful" do
     get :index, format: :json
     expect(response.status).to eq 200
