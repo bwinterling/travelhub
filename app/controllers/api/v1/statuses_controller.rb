@@ -1,8 +1,6 @@
 class Api::V1::StatusesController < ApplicationController
-  #respond_to :json
   def index
     @statuses = Status.all
-    #respond_with @statuses
     render json: @statuses, status: 200
   end
 
