@@ -10,7 +10,10 @@ class Api::V1::StatusesController < ApplicationController
     @status = user.statuses.new
     @status.text = status_params[:text]
     @status.sent_at = status_params[:sent_at]
-    @status.save
-    render json: @status, status: 201
+    if @status.save
+      render json: @status, status: 201
+    else
+      render json: "Fail", status: 400
+    end
   end
 end
