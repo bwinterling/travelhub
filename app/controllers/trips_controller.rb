@@ -50,12 +50,16 @@ class TripsController < ApplicationController
     # else
     #   @owner = nil
     end
-    if @trip.user.feed_sources.find_by(:provider => "Instagram")
-       @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    end
-    @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    if @trip.user.feed_sources.find_by(:provider => "Foursquare")
-    @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+
+    @trip.users.each do |user|
+
+      if user.feed_sources.find_by(:provider => "Instagram")
+        @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
+      @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      if user.feed_sources.find_by(:provider => "Foursquare")
+        @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
     end
   end
 
