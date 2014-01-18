@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe "Tripsters"  do
   context "as a trip owner" do
-    it "can invite a tripster from the show page, and sends tweet" do
+    before :each do
       visit root_path
       click_on "Login with Twitter"
       #trip = Trip.create!(name: "Tanzania",
-                          #user_id: User.last.id,
-                          #description: "kili climbing",
-                          #starts_at: DateTime.now,
-                          #ends_at: DateTime.now + 4392095 )
+      #user_id: User.last.id,
+      #description: "kili climbing",
+      #starts_at: DateTime.now,
+      #ends_at: DateTime.now + 4392095 )
       visit new_trip_path
       fill_in "Name", with: "Siam"
       fill_in "Description", with: "ETC ETC ETC"
@@ -18,15 +18,30 @@ describe "Tripsters"  do
       click_on "Submit"
 
       page.visit trip_path(Trip.all.last)
-
-      click_on "Add Tripster"
-      fill_in "Twitter Handle", :with => "@pzula"
-      #InviteController.any_instance.stub(:current_user).and_return(User.first)
-      click_on "Invite"
-      page.should have_content("Your invite to @pzula was sent via Twitter")
     end
 
-    it "can see whether invited tripsters have registered"
+
+    it "can invite a tripster from the show page, and sends tweet" do
+      click_on "Add Tripster"
+      handle = "@jsl_demo" + Random.rand(5).to_s
+      fill_in "Twitter Handle", :with => handle
+      #InviteController.any_instance.stub(:current_user).and_return(User.first)
+      click_on "Invite"
+      page.should have_content("Your invite to #{handle} was sent via Twitter")
+    end
+
+    it "can see whether invited tripsters have registered" do
+      click_on "Add Tripster"
+      handle = "@jsl_demo" + Random.rand(5).to_s
+      fill_in "Twitter Handle", :with => handle
+      #InviteController.any_instance.stub(:current_user).and_return(User.first)
+      click_on "Invite"
+      page.should have_content("Your invite to #{handle} was sent via Twitter")
+
+      page.visit dashboard_path
+      page.should have_content("Siam has the following invited Tripsters: #{handle}")
+    end
+
     it "can remove a tripster from the trip"
   end
   context "as an invited tripster" do
