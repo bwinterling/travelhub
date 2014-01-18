@@ -21,7 +21,9 @@ Tripster::Application.routes.draw do
     get '/photos/callback', to: 'photos#callback'
     get '/checkins/connect', to: 'checkins#connect', as: "checkins_connect"
     get '/checkins/callback', to: 'checkins#callback'
+  end
 
+  namespace :api do
     namespace :v1 do
       resources :statuses
     end
