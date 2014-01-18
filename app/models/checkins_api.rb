@@ -28,7 +28,8 @@ class CheckinsAPI
     response = Faraday.get access_token_url
     access_token = JSON.parse(response.body)["access_token"]
     user = User.find(user_id)
-    user.feed_sources.where(:provider => CHECKIN_PROVIDER, :token => access_token).first_or_create
+    feed = user.feed_sources.where(:provider => CHECKIN_PROVIDER).first_or_create
+    feed.update(:token => access_token)
     @client = self.client(user)
   end
 
@@ -52,13 +53,13 @@ class CheckinsAPI
       location = checkin.venue.location
       checkins_at = DateTime.strptime(checkin.createdAt.to_s, "%s")
       user.checkins.where(
-	:user_id => user_id,
-	:venue_name => checkin.venue.name,
-	:venue_street_address => location.address,
-	:shout => checkin.shout,
-	:checkins_at => checkins_at).first_or_create.update_attributes(
-	:venue_latitude => location.lat,
-	:venue_longitude =>location.lng)
+    	:user_id => user_id,
+    	:venue_name => checkin.venue.name,
+    	:venue_street_address => location.address,
+    	:shout => checkin.shout,
+    	:checkins_at => checkins_at).first_or_create.update_attributes(
+    	:venue_latitude => location.lat,
+    	:venue_longitude =>location.lng)
     end
   end
 end
