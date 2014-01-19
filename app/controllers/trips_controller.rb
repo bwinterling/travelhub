@@ -27,9 +27,8 @@ class TripsController < ApplicationController
 
   def create
     trip_params = params[:trip]
-    @trip = Trip.new
-    @trip.user_id = current_user.id
-    TripUser.new(trip_id: @trip.id, user_id: current_user.id)
+    @trip = current_user.trips.build
+    @trip.trip_users.new(user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
     @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
