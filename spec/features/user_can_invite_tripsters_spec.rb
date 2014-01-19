@@ -38,8 +38,8 @@ describe "Tripsters"  do
       click_on "Invite"
       page.should have_content("Your invite to #{handle} was sent via Twitter")
 
-      #page.visit dashboard_path
-      #page.should have_content("Siam has the following invited Tripsters: #{handle}")
+      page.visit dashboard_path
+      page.should have_content("Siam has the following invited Tripsters: #{handle}")
     end
 
     it "can remove a tripster from the trip"

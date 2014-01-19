@@ -3,9 +3,11 @@
 
 <h2>Your Tripsters:</h2>
 
+<% if @trips %>
 <% @trips.each do |trip| %>
 <p>#{trip.name} has the following invited Tripsters: </p>
-  <% trip.trip_users.users.each do |user| %>
+  <% trip.users.each do |user| %>
     <p>@#{user.name}</p>
+  <% end %>
   <% end %>
 <% end %>

@@ -29,6 +29,7 @@ class TripsController < ApplicationController
     trip_params = params[:trip]
     @trip = Trip.new
     @trip.user_id = current_user.id
+    TripUser.new(trip_id: @trip.id, user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
     @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
@@ -47,8 +48,6 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     if current_user && @trip.user_id == current_user.id
       @owner = true
-    # else
-    #   @owner = nil
     end
 
     @trip.users.each do |user|
