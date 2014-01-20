@@ -35,7 +35,7 @@ class TripsController < ApplicationController
     @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
     if @trip.save!
-      @trip.update_feeds_for(@trip.id)
+      @trip.update_feeds
       flash[:notice] ="Awesome Trip"
       redirect_to trip_path(@trip)
     else
@@ -44,29 +44,20 @@ class TripsController < ApplicationController
     end
   end
 
+  def update_feed
+    @trip = Trip.find(params[:trip_id])
+    @trip.update_feeds
+    redirect_to trip_path(@trip.id)
+  end
+
   def show
     @trip = Trip.find(params[:id])
     if current_user && @trip.user_id == current_user.id
       @owner = true
     end
-
-    #enable this:
     @photos = @trip.photos
     @statuses = @trip.statuses
     @checkins = @trip.checkins
-
-    # @trip.users.each do |user|
-
-    #   if user.feed_sources.find_by(:provider => "Instagram")
-    #     @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-    #   end
-    #   if user.provider == "twitter"
-    #     @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-    #   end
-    #   if user.feed_sources.find_by(:provider => "Foursquare")
-    #     @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-    #   end
-    # end
   end
 
   def dashboard
