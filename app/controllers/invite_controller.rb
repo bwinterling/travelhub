@@ -14,7 +14,7 @@ class InviteController < ApplicationController
       trip = Trip.find(params[:trip_id])
       stripped_handle = handle[1..-1]
       new_user = trip.users.find_or_create_by(name: stripped_handle)
-      trip.trip_users.build(user_id: new_user.id)
+      #trip.trip_users.build(user_id: new_user.id)
       trip.save
       #update usertrip and user tables
       StatusesAPI.send_update(current_user, message)
