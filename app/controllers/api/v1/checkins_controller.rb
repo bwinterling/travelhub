@@ -19,17 +19,6 @@ class Api::V1::CheckinsController < ApplicationController
       render json: @checkin, status: 201
   end
 
-  # def mapping
-  #   respond_with do |format|
-  #     format.json do
-  #       render json: {
-  #         checkins: location_data
-  #       }.to_json
-  #     end
-  #   end
-  # end
-
-
   def location_data
     @checkins = Checkin.all
     @checkins.map do |checkin|
@@ -38,8 +27,6 @@ class Api::V1::CheckinsController < ApplicationController
           type: 'Feature',
           properties: {
                   name: checkin.venue_name,
-                  # 'marker-color': '#ee7600',
-                  # 'marker-size': 'medium',
                   address: checkin.venue_street_address,
                   comment: checkin.shout,
                   checkin_at: checkin.checkins_at
@@ -53,3 +40,6 @@ class Api::V1::CheckinsController < ApplicationController
     end.compact
   end
 end
+
+#in checkin index, pass in parameteres that need
+

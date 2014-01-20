@@ -45,17 +45,22 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @location_data = Checkin.location_data
+
     if current_user && @trip.user_id == current_user.id
       @owner = true
     # else
     #   @owner = nil
     end
+    
     if @trip.user.feed_sources.find_by(:provider => "Instagram")
        @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     end
-    @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+     
+      @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+   
     if @trip.user.feed_sources.find_by(:provider => "Foursquare")
-    @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+      @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
     end
   end
 
@@ -64,4 +69,5 @@ class TripsController < ApplicationController
       @trips = current_user.trips
     end
   end
+
 end

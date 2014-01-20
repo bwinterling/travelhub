@@ -27,7 +27,6 @@ Tripster::Application.routes.draw do
     namespace :v1 do
       resources :statuses
       resources :checkins
-      get 'map_data' => 'checkins#map_data'
     end
   end
 
