@@ -34,13 +34,14 @@ class TripsController < ApplicationController
     @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
     @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
-     if @trip.save!
-       flash[:notice] ="Awesome Trip"
-       redirect_to trip_path(@trip)
-     else
-       flash[:notice] = "FAIL"
-       redirect_to root_path
-     end
+    if @trip.save!
+      @trip.update_feeds_for(@trip.id)
+      flash[:notice] ="Awesome Trip"
+      redirect_to trip_path(@trip)
+    else
+      flash[:notice] = "FAIL"
+      redirect_to root_path
+    end
   end
 
   def show
@@ -49,18 +50,23 @@ class TripsController < ApplicationController
       @owner = true
     end
 
-    @trip.users.each do |user|
+    #enable this:
+    @photos = @trip.photos
+    @statuses = @trip.statuses
+    @checkins = @trip.checkins
 
-      if user.feed_sources.find_by(:provider => "Instagram")
-        @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-      end
-      if user.provider == "twitter"
-        @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-      end
-      if user.feed_sources.find_by(:provider => "Foursquare")
-        @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
-      end
-    end
+    # @trip.users.each do |user|
+
+    #   if user.feed_sources.find_by(:provider => "Instagram")
+    #     @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+    #   end
+    #   if user.provider == "twitter"
+    #     @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+    #   end
+    #   if user.feed_sources.find_by(:provider => "Foursquare")
+    #     @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+    #   end
+    # end
   end
 
   def dashboard

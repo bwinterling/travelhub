@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140118214950) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "checkins", force: true do |t|
     t.integer  "user_id"
     t.string   "venue_name"
@@ -28,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140118214950) do
     t.datetime "updated_at"
   end
 
-  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
+  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id"
 
   create_table "feed_sources", force: true do |t|
     t.integer  "user_id"
@@ -38,20 +35,7 @@ ActiveRecord::Schema.define(version: 20140118214950) do
     t.datetime "updated_at"
   end
 
-  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id", using: :btree
-
-  create_table "locations", force: true do |t|
-    t.integer  "user_id"
-    t.text     "check_in"
-    t.text     "friends"
-    t.text     "photos"
-    t.text     "venuehistory"
-    t.text     "todos"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
+  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id"
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -64,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140118214950) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken", using: :btree
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken"
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id"
 
   create_table "statuses", force: true do |t|
     t.string   "text"
@@ -75,8 +59,8 @@ ActiveRecord::Schema.define(version: 20140118214950) do
     t.datetime "updated_at"
   end
 
-  add_index "statuses", ["sent_at"], name: "index_statuses_on_sent_at", using: :btree
-  add_index "statuses", ["user_id"], name: "index_statuses_on_user_id", using: :btree
+  add_index "statuses", ["sent_at"], name: "index_statuses_on_sent_at"
+  add_index "statuses", ["user_id"], name: "index_statuses_on_user_id"
 
   create_table "trip_users", force: true do |t|
     t.integer  "trip_id"

@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
     user = User.find_or_create_by(
       name:          auth["info"]["nickname"].downcase
     )
-
     user.update_attributes(
       uid:      auth["uid"],
       provider: auth["provider"],
@@ -24,7 +23,6 @@ class User < ActiveRecord::Base
       access_token:  auth["credentials"]["token"],
       access_secret: auth["credentials"]["secret"]
     )
-
     user
   end
 end

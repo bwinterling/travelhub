@@ -8,6 +8,7 @@ else
   CHECKIN_REDIRECT_URI = "http://localhost:3000/feeds/checkins/callback"
 end
 
+STATUS_PROVIDER = "twitter"
 PHOTO_PROVIDER = "Instagram"
 CHECKIN_PROVIDER = "Foursquare"
 

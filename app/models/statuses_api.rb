@@ -13,7 +13,7 @@ class StatusesAPI < ActiveRecord::Base
     user = User.find(user_id)
     client = self.client(user)
     self.store_statuses(client, user.id, starts_at, ends_at)
-    user.statuses.where(:sent_at => starts_at...ends_at)
+    # user.statuses.where(:sent_at => starts_at...ends_at)
   end
 
   def self.store_statuses(client, user_id, starts_at, ends_at)

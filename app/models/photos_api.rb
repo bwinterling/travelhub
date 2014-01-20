@@ -18,9 +18,9 @@ class PhotosAPI < ActiveRecord::Base
       token = photo_source.token
       client = Instagram.client(:access_token => token)
       store_photos(client, user.id)
-      user.photos.where(:photo_taken => start_date...end_date)
-    else
-      return nil
+    #   user.photos.where(:photo_taken => start_date...end_date)
+    # else
+    #   return nil
     end
   end
 
