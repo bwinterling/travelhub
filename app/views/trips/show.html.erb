@@ -2,6 +2,7 @@
   <div class="row">
     <div class="large-9 columns" id= "dashboard">
       <h1><%= @trip.name %></h1>
+      <h4><%= @trip.description %></h4>
       <%= link_to "Refresh Feed", trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
     </div>
   </div>
@@ -34,6 +35,9 @@
   <div class="row">
     <div class="large-9 columns" id="tripsters">
       <h5>Tripsters:</h5>
+      <% @trip.users.each do |user| %>
+        <%= image_tag user.avatar_url %>
+      <% end %>
       <%= link_to "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link"} %>
     </div>
   </div>
