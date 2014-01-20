@@ -23,7 +23,7 @@ describe "Tripsters"  do
 
     it "can invite a tripster from the show page, and sends tweet" do
       click_on "Add Tripster"
-      handle = "@jsl_demo" + Random.rand(50).to_s
+      handle = "@jsl_demo" + Random.rand(1000).to_s
       fill_in "Twitter Handle", :with => handle
       #InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
@@ -32,14 +32,14 @@ describe "Tripsters"  do
 
     it "can see whether invited tripsters have registered" do
       click_on "Add Tripster"
-      handle = "@jsl_demo" + Random.rand(50).to_s
+      handle = "@jsl_demo" + Random.rand(1000).to_s
       fill_in "Twitter Handle", :with => handle
       #InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
       page.should have_content("Your invite to #{handle} was sent via Twitter")
 
       page.visit dashboard_path
-      page.should have_content("Siam has the following invited Tripsters: #{handle}")
+      page.should have_content("Siam has the following invited Tripsters: tripstertk " + handle[1..-1])
     end
 
     it "can see tweets from both themselves and invited tripsters that have registered on the site"
