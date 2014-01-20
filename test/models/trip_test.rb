@@ -12,7 +12,7 @@ class TripTest < ActiveSupport::TestCase
   end
 
   def test_it_has_a_creator
-    assert_equal trip.user, user
+    assert_equal @trip.users.last, user
   end
 
   def test_it_has_name

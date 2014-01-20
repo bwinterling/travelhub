@@ -27,8 +27,8 @@ class TripsController < ApplicationController
 
   def create
     trip_params = params[:trip]
-    @trip = Trip.new
-    @trip.user_id = current_user.id
+    @trip = current_user.trips.build
+    @trip.trip_users.new(user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
     @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
@@ -47,15 +47,19 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     if current_user && @trip.user_id == current_user.id
       @owner = true
-    # else
-    #   @owner = nil
     end
-    if @trip.user.feed_sources.find_by(:provider => "Instagram")
-       @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    end
-    @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    if @trip.user.feed_sources.find_by(:provider => "Foursquare")
-    @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+
+    @trip.users.each do |user|
+
+      if user.feed_sources.find_by(:provider => "Instagram")
+        @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
+      if user.provider == "twitter"
+        @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
+      if user.feed_sources.find_by(:provider => "Foursquare")
+        @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
     end
   end
 
