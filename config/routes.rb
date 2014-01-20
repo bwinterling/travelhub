@@ -27,6 +27,7 @@ Tripster::Application.routes.draw do
     namespace :v1 do
       resources :statuses
       resources :checkins
+      resources :photos
     end
   end
 
