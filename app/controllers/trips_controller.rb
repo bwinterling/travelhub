@@ -54,7 +54,9 @@ class TripsController < ApplicationController
       if user.feed_sources.find_by(:provider => "Instagram")
         @photos = PhotosAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
       end
-      @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      if user.provider == "twitter"
+        @statuses = StatusesAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
+      end
       if user.feed_sources.find_by(:provider => "Foursquare")
         @checkins = CheckinsAPI.feed_for(user.id, @trip.starts_at, @trip.ends_at)
       end
