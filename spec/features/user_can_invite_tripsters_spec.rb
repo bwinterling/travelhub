@@ -42,6 +42,8 @@ describe "Tripsters"  do
       page.should have_content("Siam has the following invited Tripsters: #{handle}")
     end
 
+    it "can see tweets from both themselves and invited tripsters that have registered on the site"
+
     it "can remove a tripster from the trip"
   end
   context "as an invited tripster" do
