@@ -13,6 +13,7 @@ gem 'twitter'
 gem 'foursquare2'
 gem 'faraday'
 gem 'resque', '~> 1.22.0'
+gem 'figaro'
 
 group :production do
   gem 'rails_12factor'
