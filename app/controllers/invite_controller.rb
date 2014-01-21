@@ -12,11 +12,17 @@ class InviteController < ApplicationController
     if StatusesAPI.valid_handle?(handle)
       message = handle + " " + invite_msg
       trip = Trip.find(params[:trip_id])
-      stripped_handle = handle[1..-1]
-      new_user = trip.users.find_or_create_by(name: stripped_handle)
-      #trip.trip_users.build(user_id: new_user.id)
+      stripped_handle = handle[1..-1].downcase
+      user = trip.users.find_by( name: stripped_handle)
+      if user
+        trip.trip_users.find_by(user_id: user.id).toggle!(:active)
+      end
+      if user.nil?
+        user = trip.users.create(name: stripped_handle)
+      end
+      #trip.trip_users.build(user_id: user.id)
+      #new_user = trip.users.find_or_create_by(name: stripped_handle)
       trip.save
-      #update usertrip and user tables
       StatusesAPI.send_update(current_user, message)
       flash[:notice] = "Your invite to #{handle} was sent via #{provider}"
       redirect_to trip_path(params[:trip_id])
@@ -24,6 +30,14 @@ class InviteController < ApplicationController
       flash[:notice] = "You need to include a #{provider} handle!"
       render 'invite/new'
     end
+  end
+
+  def destroy
+    trip = Trip.find(params[:id])
+    tripster = trip.trip_users.find_by(user_id: params[:user_id])
+    tripster.toggle!(:active)
+    flash[:notice] = "@#{tripster.name} was removed from your trip!"
+    redirect_to trip_path(trip)
   end
 
   def invite_msg

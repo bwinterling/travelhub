@@ -33,4 +33,6 @@ Tripster::Application.routes.draw do
   end
 
   match '/trips/:trip_id/invite', to: 'invite#create', as: 'trip_invite', via: "post"
+
+  post '/trip_user/:id', to: 'invite#destroy', via: "delete"
 end

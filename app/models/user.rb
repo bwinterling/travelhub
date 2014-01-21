@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :photos
   has_many :statuses
   has_many :checkins
-  validates :name, :presence => true
+  validates :name, :presence => true, :uniqueness => true
 
   def possessive_name
     name.ends_with?("s") ? name + "'" : name + "'s"

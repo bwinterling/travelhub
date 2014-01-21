@@ -13,7 +13,7 @@ class Trip < ActiveRecord::Base
   end
 
   def update_feeds
-    self.users.each do |user|
+    self.active_users.each do |user|
       if user.provider == STATUS_PROVIDER
         StatusesAPI.feed_for(user.id, self.starts_at, self.ends_at)
       end
@@ -27,7 +27,11 @@ class Trip < ActiveRecord::Base
   end
 
   def participant_ids
-    self.users.map { |user| user.id }
+    self.active_users.map { |user| user.id }
+  end
+
+  def active_users
+    trip_users.where(:active => true).map {|trip_user| User.find(trip_user.user_id) }
   end
 
   def photos
