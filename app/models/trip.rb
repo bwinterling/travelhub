@@ -45,4 +45,26 @@ class Trip < ActiveRecord::Base
     # Checkin.where("user_id = ? AND checkins_at >= ? AND checkins_at <= ?", participant_ids, self.starts_at, self.ends_at)
   end
 
+  def geojson
+    #refactor this, it feels heavy
+    geojson_array = Array.new
+    checkins.each do |checkin|
+      geojson_array << {
+                    type: 'Feature',
+                    geometry: {
+                      type: 'Point',
+                      coordinates: [checkin.venue_longitude, checkin.venue_latitude]
+                    },
+                    properties: {
+                      name: checkin.venue_name,
+                      address: checkin.venue_street_address,
+                      # comment: checkin.shout,
+                      :'marker-color' => '#00607d',
+                      :'marker-symbol' => 'circle',
+                      :'marker-size' => 'medium'
+                    }
+                  }
+    end
+    geojson_array
+  end
 end

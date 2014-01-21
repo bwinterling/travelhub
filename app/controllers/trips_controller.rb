@@ -58,6 +58,13 @@ class TripsController < ApplicationController
     @photos = @trip.photos
     @statuses = @trip.statuses
     @checkins = @trip.checkins
+    @geojson = @trip.geojson
+
+    #this will move to the API eventually to return json for checkin map
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
+    end
   end
 
   def dashboard
