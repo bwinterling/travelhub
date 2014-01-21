@@ -16,3 +16,6 @@
 /log/*.log
 /tmp
 /tmp/*
+
+#ignore figaro file
+/config/application.yml
