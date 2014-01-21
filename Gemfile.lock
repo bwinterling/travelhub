@@ -230,7 +230,7 @@ DEPENDENCIES
   pry
   rails (= 4.0.1)
   rails_12factor
-  resque
+  resque (~> 1.22.0)
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
