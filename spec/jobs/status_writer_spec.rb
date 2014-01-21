@@ -21,7 +21,6 @@ describe StatusWriter do
   end
 
   it "should be able to call the twitter client" do
-    expect(client).to be_an_instance_of Twitter::Client
     expect(client.user.user_name.downcase).to eq user.name
   end
 

@@ -10,7 +10,7 @@ class StatusWriter
   end
 
   def self.client(credentials = {})
-    @client = Twitter::Client.new
+    @client = Twitter::REST::Client.new
     @client.consumer_key    = TWITTER_CONSUMER_KEY
     @client.consumer_secret = TWITTER_CONSUMER_SECRET
     @client.oauth_token     = credentials["oauth_token"]
