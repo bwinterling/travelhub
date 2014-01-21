@@ -25,7 +25,6 @@ describe "Tripsters"  do
       click_on "Add Tripster"
       handle = "@jsl_demo" + Random.rand(1000).to_s
       fill_in "Twitter Handle", :with => handle
-      #InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
       page.should have_content("Your invite to #{handle} was sent via Twitter")
     end
@@ -34,7 +33,6 @@ describe "Tripsters"  do
       click_on "Add Tripster"
       handle = "@jsl_demo" + Random.rand(1000).to_s
       fill_in "Twitter Handle", :with => handle
-      #InviteController.any_instance.stub(:current_user).and_return(User.first)
       click_on "Invite"
       page.should have_content("Your invite to #{handle} was sent via Twitter")
 
@@ -42,9 +40,19 @@ describe "Tripsters"  do
       page.should have_content("Siam has the following invited Tripsters: tripstertk " + handle[1..-1])
     end
 
-    it "can see tweets from both themselves and invited tripsters that have registered on the site"
-
-    it "can remove a tripster from the trip"
+    it "can remove a tripster from the trip" do
+      click_on "Add Tripster"
+      handle = "@jsl_demo" + Random.rand(1000).to_s
+      fill_in "Twitter Handle", :with => handle
+      click_on "Invite"
+      page.should have_content("Your invite to #{handle} was sent via Twitter")
+      within(".tripsters") do
+        within("#tripster_1") do
+          click_on("-")
+        end
+      end
+      page.should have_content("#{handle} has been removed from your trip!")
+    end
   end
   context "as an invited tripster" do
     it "can authenticate with twitter"
