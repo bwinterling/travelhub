@@ -47,16 +47,28 @@
 
 <% unless @checkins.empty? %>
 <script>
-  var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt').setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 13);
+  var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt');
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  if (map.tap) map.tap.disable();
+  map.markerLayer.on('click', function(e) {
+        map.panTo(e.layer.getLatLng());
+    });
 
-      map.touchZoom.disable();
-      map.doubleClickZoom.disable();
-      map.scrollWheelZoom.disable();
-      if (map.tap) map.tap.disable();
-
+  // .setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 13);
   jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
     $.each(checkinData, function(index, checkin){
-      L.mapbox.markerLayer(checkin).addTo(map);
+      
+      var markerLayer = L.mapbox.markerLayer(checkin).addTo(map);
+      console.log(markerLayer)
+      markerLayer.eachLayer( function(checkin) {
+      var content = '<h5>name: ' + checkin.feature.properties.name + '<\/h5>' +
+        '<h6>address: ' + checkin.feature.properties.address + '<\/h6>' +
+        '<h6>comment: ' + checkin.feature.properties.comment + '<\/h6>';
+        checkin.bindPopup(content); 
+        console.log(checkin)
+      }); 
     });
   });
 </script>
