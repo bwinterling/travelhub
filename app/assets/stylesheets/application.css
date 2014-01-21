@@ -132,7 +132,7 @@ legend{
 /*---------------------- */
 
 #map { 
-  float:right;
+  /*float:right;*/
   background: #dddddd;
   height: 600px;
   margin: 0 0 10px 10px;
