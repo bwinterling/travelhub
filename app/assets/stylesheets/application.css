@@ -32,9 +32,9 @@ h5#home {
 #masthead {
   height: 80px;
   background: url(/images/top.png);
-  margin-top: 20px;
+  margin-top: 15px;
   width: 100%;
-  margin-bottom:50px;
+  margin-bottom:5px;
 }
 
 /*------------- left-sided links --------------------*/
@@ -130,14 +130,7 @@ legend{
 }
 
 /*---------------------- */
-
-#map { 
-  float:right;
-  background: #dddddd;
-  height: 600px;
-  margin: 0 0 10px 10px;
-  width: 50%;
-  z-index: 1;}
+/*
 
 #tweet {
   float:left;
@@ -147,3 +140,4 @@ legend{
   background:#c9c;
   z-index: 1;
 }
+*/
