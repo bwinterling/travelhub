@@ -58,7 +58,7 @@ class Trip < ActiveRecord::Base
                     properties: {
                       name: checkin.venue_name,
                       address: checkin.venue_street_address,
-                      # comment: checkin.shout,
+                      comment: checkin.shout,
                       :'marker-color' => '#00607d',
                       :'marker-symbol' => 'circle',
                       :'marker-size' => 'medium'

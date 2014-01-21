@@ -45,6 +45,8 @@
 
 <% unless @checkins.empty? %>
 <script>
+
+
   var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt').setView([<%= @checkins.last.venue_latitude %>, <%= @checkins.last.venue_longitude %>], 13);
       map.touchZoom.disable();
       map.doubleClickZoom.disable();
@@ -56,10 +58,19 @@ L.control.layers({
       'Grey Map': L.mapbox.tileLayer('examples.map-20v6611k')
   }).addTo(map);
 
-  jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
-    $.each(checkinData, function(index, checkin){
-      L.mapbox.markerLayer(checkin).addTo(map);
+  markerLayer = jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
+     $.each(checkinData, function(index, checkin){
+        L.mapbox.markerLayer(checkin).eachLayer(function(marker) {
+          var content = 
+            '<h5>Name: ' + marker.feature.properties.name + '</h5>' +
+            '<h6>Address: ' + marker.feature.properties.address + '</h6>' +
+            '<h6>Comment: ' + marker.feature.properties.comment + '</h6>';
+         marker.bindPopup(content).openPopup();
+       });
+       L.mapbox.markerLayer(checkin).addTo(map);
     });
   });
+
 </script>
 <% end %>
+
