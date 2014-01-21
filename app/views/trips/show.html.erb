@@ -36,7 +36,7 @@
     <div class="large-9 columns tripsters" id="tripsters">
       <h5>Tripsters:</h5>
       <ul>
-        <% @trip.users.each do |user| %>
+        <% @trip.active_users.each do |user| %>
         <li id="tripster_<%= user.id %>"><%= image_tag user.avatar_url %><%= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
         <% end %>
       </ul>

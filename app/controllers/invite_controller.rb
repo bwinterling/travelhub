@@ -14,10 +14,13 @@ class InviteController < ApplicationController
       trip = Trip.find(params[:trip_id])
       stripped_handle = handle[1..-1].downcase
       user = trip.users.find_by( name: stripped_handle)
+      if user
+        trip.trip_users.find_by(user_id: user.id).toggle!(:active)
+      end
       if user.nil?
         user = trip.users.create(name: stripped_handle)
       end
-       #trip.trip_users.build(user_id: user.id)
+      #trip.trip_users.build(user_id: user.id)
       #new_user = trip.users.find_or_create_by(name: stripped_handle)
       trip.save
       StatusesAPI.send_update(current_user, message)
@@ -31,7 +34,9 @@ class InviteController < ApplicationController
 
   def destroy
     trip = Trip.find(params[:id])
-    trip.trip_users.find_by(user_id: params[:user_id]).destroy
+    tripster = trip.trip_users.find_by(user_id: params[:user_id])
+    tripster.toggle!(:active)
+    flash[:notice] = "@#{tripster.name} was removed from your trip!"
     redirect_to trip_path(trip)
   end
 
