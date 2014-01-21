@@ -16,7 +16,7 @@ class PhotosAPITest < ActiveSupport::TestCase
   #callback test should be a controller test
 
   # def test_feed_for_returns_photos
-  #   assert PhotosAPI.feed_for(user.id, trip.starts_at, trip.ends_at)
+  #   assert PhotosAPI.feed_for(user.id, trip.starts_on, trip.ends_on)
   # end
 
   def valid_user_params
@@ -36,8 +36,8 @@ class PhotosAPITest < ActiveSupport::TestCase
   def valid_trip_params
     {
       :name => "Long Strange Trip",
-      :starts_at => "01/01/2005",
-      :ends_at => "01/10/2014"
+      :starts_on => "2005-01-01",
+      :ends_on => "2014-01-31"
     }
   end
 end

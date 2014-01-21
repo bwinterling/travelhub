@@ -1,6 +1,6 @@
  <script>
   $(function() {
-          $( ".datepicker" ).datepicker();
+          $( ".datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
       });
  </script>
 
@@ -21,15 +21,15 @@
 
   <div class="row">
     <div class="large-6 columns">
-      <%= f.label :starts_at, "Start Date" %>
-      <%= f.text_field :starts_at, class: "datepicker" %>
+      <%= f.label :starts_on, "Start Date" %>
+      <%= f.text_field :starts_on, class: "datepicker" %>
     </div>
   </div>
 
   <div class="row">
     <div class="large-6 columns">
-      <%= f.label :ends_at, "End Date" %>
-      <%= f.text_field :ends_at, class: "datepicker" %>
+      <%= f.label :ends_on, "End Date" %>
+      <%= f.text_field :ends_on, class: "datepicker" %>
       <%= f.submit "Submit", class: "button" %>
     </div>
   </div>

@@ -28,8 +28,8 @@ describe 'User directed to dashboard' do
     click_on "Login with Twitter"
     Trip.create!(name: "The Highlands",
             description: "To get some pot",
-            starts_at: DateTime.now,
-            ends_at: DateTime.now + 5732458,
+            starts_on: Date.today,
+            ends_on: Date.today.next_month(1),
             user_id: User.last.id)
     visit dashboard_path
     expect(page).to have_content(User.last.trips.last.name)
