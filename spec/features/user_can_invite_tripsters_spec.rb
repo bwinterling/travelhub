@@ -47,11 +47,11 @@ describe "Tripsters"  do
       click_on "Invite"
       page.should have_content("Your invite to #{handle} was sent via Twitter")
       within(".tripsters") do
-        within("#tripster_1") do
+        within("#tripster_#{User.last.id}") do
           click_on("-")
         end
       end
-      page.should have_content("#{handle} has been removed from your trip!")
+      page.should have_content("#{handle} was removed from your trip!")
     end
   end
   context "as an invited tripster" do

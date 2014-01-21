@@ -20,8 +20,6 @@ class InviteController < ApplicationController
       if user.nil?
         user = trip.users.create(name: stripped_handle)
       end
-      #trip.trip_users.build(user_id: user.id)
-      #new_user = trip.users.find_or_create_by(name: stripped_handle)
       trip.save
       StatusesAPI.send_update(current_user, message)
       flash[:notice] = "Your invite to #{handle} was sent via #{provider}"
@@ -36,7 +34,8 @@ class InviteController < ApplicationController
     trip = Trip.find(params[:id])
     tripster = trip.trip_users.find_by(user_id: params[:user_id])
     tripster.toggle!(:active)
-    flash[:notice] = "@#{tripster.name} was removed from your trip!"
+    removed_user = User.find(params[:user_id])
+    flash[:notice] = "@#{removed_user.name} was removed from your trip!"
     redirect_to trip_path(trip)
   end
 
