@@ -12,7 +12,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'foursquare2'
 gem 'faraday'
-gem 'resque'
+gem 'resque', '~> 1.22.0'
 gem 'figaro'
 
 group :production do
