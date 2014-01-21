@@ -6,7 +6,7 @@ class StatusWriter
     params = JSON.parse(input)
     client = self.client(params)
     self.store_statuses(client, params["user_id"],
-			params["starts_at"], params["ends_at"])
+			params["starts_on"], params["ends_on"])
   end
 
   def self.store_statuses(client, user_id, starts_at, ends_at)
