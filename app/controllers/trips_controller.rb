@@ -28,19 +28,23 @@ class TripsController < ApplicationController
   def create
     trip_params = params[:trip]
     @trip = current_user.trips.build
+    # trip = current_user.trips.new(params)
+    # before_create
     @trip.trip_users.new(user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
-    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
-    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
+    unless trip_params[:starts_at].empty?
+      @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
+      @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
+    end
 
-    if @trip.save!
+    if @trip.save
       @trip.update_feeds
       flash[:notice] ="Awesome Trip"
       redirect_to trip_path(@trip)
     else
-      flash[:notice] = "FAIL"
-      redirect_to root_path
+      flash[:notice] = "Unsuccessful"
+      redirect_to new_trip_path
     end
   end
 

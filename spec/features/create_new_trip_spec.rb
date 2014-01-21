@@ -21,4 +21,15 @@ describe "Creating a Trip" do
       expect(page).to have_content Trip.last.name
     end
   end
+
+
+  context "with invalid data" do
+    it "cannot be created" do
+      visit root_path
+      click_on "Login with Twitter"
+      visit new_trip_path
+      click_on "Submit"
+      expect(last_response.status).to eq 200
+    end
+  end
 end
