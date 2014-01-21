@@ -1,4 +1,7 @@
+require 'resque/server'
+
 Tripster::Application.routes.draw do
+  mount Resque::Server.new, at: "/resque"
 
   # this will need to be changed...
   root "users#index"
@@ -22,9 +25,12 @@ Tripster::Application.routes.draw do
     get '/photos/callback', to: 'photos#callback'
     get '/checkins/connect', to: 'checkins#connect', as: "checkins_connect"
     get '/checkins/callback', to: 'checkins#callback'
+  end
 
+  namespace :api do
     namespace :v1 do
       resources :statuses
+      resources :photos
     end
   end
 
