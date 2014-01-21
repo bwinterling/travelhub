@@ -1,4 +1,6 @@
 class Api::V1::PhotosController < ApplicationController
+
+   skip_before_filter :verify_authenticity_token
   def index
     @photos = Photo.all
     render json: @photos, status: 200

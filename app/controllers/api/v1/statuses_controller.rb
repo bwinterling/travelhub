@@ -6,7 +6,6 @@ class Api::V1::StatusesController < ApplicationController
   end
 
   def create
-    puts "Asasshdfjalsdfhlasdf \n  #{params} \n"
     status_params = params[:status]
     user = User.find(status_params[:user_id].to_i)
     @status = user.statuses.new

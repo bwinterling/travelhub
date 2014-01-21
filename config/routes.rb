@@ -1,4 +1,7 @@
+require 'resque/server'
+
 Tripster::Application.routes.draw do
+  mount Resque::Server.new, at: "/resque"
 
   # this will need to be changed...
   root "users#index"
