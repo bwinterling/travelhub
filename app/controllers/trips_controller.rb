@@ -16,9 +16,9 @@ class TripsController < ApplicationController
     trip = current_user.trips.find(params[:id])
     trip_params = params[:trip]
     if trip.update(:name => trip_params[:name],
-                :description => trip_params[:description],
-                :starts_at => trip_params[:starts_at],
-                :ends_at => trip_params[:ends_at])
+          :description => trip_params[:description],
+          :starts_on => Date.parse(trip_params[:starts_on]),
+          :ends_on => Date.parse(trip_params[:ends_on]))
       redirect_to trip, notice: "Trip Updated!"
     else
       render action: 'edit', notice: "Update Failed!"
@@ -31,8 +31,8 @@ class TripsController < ApplicationController
     @trip.trip_users.new(user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
-    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
-    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
+    @trip.starts_on = Date.parse(trip_params[:starts_on])
+    @trip.ends_on = Date.parse(trip_params[:ends_on]),
 
     if @trip.save!
       @trip.update_feeds

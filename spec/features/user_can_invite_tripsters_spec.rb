@@ -5,11 +5,6 @@ describe "Tripsters"  do
     before :each do
       visit root_path
       click_on "Login with Twitter"
-      #trip = Trip.create!(name: "Tanzania",
-      #user_id: User.last.id,
-      #description: "kili climbing",
-      #starts_at: DateTime.now,
-      #ends_at: DateTime.now + 4392095 )
       visit new_trip_path
       fill_in "Name", with: "Siam"
       fill_in "Description", with: "ETC ETC ETC"

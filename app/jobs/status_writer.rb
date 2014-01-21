@@ -6,9 +6,10 @@ class StatusWriter
     params = JSON.parse(input)
     client = self.client(params)
     self.store_statuses(client, params["user_id"],
-			params["starts_at"], params["ends_at"])
+			params["starts_on"], params["ends_on"])
   end
 
+<<<<<<< HEAD
   def self.client(credentials = {})
     @client = Twitter::Client.new
     @client.consumer_key    = TWITTER_CONSUMER_KEY
@@ -19,9 +20,12 @@ class StatusWriter
   end
 
   def self.store_statuses(client, user_id, starts_at, ends_at)
+=======
+  def self.store_statuses(client, user_id, starts_on, ends_on)
+>>>>>>> 2bce73fc6197c623f2818ddf4577c5ec8a6b3cad
     timeline = client.user_timeline(client.user.id, count:200)
     statuses = timeline.select do |status|
-      status.created_at > starts_at  && status.created_at < ends_at
+      status.created_at > starts_on  && status.created_at < ends_on
     end
     conn = self.set_connection
     statuses.map do |status|

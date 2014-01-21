@@ -33,19 +33,19 @@ class CheckinsAPI
     @client = self.client(user)
   end
 
-  def self.feed_for(user_id, starts_at, ends_at)
+  def self.feed_for(user_id, starts_on, ends_on)
     user = User.find(user_id)
     client = self.client(user)
-    self.store_checkins(client, user_id, starts_at, ends_at)
+    self.store_checkins(client, user_id, starts_on, ends_on)
   end
 
-  def self.store_checkins(client,user_id, starts_at, ends_at)
+  def self.store_checkins(client,user_id, starts_on, ends_on)
     user = User.find(user_id)
     checkin_history = client.user_checkins.items
 
     checkins = checkin_history.select do |checkin|
       checkin_time = DateTime.strptime(checkin.createdAt.to_s, "%s")
-      checkin_time > starts_at && checkin_time < ends_at
+      checkin_time > starts_on && checkin_time < ends_on
     end
 
     checkins.each do |checkin|
