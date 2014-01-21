@@ -9,6 +9,15 @@ class StatusWriter
 			params["starts_at"], params["ends_at"])
   end
 
+  def self.client(credentials = {})
+    @client = Twitter::Client.new
+    @client.consumer_key    = TWITTER_CONSUMER_KEY
+    @client.consumer_secret = TWITTER_CONSUMER_SECRET
+    @client.oauth_token     = credentials["oauth_token"]
+    @client.oauth_token_secret = credentials["oauth_token_secret"]
+    return @client
+  end
+
   def self.store_statuses(client, user_id, starts_at, ends_at)
     timeline = client.user_timeline(client.user.id, count:200)
     statuses = timeline.select do |status|
@@ -33,12 +42,4 @@ class StatusWriter
     end
   end
 
-  def self.client(credentials = {})
-    @client = Twitter::Client.new
-    @client.consumer_key    = TWITTER_CONSUMER_KEY
-    @client.consumer_secret = TWITTER_CONSUMER_SECRET
-    @client.oauth_token     = credentials["oauth_token"]
-    @client.oauth_token_secret = credentials["oauth_token_secret"]
-    return @client
-  end
 end
