@@ -14,6 +14,7 @@ gem 'foursquare2'
 gem 'faraday'
 gem 'resque', '~> 1.22.0'
 gem 'figaro'
+gem 'foundation-rails'
 
 group :production do
   gem 'rails_12factor'
@@ -25,13 +26,13 @@ end
 
 group :production, :development do
   gem 'pg'
-  gem 'rails_12factor'
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry'
+  gem 'rails_layout'
 end
 
 group :development, :test do
