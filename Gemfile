@@ -12,7 +12,9 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'foursquare2'
 gem 'faraday'
-gem 'resque'
+gem 'whenever', :require => false
+gem 'resque', '~> 1.22.0'
+gem 'figaro'
 
 group :production do
   gem 'rails_12factor'

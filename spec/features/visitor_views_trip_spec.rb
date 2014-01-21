@@ -6,8 +6,8 @@ describe 'visitor viewing' do
     trip = Trip.create!(name: "Tanzania",
                         user_id: user.id,
                         description: "kili climbing",
-                        starts_at: DateTime.now,
-                        ends_at: DateTime.now + 4392095 )
+                        starts_on: Date.today,
+                        ends_on: Date.today.next_month(1) )
     page.visit trip_path(trip)
     page.should have_content(trip.name)
   end
