@@ -2,13 +2,19 @@
 @import "foundation";
 
 // override for the 'Home' navigation link
+.top-bar {
+  margin-top: 10px;
+  height: auto;
+}
 .top-bar .name {
   font-size: rem-calc(13);
-  line-height: 45px; }
+  line-height: 45px; 
+}
 .top-bar .name a {
   font-weight: normal;
   color: white;
-  padding: 0 15px; }
+  padding: 0 15px; 
+}
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create mixins using Foundation classes
@@ -40,9 +46,40 @@
 // to make views framework-neutral
 main {
   @include twelve-columns;
-  background-color: #eee;
   }
 section {
   @extend .row;
   margin-top: 20px;
   }
+body.home {
+  background: #9edbff url(/images/earth.jpg);
+  background-size: 100% auto;
+  width: 100%;
+  border-radius: 40px;
+  }
+
+.welcome {
+  margin-top: 110px;
+  padding: 20px 20px 20px 30px;
+  font: 40px "ClarendonRoman",Georgia,Times,serif;
+  color: rgb(82, 82, 80);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-image: url(/images/opacity50.png);
+  border-radius: 40px;
+  }
+
+.logo_image {
+  float:left;
+  width: 160px;
+  padding: 0px 0px 0px 10px;
+  }
+
+.tripster-nav-links {
+  float: right;
+  padding-top: 8px; 
+}
+
+#profile_image {
+  border-radius: 8px;
+}

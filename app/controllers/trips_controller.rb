@@ -32,7 +32,7 @@ class TripsController < ApplicationController
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
     @trip.starts_on = Date.parse(trip_params[:starts_on])
-    @trip.ends_on = Date.parse(trip_params[:ends_on]),
+    @trip.ends_on = Date.parse(trip_params[:ends_on])
 
     if @trip.save!
       @trip.update_feeds
