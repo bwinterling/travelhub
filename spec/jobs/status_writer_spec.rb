@@ -9,8 +9,8 @@ describe StatusWriter do
   let(:user) { User.last }
   let(:week) { 7*24*60*60 }
   let(:client) do
-    StatusWriter.client(oauth_token: user.access_token,
-			oauth_token_secret: user.access_secret)
+    StatusWriter.client("oauth_token" =>  user.access_token,
+			"oauth_token_secret" =>  user.access_secret)
   end
 
   let(:statuses) do
@@ -22,7 +22,7 @@ describe StatusWriter do
 
   it "should be able to call the twitter client" do
     expect(client).to be_an_instance_of Twitter::Client
-    expect(client.user.user_name).to eq user.name
+    expect(client.user.user_name.downcase).to eq user.name
   end
 
   it "should be able to write current statuses between a date range" do

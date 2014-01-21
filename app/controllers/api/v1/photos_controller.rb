@@ -10,8 +10,7 @@ class Api::V1::PhotosController < ApplicationController
     photo_params = params[:photo]
     user = User.find(photo_params[:user_id])
 
-    @photo = user.photos.new
-    @photo.photo_id = photo_params[:photo_id]
+    @photo = user.photos.find_or_create_by(photo_id: photo_params[:photo_id])
     @photo.thumbnail_url = photo_params[:thumbnail_url]
     @photo.standard_url = photo_params[:standard_url]
     @photo.caption = photo_params[:caption]
