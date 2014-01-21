@@ -27,40 +27,44 @@ class TripsController < ApplicationController
 
   def create
     trip_params = params[:trip]
-    @trip = Trip.new
-    @trip.user_id = current_user.id
+    @trip = current_user.trips.build
+    @trip.trip_users.new(user_id: current_user.id)
     @trip.name = trip_params[:name]
     @trip.description = trip_params[:description]
     @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
     @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
-     if @trip.save!
-       flash[:notice] ="Awesome Trip"
-       redirect_to trip_path(@trip)
-     else
-       flash[:notice] = "FAIL"
-       redirect_to root_path
-     end
+    if @trip.save!
+      @trip.update_feeds
+      flash[:notice] ="Awesome Trip"
+      redirect_to trip_path(@trip)
+    else
+      flash[:notice] = "FAIL"
+      redirect_to root_path
+    end
   end
 
-  def show
-    @trip = Trip.find(params[:id])
-    @location_data = Checkin.location_data
+  def update_feed
+    @trip = Trip.find(params[:trip_id])
+    @trip.update_feeds
+    redirect_to trip_path(@trip.id)
+  end
 
+ def show
+    @trip = Trip.find(params[:id])
     if current_user && @trip.user_id == current_user.id
       @owner = true
-    # else
-    #   @owner = nil
     end
     
-    if @trip.user.feed_sources.find_by(:provider => "Instagram")
-       @photos = PhotosAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-    end
-     
-      @statuses = StatusesAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
-   
-    if @trip.user.feed_sources.find_by(:provider => "Foursquare")
-      @checkins = CheckinsAPI.feed_for(@trip.user.id, @trip.starts_at, @trip.ends_at)
+    @photos = @trip.photos
+    @statuses = @trip.statuses
+    @checkins = @trip.checkins
+    @geojson = @trip.geojson
+
+    #this will move to the API eventually to return json for checkin map
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
     end
   end
 

@@ -1,3 +1,13 @@
 <h2>Your Trips:</h2>
 <%= @trips ? render(@trips) : "There are no trips available." %>
 
+<h2>Your Tripsters:</h2>
+
+<% if @trips %>
+  <% @trips.each do |trip| %>
+    <p><%= trip.name %> has the following invited Tripsters: </p>
+    <% trip.users.each do |user| %>
+      <p><%= user.name %></p>
+    <% end %>
+  <% end %>
+<% end %>

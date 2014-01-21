@@ -13,20 +13,22 @@ class StatusesAPI < ActiveRecord::Base
     user = User.find(user_id)
     client = self.client(user)
     self.store_statuses(client, user.id, starts_at, ends_at)
-    user.statuses.where(:sent_at => starts_at...ends_at)
   end
 
   def self.store_statuses(client, user_id, starts_at, ends_at)
     user = User.find(user_id)
-    timeline = client.user_timeline(client.user.id, count: 200)
-
-    statuses = timeline.select do |status|
-      status.created_at > starts_at  && status.created_at < ends_at
-    end
-
-    statuses.each do |status|
-      user.statuses.find_or_create_by( text: status.full_text,
-				      sent_at: status.created_at)
+    #add error handling rate limit exceeded
+    begin
+      timeline = client.user_timeline(client.user.id, count: 200)
+      statuses = timeline.select do |status|
+        status.created_at > starts_at  && status.created_at < ends_at
+      end
+      statuses.each do |status|
+        user.statuses.find_or_create_by( text: status.full_text,
+  				      sent_at: status.created_at)
+      end
+    rescue
+      nil
     end
   end
 

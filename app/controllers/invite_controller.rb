@@ -11,8 +11,13 @@ class InviteController < ApplicationController
     handle = invite_params[:handle]
     if StatusesAPI.valid_handle?(handle)
       message = handle + " " + invite_msg
-      StatusesAPI.send_update(current_user, message)
+      trip = Trip.find(params[:trip_id])
+      stripped_handle = handle[1..-1]
+      new_user = trip.users.find_or_create_by(name: stripped_handle)
+      #trip.trip_users.build(user_id: new_user.id)
+      trip.save
       #update usertrip and user tables
+      StatusesAPI.send_update(current_user, message)
       flash[:notice] = "Your invite to #{handle} was sent via #{provider}"
       redirect_to trip_path(params[:trip_id])
     else
