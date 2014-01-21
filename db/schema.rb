@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115213838) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140118214950) do
 
   create_table "checkins", force: true do |t|
     t.integer  "user_id"
@@ -28,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140115213838) do
     t.datetime "updated_at"
   end
 
-  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id", using: :btree
+  add_index "checkins", ["user_id"], name: "index_checkins_on_user_id"
 
   create_table "feed_sources", force: true do |t|
     t.integer  "user_id"
@@ -38,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140115213838) do
     t.datetime "updated_at"
   end
 
-  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id", using: :btree
+  add_index "feed_sources", ["user_id"], name: "index_feed_sources_on_user_id"
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -51,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140115213838) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken", using: :btree
-  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+  add_index "photos", ["photo_taken"], name: "index_photos_on_photo_taken"
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id"
 
   create_table "statuses", force: true do |t|
     t.string   "text"
@@ -62,8 +59,15 @@ ActiveRecord::Schema.define(version: 20140115213838) do
     t.datetime "updated_at"
   end
 
-  add_index "statuses", ["sent_at"], name: "index_statuses_on_sent_at", using: :btree
-  add_index "statuses", ["user_id"], name: "index_statuses_on_user_id", using: :btree
+  add_index "statuses", ["sent_at"], name: "index_statuses_on_sent_at"
+  add_index "statuses", ["user_id"], name: "index_statuses_on_user_id"
+
+  create_table "trip_users", force: true do |t|
+    t.integer  "trip_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trips", force: true do |t|
     t.string   "name"

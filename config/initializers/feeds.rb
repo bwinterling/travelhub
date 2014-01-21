@@ -10,6 +10,7 @@ else
   CURRENT_URI = "http://localhost:3000"
 end
 
+STATUS_PROVIDER = "twitter"
 PHOTO_PROVIDER = "Instagram"
 CHECKIN_PROVIDER = "Foursquare"
 

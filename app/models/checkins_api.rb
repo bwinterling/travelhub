@@ -37,7 +37,6 @@ class CheckinsAPI
     user = User.find(user_id)
     client = self.client(user)
     self.store_checkins(client, user_id, starts_at, ends_at)
-    user.checkins.where(:checkins_at => starts_at..ends_at)
   end
 
   def self.store_checkins(client,user_id, starts_at, ends_at)
