@@ -84,6 +84,29 @@ body.home {
   border-radius: 8px;
 }
 
+// --------------------form page -------------------
+#newtrip {
+    margin: 10% 10%;
+    padding-bottom: 23px;
+    border-bottom: 1px solid rgb(167, 167, 164);
+}
+
+#newtrip legend{
+  font-size: 1.4em;
+}
+
+#newtrip label {
+    font: 13px "ClarendonRoman",Georgia,Times,serif;
+    color: rgb(82, 82, 80);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    /*top: 4px;*/
+}
+
+#newtrip textarea{
+  height: 150px;
+}
+
 // ------------ dashboard ----------------------
 
 .dashboard {
@@ -97,7 +120,7 @@ body.home {
 .dashboard-trips {
     margin-top: 110px;
     padding: 20px 20px 20px 30px;
-    font: 40px "ClarendonRoman",Georgia,Times,serif;
+    font: 40px "ClarendonRoman", 20px Georgia,Times,serif;
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;

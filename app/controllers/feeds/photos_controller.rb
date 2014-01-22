@@ -10,9 +10,10 @@ module Feeds
       #i'd rather check response codes for error status?
       if params[:code] != nil
         PhotosAPI.callback(params[:code], current_user.id)
-        #redirect to feed sign up page!!
-        redirect_to root_path
+        current_user.update_attribute(:slug, dashboard_path) if current_user.all_accounts_connected? 
+        redirect_to edit_user_path(current_user.id)
         flash[:notice] = "Connection to #{PHOTO_PROVIDER} Successful!"
+
       else
         #redirect to feed sign up page!!
         redirect_to root_path
