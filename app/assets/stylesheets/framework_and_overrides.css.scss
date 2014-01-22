@@ -55,6 +55,10 @@ ul.tripsters-avatars li {
   border:none !important;
 }
 
+span.tripsters-avatars img {
+  border-radius: 30px;
+}
+
 ul.tripsters-avatars li img {
   border-radius: 30px;
 }
@@ -212,7 +216,6 @@ a.trip-invite-link {
 
 .trip-name {
   display:inline-block;
-  margin-left:30px;
 }
 
 a.trip-update-feed-link {
