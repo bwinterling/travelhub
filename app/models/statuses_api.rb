@@ -25,7 +25,7 @@ class StatusesAPI < ActiveRecord::Base
       end
       statuses.each do |status|
         user.statuses.find_or_create_by( text: status.full_text,
-  				      sent_at: status.created_at)
+          sent_at: status.created_at)
       end
     rescue
       nil

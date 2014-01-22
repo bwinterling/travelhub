@@ -12,6 +12,22 @@ class Trip < ActiveRecord::Base
     end
   end
 
+  def create_trip(input)
+    self.name = input[:name]
+    self.description = input[:description]
+    self.starts_on = check_date(input[:starts_on])
+    self.ends_on = check_date(input[:ends_on])
+    return self
+  end
+
+  def check_date(date)
+    begin
+      return Date.parse(date)
+    rescue
+      return nil
+    end
+  end
+
   def update_feeds
     self.active_users.each do |user|
       if user.provider == STATUS_PROVIDER
@@ -35,18 +51,15 @@ class Trip < ActiveRecord::Base
   end
 
   def photos
-    Photo.where(user_id: participant_ids)
-    # Photo.where("user_id = ? AND photo_taken >= ? AND photo_taken <= ?", participant_ids, self.starts_on, self.ends_on)
+    Photo.where(user_id: participant_ids, photo_taken: self.starts_on...self.ends_on)
   end
 
   def statuses
-    Status.where(user_id: participant_ids)
-    # Status.where("user_id = ? AND sent_at >= ? AND sent_at <= ?", participant_ids, self.starts_on, self.ends_on)
+    Status.where(user_id: participant_ids, sent_at: self.starts_on...self.ends_on)
   end
 
   def checkins
-    Checkin.where(user_id: participant_ids)
-    # Checkin.where("user_id = ? AND checkins_at >= ? AND checkins_at <= ?", participant_ids, self.starts_on, self.ends_on)
+    Checkin.where(user_id: participant_ids, checkins_at: self.starts_on...self.ends_on)
   end
 
   def geojson

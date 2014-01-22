@@ -67,6 +67,9 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    foundation-rails (5.0.3.1)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     foursquare2 (1.9.8)
       faraday (~> 0.8)
       faraday_middleware (>= 0.8)
@@ -138,6 +141,7 @@ GEM
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
+    rails_layout (1.0.5)
     rails_serve_static_assets (0.0.2)
     rails_stdout_logging (0.0.3)
     railties (4.0.1)
@@ -242,6 +246,7 @@ DEPENDENCIES
   database_cleaner
   faraday
   figaro
+  foundation-rails
   foursquare2
   instagram
   jbuilder (~> 1.2)
@@ -254,6 +259,7 @@ DEPENDENCIES
   pry
   rails (= 4.0.1)
   rails_12factor
+  rails_layout
   resque (~> 1.22.0)
   rspec-rails
   sass-rails (~> 4.0.0)

@@ -2,7 +2,8 @@ class InviteController < ApplicationController
 
   def new
     @invite = Invite.new(params[:trip_id])
-    @msg = invite_msg
+    trip = Trip.find(params[:trip_id])
+    @msg = invite_msg(trip.name)
   end
 
   def create
@@ -10,8 +11,8 @@ class InviteController < ApplicationController
     invite_params = params[:invite]
     handle = invite_params[:handle]
     if StatusesAPI.valid_handle?(handle)
-      message = handle + " " + invite_msg
       trip = Trip.find(params[:trip_id])
+      message = handle + " " + invite_msg(trip.name)
       stripped_handle = handle[1..-1].downcase
       user = trip.users.find_by( name: stripped_handle)
       if user
@@ -39,8 +40,8 @@ class InviteController < ApplicationController
     redirect_to trip_path(trip)
   end
 
-  def invite_msg
-    "Come join my trip on Triptionary!  http://triptionary.tk"
+  def invite_msg(trip_name)
+    "Come join trip #{trip_name} on Triptionary! http://triptionary.tk"
   end
 
 end
