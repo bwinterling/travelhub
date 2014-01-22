@@ -1,14 +1,18 @@
 
+body {
+  font-family: 'Droid Sans', sans-serif !important;
+}
+
 // -------------- homepage --------------------------
-body.home {
+div.home {
   background: #9edbff url(/images/earth.jpg);
   background-size: 100% auto;
   width: 100%;
-  border-radius: 40px;
+  height:820px;
+  padding-top:90px;
   }
 
 .welcome {
-  margin-top: 110px;
   padding: 20px 20px 20px 30px;
   font: 40px "ClarendonRoman",Georgia,Times,serif;
   color: rgb(82, 82, 80);
@@ -16,21 +20,52 @@ body.home {
   text-transform: uppercase;
   background-image: url(/images/opacity50.png);
   border-radius: 40px;
+  width: 960px;
+  margin: 0 auto;
   }
 
 .logo_image {
   float:left;
   width: 160px;
-  padding: 0px 0px 0px 10px;
+  padding: 5px 0px 0px 10px;
   }
 
-.tripster-nav-links {
+ul.tripster-nav-links {
+  list-style:none;
   float: right;
-  padding-top: 8px;
+  width:500px;
+  margin-right: 20px
+}
+
+ul.tripster-nav-links li {
+  float:right;
+  margin-left:10px;
+  line-height: 25px;
+}
+
+
+ul.tripster-nav-links li a {
+  color:#ccc;
+  font-size:15px;
+}
+
+ul.tripsters-avatars li {
+  float:left;
+  background:none !important;
+  border:none !important;
+}
+
+span.tripsters-avatars img {
+  border-radius: 30px;
+}
+
+ul.tripsters-avatars li img {
+  border-radius: 30px;
 }
 
 #profile_image {
-  border-radius: 8px;
+  border-radius: 30px;
+  margin-top:-10px;
 }
 
 // --------------------form page -------------------
@@ -45,26 +80,26 @@ body.home {
 }
 
 #newtrip label {
+    display: block;
     font: 13px "ClarendonRoman",Georgia,Times,serif;
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;
-    /*top: 4px;*/
+    margin-top: 10px;
 }
 
 #newtrip textarea{
+  display: block;
   height: 150px;
+  width: 100%;
+}
+
+#newtrip input[type="submit"] {
+  display: block;
 }
 
 // ------------ dashboard ----------------------
 
-.dashboard {
-    background: #000 url(/images/dashboard.jpg);
-    background-size: 100% auto;
-    width: 100%;
-    height: 750px;
-    border-radius: 40px;
-  }
 
 .dashboard-trips {
     margin-top: 110px;
@@ -75,10 +110,6 @@ body.home {
     text-transform: uppercase;
   }
 
-.bubble {
-  background-image: url(/images/opacity50.png);
-    border-radius: 40px;
-  }
 
 a.trip-edit-link {
   font-size: 12px;
@@ -98,7 +129,7 @@ a.trip-edit-link {
 
 #map {
   width: 100%;
-  height: 385px;
+  height: 378px;
 }
 
 // ----------- application scrolling ability ---------------
@@ -118,6 +149,15 @@ a.trip-edit-link {
   padding: 0 15px;
 }
 
+<<<<<<< HEAD
+=======
+
+div.main {
+  padding-top:75px;
+  }
+
+
+>>>>>>> f49b5a4378987b110522b428eac79aaf1b173f4d
 /* Pane configuration */
      
  .left.col { left:0; right:375px;}
@@ -178,7 +218,6 @@ a.trip-invite-link {
 
 .trip-name {
   display:inline-block;
-  margin-left:30px;
 }
 
 a.trip-update-feed-link {
@@ -203,3 +242,88 @@ ul.tripsters-avatars li {
 ul.tripsters-avatars li a img {
   border-radius:30px;
 }
+<<<<<<< HEAD
+=======
+
+// -------- alerts ------------
+.alert-box {
+  overflow: hidden;
+  color:#fff;
+  font-size:25px;
+  padding:10px 0 10px 42px;
+}
+
+.alert-box.alert {
+  background-color:#a63030;
+
+}
+
+.alert-box.success {
+  background-color:#328e5b;
+}
+
+a.close {
+   display:inline !important;
+   color:#ccc;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+// --------- speech bubbles ----------
+
+
+.triangle-right.left {
+margin-left: 40px;
+background: #075698;
+}
+
+.triangle-right {
+position: relative;
+padding: 15px;
+margin: 1em 0 1em;
+color: #fff;
+background: #075698;
+background: -webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+background: -moz-linear-gradient(#2e88c4, #075698);
+background: -o-linear-gradient(#2e88c4, #075698);
+background: linear-gradient(#2e88c4, #075698);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.triangle-right.left:after {
+top: 16px;
+left: -40px;
+bottom: auto;
+border-width: 15px 40px 0 0;
+border-color: transparent #075698;
+}
+
+.triangle-right:after {
+content: "";
+position: absolute;
+bottom: -20px;
+left: 50px;
+border-width: 20px 0 0 20px;
+border-style: solid;
+border-color: #075698 transparent;
+display: block;
+width: 0;
+}
+
+span.tweet-time {
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  text-align: right;
+}
+
+span.tweet-origin {
+  display: block;
+  font-size:14px;
+  font-weight: bold;
+  margin-bottom:2px;
+}
+
+>>>>>>> f49b5a4378987b110522b428eac79aaf1b173f4d

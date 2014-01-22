@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.modal
 //= require turbolinks
+//= require timelineJS/embed
 //= require foundation
 //= require_tree .
 $(function() {

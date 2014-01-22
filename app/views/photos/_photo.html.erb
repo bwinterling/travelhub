@@ -1,1 +1,8 @@
-<li><%= image_tag photo.thumbnail_url %></li>
+<li>
+<div>
+  <%= image_tag photo.thumbnail_url %><br/>
+  taken by: <%= photo.user.name %> <br />
+ <%= distance_of_time_in_words(photo.photo_taken, DateTime.now)%> ago <br />
+</div>
+  </li>
+

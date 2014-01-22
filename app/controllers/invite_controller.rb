@@ -14,7 +14,7 @@ class InviteController < ApplicationController
       trip = Trip.find(params[:trip_id])
       message = handle + " " + invite_msg(trip.name)
       stripped_handle = handle[1..-1].downcase
-      user = trip.users.find_by( name: stripped_handle)
+      user = trip.users.find_by(name: stripped_handle)
       if user
         trip.trip_users.find_by(user_id: user.id).toggle!(:active)
       end

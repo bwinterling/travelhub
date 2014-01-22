@@ -1,4 +1,6 @@
+<p class="triangle-right left">
+  <span class="tweet-origin"><%= status.user.name %> said:</span>
+ <%= status.text %>
+ <span class="tweet-time">... <%= distance_of_time_in_words(status.sent_at, DateTime.now)%> ago </span>
+</p>
 
-<span class="tweet">
- <p><%= status.text %></p>
-</span>

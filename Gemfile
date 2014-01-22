@@ -6,6 +6,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 gem 'instagram'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -15,6 +16,7 @@ gem 'faraday'
 gem 'whenever', :require => false
 gem 'resque', '~> 1.22.0'
 gem 'figaro'
+gem 'timelineJS-rails', '~> 1.1.1'
 gem 'foundation-rails'
 
 group :production do

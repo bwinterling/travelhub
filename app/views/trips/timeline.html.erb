@@ -1,0 +1,14 @@
+ <script>
+$(document).ready(function() {
+  createStoryJS({
+    type:       'timeline',
+  width:      '100%',
+  height:     '600',
+  source:     '/api/v1/timeline/<%= @trip.id %>.json',
+  embed_id:   'my-timeline',
+  css:        '/assets/stylesheets/timeline.css', 
+  });
+});
+ </script>
+ <!-- END TimelineJS -->
+ <div id="my-timeline"></div>

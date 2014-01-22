@@ -10,6 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <title><%= content_for?(:title) ? yield(:title) : "Triptionary" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Triptionary" %>">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%# Modernizr is required for Zurb Foundation %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -22,10 +23,10 @@
       <%= render 'layouts/navigation' %>
     </header>
 
-    <main class="main">
+    <div class="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
-    </main>
+    </div>
 
   </body>
 </html>

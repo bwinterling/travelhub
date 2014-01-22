@@ -28,13 +28,15 @@ Tripster::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :statuses
-      resources :photos
+      resources :statuses, only: [ :index, :create]
+      resources :photos, only: [:index, :create]
+      resources :timeline, only: :show
     end
   end
 
   match '/trips/:trip_id/invite', to: 'invite#create', as: 'trip_invite', via: "post"
+  match '/trips/:trip_id/timeline', to: 'trips#timeline', as: 'timeline', via: "get"
 
-  post '/trip_user/:id', to: 'invite#destroy', via: "delete"
+  get '/trip_user/:id', to: 'invite#destroy'
   mount Resque::Server.new, at: "/resque"
 end
