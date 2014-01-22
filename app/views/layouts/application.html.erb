@@ -7,6 +7,9 @@
      <%= favicon_link_tag "favicon.ico", rel: "icon", type: "image/x-icon" %>
     <title><%= content_for?(:title) ? yield(:title) : "Tripster" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Tripster" %>">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title><%= content_for?(:title) ? yield(:title) : "Triptionary" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Triptionary" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%# Modernizr is required for Zurb Foundation %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -19,10 +22,10 @@
       <%= render 'layouts/navigation' %>
     </header>
 
-    <main role="main">
+    <main class="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
-    
+
   </body>
 </html>

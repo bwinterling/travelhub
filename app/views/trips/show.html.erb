@@ -1,40 +1,55 @@
-<div class="panel">
-  <div class="row">
-    <div class="large-12 columns" id="dashboard">
-      <h1><%= @trip.name %></h1>
-      <h4><%= @trip.description %></h4>
-      <%= link_to "Refresh Feed", trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
-    </div>
-  </div>
-</div>
 
-<div class="row" data-match-height>
-  <div class="large-8 columns" data-height-watch>
 
-    <div class="row panel">
-      <div id="photos">
-        <h5>Trip photos:</h5>
-        <%= @photos.empty? ?  "There are no photos available." : render(@photos) %>
-      </div>
-    </div>
-    <div class="row panel">
-      <div id='map'>
-        <h5>Trip checkins:</h5>
-        <%= @checkins.empty? ? "There are no checkins available." : render(@checkins) %>
-      </div>
-    </div>
+    <div class="left col"> 
+      <div class="header row">
+                <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>    
+                <span class="trip-name"><%= @trip.name %> </span>
 
-  </div> <!-- 8 column -->
-  <div class="large-4 columns panel" data-height-watch>
-    <div class="row">
-        <div id="twitter-feed">
-        <%= @statuses.empty? ? "There are no tweets available." : render(@statuses) %>
+                 <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
+            </div>
+      <div class="body row scroll-y">
+        <div>
+              
+          <div id='map'>
+            <h5>Trip checkins:</h5>
+            <%= @checkins.empty? ? "There are no checkins available. Connect your FourSquare account to see them!" : render(@checkins) %>
+          </div>
+
+           <div class="scroll-x tiles">
+              <ul>
+                 <%= @photos.empty? ?  "There are no photos available. Connect your Instagram account to see them!" : render(@photos) %>
+              </ul>
+            </div>
+
+                  </div>
+              </div>
+              
+              <div class="footer row">
+                    <ul class="tripsters-avatars">
+                <% @trip.active_users.each do |user| %>
+                <li id="tripster_<%= user.id %>"><%= link_to image_tag(user.avatar_url), :action => "destroy", :controller => "invite", :user_id => user.id %><%#= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
+                <% end %>
+              </ul>
+              
+              </div>
+          </div>
+
+          <div class="right col">
+            <div class="header row">
+                My Trips >>
+            </div>
+            
+            <div class="body row scroll-y">
+                <ul class="listview">
+                    <%= @statuses.empty? ? "There are no tweets available for this time period." : render(@statuses) %>
+                </ul>
+            </div>
+
+
+            <div class="footer row">
+                <%= link_to "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link"} %>
+            </div>
         </div>
-      </div>
-    </div>
-  </div> <!-- 4 column -->
-
-</div>
 
 <div class="row">
   <div class="panel">
@@ -51,28 +66,30 @@
     </div>
   </div>
 </div>
-<% unless @checkins.empty? %>
-<script>
-  var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt');
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    if (map.tap) map.tap.disable();
-    map.markerLayer.on('click', function(e) {
-          map.panTo(e.layer.getLatLng());
-      });
+    <% unless @checkins.empty? %>
 
-  jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
-    $.each(checkinData, function(index, checkin){
-      
-      var markerLayer = L.mapbox.markerLayer(checkin).addTo(map);
-      markerLayer.eachLayer( function(checkin) {
-      var content = '<h5>name: ' + checkin.feature.properties.name + '<\/h5>' +
-        '<h6>address: ' + checkin.feature.properties.address + '<\/h6>' +
-        '<h6>comment: ' + checkin.feature.properties.comment + '<\/h6>';
-        checkin.bindPopup(content); 
-      }); 
-    });
-  });
-</script>
-<% end %>
+    <script>
+      var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt');
+
+      map.touchZoom.disable();
+        map.doubleClickZoom.disable();
+        map.scrollWheelZoom.disable();
+        if (map.tap) map.tap.disable();
+        map.markerLayer.on('click', function(e) {
+              map.panTo(e.layer.getLatLng());
+          });
+      jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
+        $.each(checkinData, function(index, checkin){
+
+          var markerLayer = L.mapbox.markerLayer(checkin).addTo(map);
+          console.log(markerLayer)
+          markerLayer.eachLayer( function(checkin) {
+          var content = '<h5>name: ' + checkin.feature.properties.name + '<\/h5>' +
+            '<h6>address: ' + checkin.feature.properties.address + '<\/h6>' +
+            '<h6>comment: ' + checkin.feature.properties.comment + '<\/h6>';
+            checkin.bindPopup(content);
+          });
+        });
+      });
+    </script> 
+    <% end %>

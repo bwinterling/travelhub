@@ -1,54 +1,3 @@
-// import the CSS framework
-@import "foundation";
-
-// -----------navigation link --------------------
-.top-bar {
-  margin-top: 10px;
-  height: auto;
-}
-.top-bar .name {
-  font-size: rem-calc(13);
-  line-height: 45px; 
-}
-.top-bar .name a {
-  font-weight: normal;
-  color: white;
-  padding: 0 15px; 
-}
-
-@mixin twelve-columns {
-  @extend .small-12;
-  @extend .columns;
-  }
-@mixin six-columns-centered {
-  @extend .small-6;
-  @extend .columns;
-  // @extend .text-center;
-  }
-// create your own classes
-// to make views framework-neutral
-.column {
-  @include six-columns-centered;
-  }
-.form {
-  @include grid-column(6);
-  }
-.form-centered {
-  @include six-columns-centered;
-  }
-.submit {
-  @extend .button;
-  @extend .radius;
-  }
-// apply styles to HTML elements
-// to make views framework-neutral
-main {
-  @include twelve-columns;
-  }
-section {
-  @extend .row;
-  margin-top: 20px;
-  }
 
 // -------------- homepage --------------------------
 body.home {
@@ -77,7 +26,7 @@ body.home {
 
 .tripster-nav-links {
   float: right;
-  padding-top: 8px; 
+  padding-top: 8px;
 }
 
 #profile_image {
@@ -120,7 +69,7 @@ body.home {
 .dashboard-trips {
     margin-top: 110px;
     padding: 20px 20px 20px 30px;
-    font: 40px "ClarendonRoman",Georgia,Times,serif;
+    font: 40px "ClarendonRoman", 20px Georgia,Times,serif;
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -145,9 +94,112 @@ a.trip-edit-link {
   justify-content: center;
 }
 
-// ------------- trip page ---------------------
+// ----- map ----
 
 #map {
   width: 100%;
-  height: 750px;
+  height: 385px;
+}
+
+// ----------- application scrolling ability ---------------
+
+.top-bar {
+  background: #333333;
+  height:70px;
+}
+
+.top-bar .name {
+  font-size: rem-calc(13);
+  line-height: 45px;
+}
+.top-bar .name a {
+  font-weight: normal;
+  color: white;
+  padding: 0 15px;
+}
+
+/* Pane configuration */
+     
+ .left.col { left:0; right:375px;}
+ .right.col { width:375px; right:0px;}
+ .full.col { right:0px; left:0px;}
+ .header.row { height: 75px; line-height: 75px; }
+ .body.row { top: 75px; bottom: 60px; }
+ .footer.row { height: 60px; bottom: 0; line-height: 60px; }
+
+
+/* Generic pane rules */
+body { margin: 0; -webkit-text-size-adjust: 100%; }
+.page { left: 0; right: 0; top: 0; bottom: 0; }
+.row, .col, .page { overflow: hidden; position: absolute; }
+.row { left: 0; right: 0; }
+.col { top: 0; bottom: 0; }
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.scroll-y { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.fill, .pane { position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: 100%; height: 100% }
+.pane { display: none; }
+
+/* Workaround: in landscape mode, IEMobile makes bottom toolbar overlap the page, so shorten the page by 75px to compensate */
+.iemobile .page { bottom: -6px; }
+@media screen and (orientation:landscape) { .iemobile .page { bottom: 75px; } }
+
+
+/* Very rough, iOS-like styles. */
+
+body { font-family: 'Helvetica Neue', Arial, Sans-Serif; }
+.header, .footer {
+    color: #eee; background: #696f77; text-shadow: 1px 1px 1px rgba(0,0,0,0.5); padding: 0 0.5em;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#696f77), color-stop(100%,#28343b));
+    background: -webkit-linear-gradient(top, #696f77 0%,#28343b 100%); background: -ms-linear-gradient(top, #696f77 0%,#28343b 100%); 
+}
+.header { font-size: 1.4em; }
+.body, .pane { background: #ddd }
+.right.col { border-left: 1px solid black; }
+.right.col .body { padding: 0 1em; }
+.listview { padding: 0; margin: 0; color: #444; }
+.listview li { list-style-type: none; background: #eee; padding: 1em; border-top: 1px solid #aaa; border-bottom: 1px solid #fff; cursor: pointer; }
+.listview li.selected { background-color: #37F; color: White; }
+            
+.listview.inset { margin: 1em 0; }
+.listview.inset li { background: white; border: 2px solid #aaa; border-bottom-width: 0; }
+.listview.inset li:first-child { border-radius: 1em 1em 0em 0em }
+.listview.inset li:last-child { border-radius: 0em 0em 1em 1em; border-bottom-width: 2px; }
+            
+.tiles { overflow-y: hidden; }
+.tiles > ul { width: 2000px; }
+.tiles ul { margin: 0; padding: 0; white-space: nowrap; }
+.tiles li { list-style-type: none; display: inline-block; background-color: #fff; width:150px; height: 150px; padding: 1em; color: White; margin: 5px; font-weight: bold; zoom:1; *display: inline; }
+
+button { display: block; border: 2px solid #aaa; line-height: normal; background-color: White; border-radius: 8px; margin: 8px 0; cursor: pointer; padding: 5px 20px; font-weight: bold; color: #333; }
+
+a.trip-invite-link {
+  color:#ccc;
+}
+
+.trip-name {
+  display:inline-block;
+  margin-left:30px;
+}
+
+a.trip-update-feed-link {
+  display: inline-block;
+  float:right;
+  margin-top:10px;
+}
+
+ul.tripsters-avatars {
+  list-style: none;
+  margin:5px 0 0 0;
+  padding:0;
+  padding-left:10px;
+}
+
+ul.tripsters-avatars li {
+  float:left;
+  margin-left:5px;
+  display: block;
+}
+
+ul.tripsters-avatars li a img {
+  border-radius:30px;
 }
