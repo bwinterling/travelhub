@@ -4,15 +4,15 @@
 
 
 // -------------- homepage --------------------------
-body.home {
+div.home {
   background: #9edbff url(/images/earth.jpg);
   background-size: 100% auto;
   width: 100%;
-  border-radius: 40px;
+  height:820px;
+  padding-top:90px;
   }
 
 .welcome {
-  margin-top: 110px;
   padding: 20px 20px 20px 30px;
   font: 40px "ClarendonRoman",Georgia,Times,serif;
   color: rgb(82, 82, 80);
@@ -20,21 +20,41 @@ body.home {
   text-transform: uppercase;
   background-image: url(/images/opacity50.png);
   border-radius: 40px;
+  width: 960px;
+  margin: 0 auto;
   }
 
 .logo_image {
   float:left;
   width: 160px;
-  padding: 0px 0px 0px 10px;
+  padding: 5px 0px 0px 10px;
   }
 
-.tripster-nav-links {
+ul.tripster-nav-links {
+  list-style:none;
   float: right;
-  padding-top: 8px;
+  width:500px;
+}
+
+ul.tripster-nav-links li {
+  float:left;
+  margin-left:10px;
+  line-height: 25px;
+}
+
+
+ul.tripster-nav-links li a {
+  color:#ccc;
+  font-size:15px;
+}
+
+ul.tripsters-avatars li {
+  float:left;
 }
 
 #profile_image {
-  border-radius: 8px;
+  border-radius: 30px;
+  margin-top:-10px;
 }
 
 // --------------------form page -------------------
@@ -124,6 +144,9 @@ a.trip-edit-link {
 }
 
 
+div.main {
+  padding-top:75px;
+  }
 
 
 /* Pane configuration */

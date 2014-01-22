@@ -1,15 +1,8 @@
 <%# navigation styled for Zurb Foundation 5 %> 
 
-<nav class="top-bar">
-  <ul class="title-area">
-    <li class="name">
-      <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-  <div class="top-bar-section">
-    <ul class="tripster-nav-links">
+<div class="header row">
+   <%= link_to image_tag("logo.png", class: "logo_image"),root_path %> 
+   <ul class="tripster-nav-links">
       <%= render 'layouts/navigation_links' %>
-    </ul>
-  </div>
-</nav>
+    </ul>  
+</div>
