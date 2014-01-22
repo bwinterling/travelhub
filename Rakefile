@@ -5,3 +5,8 @@ require 'resque/tasks'
 require File.expand_path('../config/application', __FILE__)
 
 Tripster::Application.load_tasks
+
+desc "Update feeds for trips"
+task :updatefeed => :environment do
+  FeedUpdater.update_all
+end

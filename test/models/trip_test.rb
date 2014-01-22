@@ -6,9 +6,9 @@ class TripTest < ActiveSupport::TestCase
   def setup
     @user = User.create!(valid_user_params)
     @trip = user.trips.create!(name: "Jamica",
-			      description: "... Plains, Massachusetts",
-			      starts_at: DateTime.now,
-			      ends_at: DateTime.now + (2*7*24*60*60))
+            description: "... Plains, Massachusetts",
+            starts_on: Date.today.next_month(-1),
+            ends_on: Date.today)
   end
 
   def test_it_has_a_creator
@@ -21,8 +21,7 @@ class TripTest < ActiveSupport::TestCase
     end
 
     trip1 = user.trips.create!(name: "Jamica", description: "Marley",
-		       starts_at: DateTime.now, ends_at: DateTime.now + 1)
-
+      starts_on: Date.today.next_month(-1), ends_on: Date.today)
     assert trip1
   end
 
@@ -35,12 +34,11 @@ class TripTest < ActiveSupport::TestCase
   def test_start_date_is_before_end_date
     assert_raise ActiveRecord::RecordInvalid do
       user.trips.create!(name: "Jamica", description: "Moo Moo",
-			 starts_at: DateTime.now,
-			 ends_at: DateTime.now - 1)
+        starts_on: Date.today, ends_on: Date.today.next_month(-1))
     end
 
-    assert trip.starts_at < trip.ends_at
-    refute trip.starts_at > trip.ends_at
+    assert trip.starts_on < trip.ends_on
+    refute trip.starts_on > trip.ends_on
   end
 
   def valid_user_params

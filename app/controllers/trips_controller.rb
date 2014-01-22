@@ -16,9 +16,9 @@ class TripsController < ApplicationController
     trip = current_user.trips.find(params[:id])
     trip_params = params[:trip]
     if trip.update(:name => trip_params[:name],
-                :description => trip_params[:description],
-                :starts_at => trip_params[:starts_at],
-                :ends_at => trip_params[:ends_at])
+          :description => trip_params[:description],
+          :starts_on => Date.parse(trip_params[:starts_on]),
+          :ends_on => Date.parse(trip_params[:ends_on]))
       redirect_to trip, notice: "Trip Updated!"
     else
       render action: 'edit', notice: "Update Failed!"
@@ -26,21 +26,16 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip_params = params[:trip]
-    @trip = current_user.trips.build
+    @trip = current_user.trips.new.create_trip(valid_trip_params)
     @trip.trip_users.new(user_id: current_user.id)
-    @trip.name = trip_params[:name]
-    @trip.description = trip_params[:description]
-    @trip.starts_at = DateTime.strptime(trip_params[:starts_at], "%m/%d/%Y")
-    @trip.ends_at = DateTime.strptime(trip_params[:ends_at], "%m/%d/%Y")
 
-    if @trip.save!
+    if @trip.save
       @trip.update_feeds
       flash[:notice] ="Awesome Trip"
       redirect_to trip_path(@trip)
     else
       flash[:notice] = "FAIL"
-      redirect_to root_path
+      render new_trip_path
     end
   end
 
@@ -71,5 +66,10 @@ class TripsController < ApplicationController
     if current_user && current_user.trips.any?
       @trips = current_user.trips
     end
+  end
+
+private
+  def valid_trip_params
+    params.require(:trip).permit(:name, :description, :starts_on, :ends_on)
   end
 end

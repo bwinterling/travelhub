@@ -1,7 +1,6 @@
 require 'resque/server'
 
 Tripster::Application.routes.draw do
-  mount Resque::Server.new, at: "/resque"
 
   # this will need to be changed...
   root "users#index"
@@ -37,4 +36,5 @@ Tripster::Application.routes.draw do
   match '/trips/:trip_id/invite', to: 'invite#create', as: 'trip_invite', via: "post"
 
   post '/trip_user/:id', to: 'invite#destroy', via: "delete"
+  mount Resque::Server.new, at: "/resque"
 end

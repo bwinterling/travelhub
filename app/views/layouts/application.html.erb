@@ -1,47 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8 />
-  <title>Triptionary</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag "favicon.ico", rel: "icon", type: "image/x-icon" %>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.3/normalize.min.css">
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.2/css/foundation.min.css">
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'> </meta>
-  <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.js'></script>
-  <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.0/mapbox.css' rel='stylesheet' />
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Tripster" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Tripster" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%# Modernizr is required for Zurb Foundation %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
 
-  <div class="header">
-    <div id="masthead">
-        <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>
+  <body>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
 
-      <span class="submenu" >
-        <ul>
-          <% if current_user %>
-          <li><%= link_to "Logout", logout_path, method: "delete" %></li>
-          <li><%=link_to "Add A Trip", new_trip_path %></li>
-          <li><%= link_to "Dashboard", dashboard_path %></li>
-
-          <span class="twitteraccount">
-            <li><%= link_to current_user.name, edit_user_path(current_user) %></li>
-            <li><%= image_tag(current_user.avatar_url, id: "profile_image")%></li>
-          </span>
-          <% else %>
-          <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter", class: "twitterlogin"), "/auth/twitter" %></li>
-          <% end %>
-        </ul>
-        </span>
-      </div>
-    </div>
-        <%= render 'layouts/messages' %>
-
-        <div class="mainwrapper">
-          <%= yield %>
-        </div>
-
-      </body>
-      </html>
+    <main role="main">
+       <%= render 'layouts/messages' %>
+       <%= yield %>
+    </main>
+    
+  </body>
+</html>
