@@ -1,7 +1,7 @@
 class StatusesAPI < ActiveRecord::Base
 
   def self.client(user)
-    @client = Twitter::Client.new
+    @client = Twitter::REST::Client.new
     @client.consumer_key    = TWITTER_CONSUMER_KEY
     @client.consumer_secret = TWITTER_CONSUMER_SECRET
     @client.oauth_token     = user.access_token
@@ -25,7 +25,7 @@ class StatusesAPI < ActiveRecord::Base
       end
       statuses.each do |status|
         user.statuses.find_or_create_by( text: status.full_text,
-  				      sent_at: status.created_at)
+          sent_at: status.created_at)
       end
     rescue
       nil
