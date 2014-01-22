@@ -10,13 +10,13 @@ class Timeline
   {
     timeline:
     {
-      headline: "The Main Timeline Headline Goes here",
+      headline: "Timeline for #{trip.name}",
       type:"default",
-      text:"<p>Intro body text goes here, some HTML is ok</p>",
+      text:"<p>#{trip.description}</p>",
       asset: {
-	media:"http://yourdomain_or_socialmedialink_goes_here.jpg",
-	credit:"Credit Name Goes Here",
-	caption:"Caption text goes here"
+        media:"http://www.jaunted.com/files/6193/the_griswalds.jpg",
+        credit:"jaunted.com",
+        caption:"Hi Aunt Edna!"
       },
       date: [
 	{
