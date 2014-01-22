@@ -62,6 +62,10 @@ class TripsController < ApplicationController
     end
   end
 
+  def timeline
+    @trip = Trip.find(params[:trip_id])
+  end
+
   def dashboard
     if current_user && current_user.trips.any?
       @trips = current_user.trips
