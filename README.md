@@ -1,6 +1,6 @@
 # Triptionary
 
-Welcome to the wonderful world of Triptionary, the ultimate travel memory app.
+Hello.  Welcome to the wonderful world of Triptionary, the ultimate travel memory app.
 
 COMING SOON - live site will be deployed at triptionary.tk
 

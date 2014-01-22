@@ -27,7 +27,7 @@ describe 'User directed to dashboard' do
     visit root_path
     click_on "Login with Twitter"
     Trip.create!(name: "The Highlands",
-            description: "To get some pot",
+            description: "To get some food",
             starts_on: Date.today,
             ends_on: Date.today.next_month(1),
             user_id: User.last.id)
