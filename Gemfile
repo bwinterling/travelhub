@@ -15,6 +15,7 @@ gem 'faraday'
 gem 'whenever', :require => false
 gem 'resque', '~> 1.22.0'
 gem 'figaro'
+gem 'timelineJS-rails', '~> 1.1.1'
 gem 'foundation-rails'
 
 group :production do
