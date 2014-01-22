@@ -26,6 +26,7 @@ class StatusWriter
 
     conn = self.set_connection
     statuses.map do |status|
+      puts status.full_text
       conn.post do |req|
 	req.url 'api/v1/statuses'
 	req.headers['Content-Type'] = 'application/json'

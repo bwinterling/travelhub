@@ -3,7 +3,7 @@
 if Rails.env.production?
   PHOTOS_CALLBACK_URL = "http://afternoon-chamber-5947.herokuapp.com/feeds/photos/callback"
   CHECKIN_REDIRECT_URI = "http://afternoon-chamber-5947.herokuapp.com/feeds/checkins/callback"
-  CURRENT_URI = "http://triptionary.tk"
+  CURRENT_URI = "http://afternoon-chamber-5947.herokuapp.com"
 else
   PHOTOS_CALLBACK_URL = "http://localhost:3000/feeds/photos/callback"
   CHECKIN_REDIRECT_URI = "http://localhost:3000/feeds/checkins/callback"

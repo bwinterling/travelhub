@@ -7,11 +7,24 @@ class Api::V1::StatusesController < ApplicationController
 
   def create
     status_params = params[:status]
-    user = User.find(status_params[:user_id].to_i)
-    @status = user.statuses.new
-    @status.text = status_params[:text]
-    @status.sent_at = status_params[:sent_at]
-    if @status.save
+
+    puts "These are the params #{status_params}"
+    statuses = Status.where(user_id: status_params[:user_id], text: status_params[:text],
+				  sent_at: status_params[:sent_at])
+      puts "the statuses count is #{statuses.count}"
+    if statuses.count > 0
+
+      @status =  statuses.first
+      puts "found #{@status.text}"
+    else
+      @status = Status.create(user_id: status_params[:user_id], text: status_params[:text],
+				sent_at: status_params[:sent_at])
+      puts "creating #{@status.text}"
+    end
+
+    puts "status done"
+
+    unless  @status.nil?
       render json: @status, status: 201
     else
       render json: "Fail", status: 400

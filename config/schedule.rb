@@ -20,7 +20,7 @@
 # Learn more: http://github.com/javan/whenever
 #
 
-every 1.minute do
-  command "echo 'Hello World'"
+every 5.minute do
+  rake "updatefeed"
 end
 
