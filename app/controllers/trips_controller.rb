@@ -63,6 +63,7 @@ class TripsController < ApplicationController
   end
 
   def timeline
+    @trip = Trip.find(params[:trip_id])
   end
 
   def dashboard

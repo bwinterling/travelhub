@@ -4,7 +4,7 @@ $(document).ready(function() {
     type:       'timeline',
   width:      '800',
   height:     '600',
-  source:     '/api/v1/timeline/1.json',
+  source:     '/api/v1/timeline/<%= @trip.id %>.json',
   embed_id:   'my-timeline',
   css:        '/assets/stylesheets/timeline.css', 
   });

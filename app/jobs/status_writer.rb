@@ -31,7 +31,7 @@ class StatusWriter
 	req.url 'api/v1/statuses'
 	req.headers['Content-Type'] = 'application/json'
 	req.body = { status: { user_id: user_id, text: status.full_text,
-			sent_at: status.created_at }}.to_json
+			sent_at: status.created_at, origin_id: status.id }}.to_json
       end
     end
   end
