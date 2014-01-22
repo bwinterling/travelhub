@@ -52,10 +52,8 @@
                     <%= @statuses.empty? ? "There are no tweets available for this time period." : render(@statuses) %>
                 </ul>
             </div>
-
-
             <div class="footer row">
-                <%= link_to "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link"} %>
+                <%= link_to_modal "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link", id: "add-tripster"} %>
             </div>
         </div>
 
