@@ -2,19 +2,22 @@
 
     <div class="left col"> 
       <div class="header row">
-                Triptionary Logo  |  Trip Name  
+                <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>    
+                <span class="trip-name"><%= @trip.name %> </span>
+
+                 <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
             </div>
       <div class="body row scroll-y">
         <div>
               
           <div id='map'>
             <h5>Trip checkins:</h5>
-            <%#-= @checkins.empty? ? "There are no checkins available." : render(@checkins) %>
+            <%= @checkins.empty? ? "There are no checkins available. Connect your FourSquare account to see them!" : render(@checkins) %>
           </div>
 
            <div class="scroll-x tiles">
               <ul>
-                 <%= @photos.empty? ?  "There are no photos available." : render(@photos) %>
+                 <%= @photos.empty? ?  "There are no photos available. Connect your Instagram account to see them!" : render(@photos) %>
               </ul>
             </div>
 
@@ -24,7 +27,7 @@
               <div class="footer row">
                     <ul class="tripsters-avatars">
                 <% @trip.active_users.each do |user| %>
-                <li id="tripster_<%= user.id %>"><%= image_tag user.avatar_url %><%= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
+                <li id="tripster_<%= user.id %>"><%= link_to image_tag(user.avatar_url), :action => "destroy", :controller => "invite", :user_id => user.id %><%#= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
                 <% end %>
               </ul>
               
@@ -38,7 +41,7 @@
             
             <div class="body row scroll-y">
                 <ul class="listview">
-                    <%= @statuses.empty? ? "There are no tweets available." : render(@statuses) %>
+                    <%= @statuses.empty? ? "There are no tweets available for this time period." : render(@statuses) %>
                 </ul>
             </div>
 
