@@ -14,8 +14,12 @@ class Timeline
     trip.statuses.empty? ? [] : trip.statuses.map { |status| status.timeline_hash }
   end
 
+  def checkins_array
+    trip.checkins.empty? ? [] : trip.checkins.map { |checkin| checkin.timeline_hash }
+  end
+
   def date_array
-    photos_array + statuses_array
+    photos_array + statuses_array + checkins_array
   end
 
   def return_json
