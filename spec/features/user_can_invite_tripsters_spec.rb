@@ -11,7 +11,6 @@ describe "Tripsters"  do
       fill_in "Start Date", with: "01/01/14"
       fill_in "End Date", with: "01/03/14"
       click_on "Submit"
-
       page.visit trip_path(Trip.all.last)
     end
 
@@ -32,7 +31,7 @@ describe "Tripsters"  do
       page.should have_content("Your invite to #{handle} was sent via Twitter")
 
       page.visit dashboard_path
-      page.should have_content("Siam has the following invited Tripsters: tripstertk " + handle[1..-1])
+      page.should have_content("with: tripstertk " + handle[1..-1])
     end
 
     it "can remove a tripster from the trip" do
@@ -49,6 +48,7 @@ describe "Tripsters"  do
       page.should have_content("#{handle} was removed from your trip!")
     end
   end
+
   context "as an invited tripster" do
     it "can authenticate with twitter"
     it "once authenticated, can see invited trip on dashboard"

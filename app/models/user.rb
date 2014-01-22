@@ -21,16 +21,19 @@ class User < ActiveRecord::Base
       provider: auth["provider"],
       avatar_url:    auth["info"]["image"],
       access_token:  auth["credentials"]["token"],
-      access_secret: auth["credentials"]["secret"]
+      access_secret: auth["credentials"]["secret"],
+      slug:  "/users/#{user.id}/edit"
     )
     user
   end
 
   def all_accounts_connected?
-    user.feed_sources.map(&:provider).sort == User.providers
+    feed_sources.map(&:provider).sort == User.providers
   end
 
   def self.providers
     ["Instagram", "Foursquare"].sort
   end
+
+
 end
