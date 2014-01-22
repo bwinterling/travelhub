@@ -15,9 +15,9 @@ describe StatusWriter do
 
   let(:statuses) do
     [StatusStub.new("Daft Punk is playing at my house",
-		     DateTime.now, 8),
+		     DateTime.now, "8"),
      StatusStub.new("New York I love you, but...",
-		     DateTime.now - 2 * week, 12)]
+		     DateTime.now - 2 * week, "12")]
   end
 
   it "should be able to call the twitter client" do
