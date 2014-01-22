@@ -1,4 +1,8 @@
-
+<div>
 <span class="tweet">
+  <%= status.user.name %> tweeted:
  <p><%= status.text %></p>
+ <%= distance_of_time_in_words(status.sent_at, DateTime.now)%> ago <br />
 </span>
+</div>
+<br />
