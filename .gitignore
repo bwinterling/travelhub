@@ -16,6 +16,7 @@
 /log/*.log
 /tmp
 /tmp/*
+.DS_Store
 
 #ignore figaro file
 /config/application.yml

@@ -1,12 +1,12 @@
- <%= javascript_include_tag "/assets/storyjs-embed.js" %>
  <script>
 $(document).ready(function() {
   createStoryJS({
     type:       'timeline',
   width:      '800',
   height:     '600',
-  source:     '/api/v1/timeline/1',
-  embed_id:   'my-timeline'
+  source:     '/api/v1/timeline/1.json',
+  embed_id:   'my-timeline',
+  css:        '/assets/css/timeline.css', 
   });
 });
  </script>
