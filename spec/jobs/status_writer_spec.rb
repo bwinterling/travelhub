@@ -3,7 +3,7 @@ require 'spec_helper'
 describe StatusWriter do
   before(:all) do
     User.from_omniauth(OmniAuth.config.mock_auth[:twitter])
-    StatusStub = Struct.new(:full_text, :created_at)
+    StatusStub = Struct.new(:full_text, :created_at, :id)
   end
 
   let(:user) { User.last }
@@ -15,9 +15,9 @@ describe StatusWriter do
 
   let(:statuses) do
     [StatusStub.new("Daft Punk is playing at my house",
-		     DateTime.now),
+		     DateTime.now, "8"),
      StatusStub.new("New York I love you, but...",
-		     DateTime.now - 2 * week)]
+		     DateTime.now - 2 * week, "12")]
   end
 
   it "should be able to call the twitter client" do

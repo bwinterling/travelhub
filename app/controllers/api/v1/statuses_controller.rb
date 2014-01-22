@@ -5,24 +5,30 @@ class Api::V1::StatusesController < ApplicationController
     render json: @statuses, status: 200
   end
 
+  def d(text)
+    unless Rails.env.production?
+      puts text
+    end
+  end
+
   def create
     status_params = params[:status]
 
-    puts "These are the params #{status_params}"
+    d("These are the params #{status_params}")
     statuses = Status.where(user_id: status_params[:user_id], text: status_params[:text],
-				  sent_at: status_params[:sent_at])
-      puts "the statuses count is #{statuses.count}"
+				  sent_at: status_params[:sent_at], origin_id:status_params[:origin_id].to_s)
+      d "the statuses count is #{statuses.count}"
     if statuses.count > 0
 
       @status =  statuses.first
-      puts "found #{@status.text}"
+      d "found #{@status.text}"
     else
       @status = Status.create(user_id: status_params[:user_id], text: status_params[:text],
-				sent_at: status_params[:sent_at])
-      puts "creating #{@status.text}"
+				sent_at: status_params[:sent_at], origin_id: status_params[:origin_id].to_s)
+      d "creating #{@status.text}"
     end
 
-    puts "status done"
+    d "status done"
 
     unless  @status.nil?
       render json: @status, status: 201
