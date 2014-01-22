@@ -26,21 +26,16 @@ class TripsController < ApplicationController
   end
 
   def create
-    trip_params = params[:trip]
-    @trip = current_user.trips.build
+    @trip = current_user.trips.new.create_trip(valid_trip_params)
     @trip.trip_users.new(user_id: current_user.id)
-    @trip.name = trip_params[:name]
-    @trip.description = trip_params[:description]
-    @trip.starts_on = Date.parse(trip_params[:starts_on])
-    @trip.ends_on = Date.parse(trip_params[:ends_on])
 
-    if @trip.save!
+    if @trip.save
       @trip.update_feeds
       flash[:notice] ="Awesome Trip"
       redirect_to trip_path(@trip)
     else
       flash[:notice] = "FAIL"
-      redirect_to root_path
+      render new_trip_path
     end
   end
 
@@ -71,5 +66,10 @@ class TripsController < ApplicationController
     if current_user && current_user.trips.any?
       @trips = current_user.trips
     end
+  end
+
+private
+  def valid_trip_params
+    params.require(:trip).permit(:name, :description, :starts_on, :ends_on)
   end
 end

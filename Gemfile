@@ -12,6 +12,7 @@ gem 'omniauth-twitter'
 gem 'twitter'
 gem 'foursquare2'
 gem 'faraday'
+gem 'whenever', :require => false
 gem 'resque', '~> 1.22.0'
 gem 'figaro'
 gem 'foundation-rails'

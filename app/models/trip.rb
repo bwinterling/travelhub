@@ -12,6 +12,22 @@ class Trip < ActiveRecord::Base
     end
   end
 
+  def create_trip(input)
+    self.name = input[:name]
+    self.description = input[:description]
+    self.starts_on = check_date(input[:starts_on])
+    self.ends_on = check_date(input[:ends_on])
+    return self
+  end
+
+  def check_date(date)
+    begin
+      return Date.parse(date)
+    rescue
+      return nil
+    end
+  end
+
   def update_feeds
     self.active_users.each do |user|
       if user.provider == STATUS_PROVIDER
