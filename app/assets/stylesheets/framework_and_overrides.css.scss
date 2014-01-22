@@ -76,15 +76,22 @@ ul.tripsters-avatars li img {
 }
 
 #newtrip label {
+    display: block;
     font: 13px "ClarendonRoman",Georgia,Times,serif;
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;
-    /*top: 4px;*/
+    margin-top: 10px;
 }
 
 #newtrip textarea{
+  display: block;
   height: 150px;
+  width: 100%;
+}
+
+#newtrip input[type="submit"] {
+  display: block;
 }
 
 // ------------ dashboard ----------------------
