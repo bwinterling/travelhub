@@ -272,8 +272,10 @@ a.close {
 
 .triangle-right.left {
 margin-left: 40px;
-background: #075698;
+background: #3e92ec;
 }
+
+/*color-stop(0%,#696f77), color-stop(100%,#28343b));*/
 
 .triangle-right {
 position: relative;
@@ -295,7 +297,7 @@ top: 16px;
 left: -40px;
 bottom: auto;
 border-width: 15px 40px 0 0;
-border-color: transparent #075698;
+border-color: transparent #3e92ec;
 }
 
 .triangle-right:after {
@@ -305,7 +307,7 @@ bottom: -20px;
 left: 50px;
 border-width: 20px 0 0 20px;
 border-style: solid;
-border-color: #075698 transparent;
+border-color: #3e92ec transparent;
 display: block;
 width: 0;
 }
