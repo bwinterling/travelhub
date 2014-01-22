@@ -241,4 +241,28 @@ ul.tripsters-avatars li a img {
   border-radius:30px;
 }
 
+// -------- alerts ------------
+.alert-box {
+  overflow: hidden;
+  color:#fff;
+  font-size:25px;
+  padding:10px 0 10px 42px;
+}
+
+.alert-box.alert {
+  background-color:#a63030;
+
+}
+
+.alert-box.success {
+  background-color:#328e5b;
+}
+
+a.close {
+   display:inline !important;
+   color:#ccc;
+   font-weight: bold;
+   text-decoration: none;
+}
+
 
