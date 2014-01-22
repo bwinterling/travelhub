@@ -12,7 +12,7 @@ class Checkin < ActiveRecord::Base
       headline:"Foursquare",
       text:"<p>Checked in at #{venue_name}</p>",
       asset: {
-        media: google_map_url,
+        media: "https://foursquare.com/rolentle/checkin/52d6f46e498ee3a629fa2e04",
         credit: user.name,
         caption: shout
       }
