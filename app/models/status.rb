@@ -7,15 +7,19 @@ class Status < ActiveRecord::Base
   def timeline_hash
     {
       startDate: sent_at.strftime("%Y,%m,%d"),
-      endDate: sent_at.+(1.day).strftime("%Y,%m,%d"),
+     # endDate: sent_at.+(1.day).strftime("%Y,%m,%d"),
       headline:"Twitter",
-      text:"<p>#{text}</p>",
+     # text:"<p>#{text}</p>",
       asset: {
-        media: user.avatar_url,
+        media: status_url,
         credit: user.name,
         caption: "I like hashtags!"
       }
     }
+  end
+
+  def status_url
+    "https://twitter.com/#{user.name}/status/#{origin_id}"
   end
 
 end
