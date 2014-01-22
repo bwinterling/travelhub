@@ -4,7 +4,7 @@ rvm:
 
 #whitelist
 branches:
-	only:
-		- staging
+  only:
+    - staging
 
 script: "bundle exec rake spec test"
