@@ -53,13 +53,13 @@ class Trip < ActiveRecord::Base
   def photos
     Photo.where(user_id: participant_ids, photo_taken: self.starts_on...self.ends_on).sort_by do |photo|
      photo.photo_taken
-    end
+    end.reverse
   end
 
   def statuses
     Status.where(user_id: participant_ids, sent_at: self.starts_on...self.ends_on).sort_by do |status|
       status.sent_at
-    end
+    end.reverse
   end
 
   def checkins
