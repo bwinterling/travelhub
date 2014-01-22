@@ -27,15 +27,14 @@
   </div> <!-- 8 column -->
   <div class="large-4 columns panel" data-height-watch>
     <div class="row">
-      <div id="statuses">
-        <h5>Trip tweets:</h5>
+        <div id="twitter-feed">
         <%= @statuses.empty? ? "There are no tweets available." : render(@statuses) %>
+        </div>
       </div>
     </div>
   </div> <!-- 4 column -->
 
 </div>
-
 
 <div class="row">
   <div class="panel">
