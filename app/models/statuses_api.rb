@@ -24,7 +24,7 @@ class StatusesAPI < ActiveRecord::Base
         status.created_at > starts_on  && status.created_at < ends_on
       end
       statuses.each do |status|
-        user.statuses.find_or_create_by!( text: status.full_text,
+        user.statuses.find_or_create_by( text: status.full_text,
           sent_at: status.created_at,
 				       origin_id: status.id.to_s)
       end
