@@ -11,7 +11,7 @@ module Feeds
       if params[:code] != nil
         PhotosAPI.callback(params[:code], current_user.id)
         #redirect to feed sign up page!!
-        redirect_to root_path
+        redirect_to edit_user_path(current_user.id)
         flash[:notice] = "Connection to #{PHOTO_PROVIDER} Successful!"
       else
         #redirect to feed sign up page!!

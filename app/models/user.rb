@@ -25,4 +25,12 @@ class User < ActiveRecord::Base
     )
     user
   end
+
+  def all_accounts_connected?
+    user.feed_sources.map(&:provider).sort == User.providers
+  end
+
+  def self.providers
+    ["Instagram", "Foursquare"].sort
+  end
 end

@@ -34,7 +34,7 @@ class TripsController < ApplicationController
       flash[:notice] ="Awesome Trip"
       redirect_to trip_path(@trip)
     else
-      flash[:notice] = "FAIL"
+      flash[:notice] = "Unsuccessful.  Please try again. "
       render new_trip_path
     end
   end
