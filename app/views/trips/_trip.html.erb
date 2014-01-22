@@ -1,6 +1,13 @@
-<div>
-  <h3><%= link_to trip.name, trip_path(trip.id), {class: "trip-name"} %>
-  <%= link_to "Edit", edit_trip_path(trip.id), {class: "trip-edit-link"} %></h3>
-  <p><span class="trip-desc"><%= trip.description %></span></p>
-</div>
+<li>
+	<h3><%= link_to trip.name, trip_path(trip.id), {class: "trip-name"} %>
+	<%= link_to "Edit", edit_trip_path(trip.id), {class: "trip-edit-link"} %></h3>
+	<p><span class="trip-desc"><%= trip.description %></span></p>
+	<ul class="tripsters-avatars">
+		<% trip.active_users.each do |user| %>
+			<% unless user.uid == nil %>
+				<li id="tripster_<%= user.id %>"><%= image_tag(user.avatar_url) %></li>
+			<% end %>
+		<% end %>
+	</ul>
+</li>
 

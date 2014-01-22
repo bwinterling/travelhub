@@ -51,6 +51,12 @@ ul.tripster-nav-links li a {
 
 ul.tripsters-avatars li {
   float:left;
+  background:none !important;
+  border:none !important;
+}
+
+ul.tripsters-avatars li img {
+  border-radius: 30px;
 }
 
 #profile_image {
@@ -83,13 +89,6 @@ ul.tripsters-avatars li {
 
 // ------------ dashboard ----------------------
 
-.dashboard {
-    background: #000 url(/images/dashboard.jpg);
-    background-size: 100% auto;
-    width: 100%;
-    height: 750px;
-    border-radius: 40px;
-  }
 
 .dashboard-trips {
     margin-top: 110px;
@@ -100,10 +99,6 @@ ul.tripsters-avatars li {
     text-transform: uppercase;
   }
 
-.bubble {
-  background-image: url(/images/opacity50.png);
-    border-radius: 40px;
-  }
 
 a.trip-edit-link {
   font-size: 12px;
