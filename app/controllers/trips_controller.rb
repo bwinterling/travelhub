@@ -62,6 +62,9 @@ class TripsController < ApplicationController
     end
   end
 
+  def timeline
+  end
+
   def dashboard
     if current_user && current_user.trips.any?
       @trips = current_user.trips
