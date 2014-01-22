@@ -1,29 +1,39 @@
 
 
-    <div class="left col"> 
+    <div class="left col">
       <div class="header row">
+
                 <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>    
                  <span class="trip-name"><%= @trip.name %> </span>
+
 
                  <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
             </div>
       <div class="body row scroll-y">
         <div>
-              
+
           <div id='map'>
             <h5>Trip checkins:</h5>
-            <%= @checkins.empty? ? "There are no checkins available. Connect your FourSquare account to see them!" : render(@checkins) %>
+	    <% unless current_user.feed_sources.where(provider: "Foursquare").first && @trip.users.include?(current_user) %>
+	      <p>There are no checkins available. Connect your <%= link_to "FourSquare", feeds_checkins_connect_path %> account to see them!</p>
+	    <% else %>
+	      <%= @checkins.empty? ? "There are no checkins available." : render(@checkins) %>
+	    <% end %>
           </div>
 
            <div class="scroll-x tiles">
               <ul>
-                 <%= @photos.empty? ?  "There are no photos available. Connect your Instagram account to see them!" : render(@photos) %>
+		<% unless current_user.feed_sources.where(provider: "Instagram").first && @trip.users.include?(current_user) %>
+		  <p>There are no photos available. Connect your <%= link_to "Instagram", feeds_photos_connect_path %> account to see them!i</p>
+		<% else %>
+		  <%= @photos.empty? ?  "There are no photos available." : render(@photos) %>
+		<% end%>
               </ul>
             </div>
 
                   </div>
               </div>
-              
+
               <div class="footer row">
                     <ul class="tripsters-avatars">
                 <% @trip.active_users.each do |user| %>
@@ -32,7 +42,7 @@
                   <%#= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
                 <% end %>
               </ul>
-              
+
               </div>
           </div>
 
@@ -40,7 +50,7 @@
             <div class="header row">
                 My Trips >>
             </div>
-            
+
             <div class="body row scroll-y">
                 <ul class="listview">
                     <%= @statuses.empty? ? "There are no tweets available for this time period." : render(@statuses) %>
@@ -79,5 +89,5 @@
           });
         });
       });
-    </script> 
+    </script>
     <% end %>

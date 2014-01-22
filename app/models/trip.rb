@@ -51,15 +51,21 @@ class Trip < ActiveRecord::Base
   end
 
   def photos
-    Photo.where(user_id: participant_ids, photo_taken: self.starts_on...self.ends_on)
+    Photo.where(user_id: participant_ids, photo_taken: self.starts_on...self.ends_on).sort_by do |photo|
+     photo.photo_taken
+    end
   end
 
   def statuses
-    Status.where(user_id: participant_ids, sent_at: self.starts_on...self.ends_on)
+    Status.where(user_id: participant_ids, sent_at: self.starts_on...self.ends_on).sort_by do |status|
+      status.sent_at
+    end
   end
 
   def checkins
-    Checkin.where(user_id: participant_ids, checkins_at: self.starts_on...self.ends_on)
+    Checkin.where(user_id: participant_ids, checkins_at: self.starts_on...self.ends_on).sort_by do |checkin|
+      checkin.checkins_at
+    end
   end
 
   def geojson
