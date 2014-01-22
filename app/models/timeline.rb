@@ -7,15 +7,15 @@ class Timeline
   end
 
   def photos_array
-    trip.photos.map { |photo| photo.timeline_hash }
+    trip.photos.empty? ? [] : trip.photos.map { |photo| photo.timeline_hash }
   end
 
   def statuses_array
-    trip.statuses.map { |s| s.timeline_hash }
+    trip.statuses.empty? ? [] : trip.statuses.map { |status| status.timeline_hash }
   end
 
   def date_array
-    photos_array
+    photos_array + statuses_array
   end
 
   def return_json
