@@ -2,7 +2,7 @@ class Checkin < ActiveRecord::Base
   belongs_to :user
 
   def google_map_url
-    "http://maps.google.com/?q=#{venue_latitude},#{venue_longitude}"
+    "http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=600x400&markers=#{venue_latitude},#{venue_longitude}&sensor=false"
   end
 
   def timeline_hash
@@ -12,7 +12,7 @@ class Checkin < ActiveRecord::Base
       headline:"Foursquare",
       text:"<p>Checked in at #{venue_name}</p>",
       asset: {
-        media: "https://foursquare.com/rolentle/checkin/52d6f46e498ee3a629fa2e04",
+        media: google_map_url,
         credit: user.name,
         caption: shout
       }
