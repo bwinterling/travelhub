@@ -13,11 +13,12 @@ class Trip < ActiveRecord::Base
     end
   end
 
-  def create_trip(input)
+  def create_trip(input, owner_id)
     self.name = input[:name]
     self.description = input[:description]
     self.starts_on = check_date(input[:starts_on])
     self.ends_on = check_date(input[:ends_on])
+    self.user_id = owner_id
     return self
   end
 
@@ -90,5 +91,9 @@ class Trip < ActiveRecord::Base
                   }
     end
     geojson_array
+  end
+
+  def owner
+    User.find(self.user_id)
   end
 end

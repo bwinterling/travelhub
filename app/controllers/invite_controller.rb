@@ -34,9 +34,14 @@ class InviteController < ApplicationController
   def destroy
     trip = Trip.find(params[:id])
     tripster = trip.trip_users.find_by(user_id: params[:user_id])
-    tripster.toggle!(:active)
-    removed_user = User.find(params[:user_id])
-    flash[:notice] = "@#{removed_user.name} was removed from your trip!"
+
+    if tripster.user_id == trip.owner.id
+      flash[:notice] = "Sorry, you are not allowed to delete the owner!"
+    else
+      tripster.toggle!(:active)
+      removed_user = User.find(params[:user_id])
+      flash[:notice] = "@#{removed_user.name} was removed from your trip!"
+    end
     redirect_to trip_path(trip)
   end
 
