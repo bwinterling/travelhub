@@ -1,15 +1,21 @@
 <%# add navigation links to this file %>
 <% if current_user %>
 <li><%= link_to "Logout", logout_path, method: "delete" %></li>
- <li><%= link_to "Dashboard", dashboard_path %></li>
+ <li><%= link_to "Your Trips", dashboard_path %></li>
   <li><%=link_to "Add A Trip", new_trip_path %></li>
   <span class="twitteraccount">
 	<li><%= link_to current_user.name, current_user.slug %></li>
   <li><%= image_tag(current_user.avatar_url, id: "profile_image")%></li>
-  <% if controller.class == TripsController && controller.action_name == "show" %>
+  
+  <% if controller.class == TripsController && controller.action_name == "timeline" %>
+    <li><%= link_to image_tag('dashboard.png', class: "dashboard-link"), trip_path(@trip.id) %></li>
+  <% end %>
 
+  <% if controller.class == TripsController && controller.action_name == "show" %>
     <li><%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %></li>
-    <% end%>
+    <li><%= link_to image_tag('timeline.png'), timeline_path(@trip.id), {class: "timeline-link"} %></li>
+  <% end%>
+
 </span>
 <% else %>
 <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter", class: "twitterlogin"), "/auth/twitter" %></li>
