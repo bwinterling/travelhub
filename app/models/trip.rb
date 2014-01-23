@@ -2,6 +2,7 @@ class Trip < ActiveRecord::Base
 
   validates :name, presence: true
   validates :starts_on, presence: true
+  validates :ends_on, presence: true
   validate :correct_dates
   has_many :trip_users
   has_many :users, through: :trip_users
