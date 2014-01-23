@@ -43,7 +43,6 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @trip.update_feeds
     redirect_to :back
-    # redirect_to trip_path(@trip.id)
   end
 
   def show
