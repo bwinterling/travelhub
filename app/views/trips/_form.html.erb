@@ -4,6 +4,7 @@
       });
  </script>
 
+ <div class="newtrip">
 <%= form_for(@trip) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -18,5 +19,5 @@
       <%= f.label :ends_on, "End Date" %>
       <%= f.text_field :ends_on, class: "datepicker" %>
       <%= f.submit "Submit", class: "radius button" %>
-      </div>
 <% end %>
+</div>

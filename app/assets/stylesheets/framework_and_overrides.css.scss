@@ -68,14 +68,14 @@ ul.tripsters-avatars li img {
   margin-top:-10px;
 }
 
-// --------------------user edit page -------------------
-#accounts
 
 // --------------------form page -------------------
 #newtrip {
-    margin: 10% 10%;
-    padding-bottom: 23px;
-    border-bottom: 1px solid rgb(167, 167, 164);
+  margin: 20px auto;
+  padding: 10px 10px 10px 10px;
+  padding-bottom: 23px;
+  width: 600px;
+
 }
 
 #newtrip legend{
@@ -98,7 +98,61 @@ ul.tripsters-avatars li img {
 }
 
 #newtrip input[type="submit"] {
+  border-style: solid;
+  border-width: 0px;
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.11111rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  padding-top: 0.88889rem;
+  padding-right: 1.77778rem;
+  padding-bottom: 0.94444rem;
+  padding-left: 1.77778rem;
+  font-size: 0.88889rem;
+  background-color: #008cba;
+  border-color: #007295;
+  color: white;
+  -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  padding-top: 0.94444rem;
+  padding-bottom: 0.88889rem;
+  -webkit-appearance: none;
+  border: none;
+  font-weight: normal !important;
+  width: 100%;
+  }
+
+#newtrip input[type="text"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  background-color: white;
+  font-family: inherit;
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
   display: block;
+  font-size: 0.77778rem;
+  margin: 0 0 0.88889rem 0;
+  padding: 0.44444rem;
+  height: 2.05556rem;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: -webkit-box-shadow 0.45s, border-color 0.45s ease-in-out;
+  -moz-transition: -moz-box-shadow 0.45s, border-color 0.45s ease-in-out;
+  transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  width: 100%;
 }
 
 // ------------ dashboard ----------------------
@@ -138,7 +192,7 @@ a.trip-edit-link {
   width: 200px;
 }
 
- .foursquare {
+.foursquare {
   width: 300px;
 }
 
