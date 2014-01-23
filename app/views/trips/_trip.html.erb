@@ -3,6 +3,7 @@
 	<%= link_to "Edit", edit_trip_path(trip.id), {class: "trip-edit-link"} %></h3>
 	<p><span class="trip-desc"><%= trip.description %></span></p>
 	
+  <span class="tripsters-avatars"><%= image_tag(trip.owner.avatar_url) %></span>
 		<% trip.active_users.each do |user| %>
 			<% unless user.uid == nil %>
 				<span class="tripsters-avatars"><%= image_tag(user.avatar_url) %></span>

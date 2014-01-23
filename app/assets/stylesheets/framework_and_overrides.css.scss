@@ -68,6 +68,9 @@ ul.tripsters-avatars li img {
   margin-top:-10px;
 }
 
+// --------------------user edit page -------------------
+#accounts
+
 // --------------------form page -------------------
 #newtrip {
     margin: 10% 10%;
@@ -131,14 +134,27 @@ a.trip-edit-link {
 }
 
 // ---------- account page --------------------
-#instagram  {
+.instagram  {
   width: 200px;
 }
 
-#foursquare {
+ .foursquare {
   width: 300px;
-  justify-content: center;
 }
+
+fieldset.accounts {
+  margin: 5% 5% ;
+  justify-content: center;
+  padding-bottom: 20px;
+  margin-left: 30%;
+  width: 600px;
+
+}
+
+legend{
+  font-size: 1.4em;
+}
+
 
 // ----- map ----
 
