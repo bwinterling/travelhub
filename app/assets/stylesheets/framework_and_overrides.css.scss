@@ -211,7 +211,7 @@ body { font-family: 'Helvetica Neue', Arial, Sans-Serif; }
 .tiles { overflow-y: hidden; }
 .tiles > ul { width: 2000px; }
 .tiles ul { margin: 0; padding: 0; white-space: nowrap; }
-.tiles li { list-style-type: none; display: inline-block; background-color: #fff; width:150px; height: 150px; padding: 1em; color: White; margin: 5px; font-weight: bold; zoom:1; *display: inline; }
+.tiles li { position:relative; list-style-type: none; display: inline-block; background-color: #fff; width:150px; height: 150px; padding: 1em; color: White; margin: 5px; font-weight: bold; zoom:1; *display: inline; }
 
 button { display: block; border: 2px solid #aaa; line-height: normal; background-color: White; border-radius: 8px; margin: 8px 0; cursor: pointer; padding: 5px 20px; font-weight: bold; color: #333; }
 
@@ -315,14 +315,23 @@ display: block;
 width: 0;
 }
 
-span.tweet-time {
+span.photo-time, span.photo-origin  {
+  color:#fff;
+  padding:0 3px;
+}
+
+span.photo-origin {
+  padding-top:55px;
+}
+
+span.tweet-time, span.photo-time {
   display:block;
   margin-top:5px;
   font-size:12px;
   text-align: right;
 }
 
-span.tweet-origin {
+span.tweet-origin, span.photo-origin {
   display: block;
   font-size:14px;
   font-weight: bold;
@@ -334,3 +343,21 @@ span.tweet-origin {
   top: 2.5px !important;
   right: 2.5px !important;
 }
+
+
+.photo-info {
+  display: none;
+  position: absolute;
+  top: 17px;
+  height: 149px;
+  width: 150px;
+}
+
+.photo-info-active {
+  display: block;
+  
+  background: rgba(54, 25, 25, .5);
+}
+
+
+
