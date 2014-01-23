@@ -13,7 +13,7 @@ class Status < ActiveRecord::Base
       asset: {
         media: status_url,
         credit: user.name,
-        caption: "I like hashtags!"
+        # caption: "I like hashtags!"
       }
     }
   end
