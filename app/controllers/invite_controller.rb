@@ -14,14 +14,22 @@ class InviteController < ApplicationController
       trip = Trip.find(params[:trip_id])
       message = handle + " " + invite_msg(trip.name)
       stripped_handle = handle[1..-1].downcase
-      user = trip.users.find_by(name: stripped_handle)
-      if user
-        trip.trip_users.find_by(user_id: user.id).toggle!(:active)
+      user = User.find_or_create_by(name: stripped_handle)
+      if  trip.users.include? user
+	trip_user = trip.trip_users.find_by(user_id: user.id)
+	trip_user.active = true
+	trip_user.save!
+      else
+	trip.users <<  user
       end
-      if user.nil?
-        user = trip.users.create(name: stripped_handle)
-      end
-      trip.save
+      #if user
+      #  trip_user = trip.trip_users.find_by(user_id: user.id)
+      #  trip_user.toggle!(:active) if trip_user
+      #end
+      #if user.nil?
+      #  user = trip.users.create(name: stripped_handle)
+      #end
+      trip.save!
       StatusesAPI.send_update(current_user, message)
       flash[:notice] = "Your invite to #{handle} was sent via #{provider}"
       redirect_to trip_path(params[:trip_id])
