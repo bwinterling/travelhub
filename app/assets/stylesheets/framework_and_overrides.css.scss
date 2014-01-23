@@ -112,6 +112,9 @@ ul.tripsters-avatars li img {
     text-transform: uppercase;
   }
 
+.dashboard a {
+  color:#000;
+}
 
 a.trip-edit-link {
   font-size: 12px;
@@ -197,7 +200,7 @@ body { font-family: 'Helvetica Neue', Arial, Sans-Serif; }
 .right.col { border-left: 1px solid black; }
 .right.col .body { padding: 0 1em; }
 .listview { padding: 0; margin: 0; color: #444; }
-.listview li { list-style-type: none; background: #eee; padding: 1em; border-top: 1px solid #aaa; border-bottom: 1px solid #fff; cursor: pointer; }
+.listview li { list-style-type: none; background: #eee; padding: 1em; border-top: 1px solid #aaa; border-bottom: 1px solid #fff; cursor: pointer; padding-left:40px;}
 .listview li.selected { background-color: #37F; color: White; }
             
 .listview.inset { margin: 1em 0; }
