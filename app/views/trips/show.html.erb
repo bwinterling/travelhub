@@ -61,7 +61,7 @@
         map.scrollWheelZoom.disable();
         if (map.tap) map.tap.disable();
 
-      $.getJSON('<%= @trip.id %>.json', function(checkinData){
+      jQuery.getJSON('<%= @trip.id %>.json', function(checkinData){
          var marker = map.markerLayer.setGeoJSON(checkinData);
          map.fitBounds(map.markerLayer.getBounds());
          
