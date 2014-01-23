@@ -26,7 +26,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = current_user.trips.new.create_trip(valid_trip_params)
+    @trip = current_user.trips.new.create_trip(valid_trip_params, current_user.id)
     @trip.trip_users.new(user_id: current_user.id)
 
     if @trip.save
