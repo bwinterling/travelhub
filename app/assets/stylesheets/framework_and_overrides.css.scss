@@ -98,22 +98,11 @@ ul.tripsters-avatars li img {
   display: block;
 }
 
-// ------------- timeline-show toggle----------------------
+// ------------ timeline ----------------------
 
-#dash-toggle-wrapper {
-  float: left;
-  position: relative;
-  left: 50%;
+.dashboard-link {
+  margin-top: -4px;
 }
-
-.dash-toggle {
-  float: left;
-  position: relative;
-  left: -50%;
-  text-decoration: none;
-  color: #CCC;
-}
-
 
 // ------------ dashboard ----------------------
 
