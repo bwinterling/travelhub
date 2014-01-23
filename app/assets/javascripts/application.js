@@ -18,8 +18,6 @@
 //= require timelineJS/embed
 //= require foundation
 //= require_tree .
-$(function() {
-  $(document).foundation();
-});
+
 
 
