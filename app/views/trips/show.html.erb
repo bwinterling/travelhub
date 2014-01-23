@@ -35,6 +35,7 @@
               </div>
 
               <div class="footer row">
+                
                     <ul class="tripsters-avatars">
                 <% @trip.active_users.each do |user| %>
                 <li id="tripster_<%= user.id %>"><%= link_to image_tag(user.avatar_url),{:controller => "invite", :action => "destroy", :user_id => user.id} %>
@@ -61,21 +62,7 @@
             </div>
         </div>
 
-<div class="row">
-  <div class="panel">
-    <div class="row">
-      <div class="large-12 columns tripsters" id="tripsters">
-        <h5>Tripsters:</h5>
-        <ul>
-          <% @trip.active_users.each do |user| %>
-          <li id="tripster_<%= user.id %>"><%= image_tag user.avatar_url %><%= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
-          <% end %>
-        </ul>
-        <%= link_to "Add Tripster", new_trip_invite_path(@trip.id), {class: "trip-invite-link"} %>
-      </div>
-    </div>
-  </div>
-</div>
+
     <% unless @checkins.empty? %>
 
     <script>

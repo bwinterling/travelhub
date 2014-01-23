@@ -81,7 +81,7 @@ ul.tripsters-avatars li img {
 
 #newtrip label {
     display: block;
-    font: 13px "ClarendonRoman",Georgia,Times,serif;
+    font: 25px "ClarendonRoman",Georgia,Times,serif;
     color: rgb(82, 82, 80);
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -90,7 +90,7 @@ ul.tripsters-avatars li img {
 
 #newtrip textarea{
   display: block;
-  height: 150px;
+  height: 100px;
   width: 100%;
 }
 
@@ -110,9 +110,20 @@ ul.tripsters-avatars li img {
     text-transform: uppercase;
   }
 
-
 a.trip-edit-link {
   font-size: 12px;
+}
+
+.tripsters-avatars {
+    opacity: 1;
+    transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+.tripsters-avatars:hover {
+    background:url(/images/hover.png) no-repeat;
+    opacity: 0.5;
+    top:0px;
 }
 
 // ---------- account page --------------------
@@ -149,15 +160,10 @@ a.trip-edit-link {
   padding: 0 15px;
 }
 
-<<<<<<< HEAD
-=======
-
 div.main {
   padding-top:75px;
   }
 
-
->>>>>>> f49b5a4378987b110522b428eac79aaf1b173f4d
 /* Pane configuration */
      
  .left.col { left:0; right:375px;}
