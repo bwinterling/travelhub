@@ -10,6 +10,9 @@
                  <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
             </div>
       <div class="body row scroll-y">
+        <div id="dash-toggle-wrapper">
+          <%= link_to "Timeline View", timeline_path(@trip.id), :class => "dash-toggle" %>
+        </div>
         <div>
 
           <div id='map'>

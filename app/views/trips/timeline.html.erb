@@ -12,4 +12,9 @@ $(document).ready(function() {
 });
  </script>
  <!-- END TimelineJS -->
- <div id="my-timeline"></div>
+
+<div id="dash-toggle-wrapper">
+  <%= link_to "Dashboard View", trip_path(@trip.id), :class => "dash-toggle" %>
+</div>
+
+<div id="my-timeline"></div>
