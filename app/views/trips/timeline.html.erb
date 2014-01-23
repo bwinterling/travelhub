@@ -6,7 +6,8 @@ $(document).ready(function() {
   height:     '600',
   source:     '/api/v1/timeline/<%= @trip.id %>.json',
   embed_id:   'my-timeline',
-  css:        '/assets/stylesheets/timeline.css', 
+  css:        '/assets/stylesheets/timeline.css',
+  gmap_key:   '#{GOOGLE_STATIC_MAP_API_KEY}'
   });
 });
  </script>

@@ -2,8 +2,7 @@ class Checkin < ActiveRecord::Base
   belongs_to :user
 
   def google_map_url
-    "http://maps.google.com/?q=#{venue_latitude},#{venue_longitude}"
-    "https://www.google.com/url?q=http://maps.google.com/maps%3Fq%3Dchicago%26hl%3Den%26sll%3D41.874961,-87.619054%26sspn%3D0.159263,0.351906%26t%3Dt%26hnear%3DChicago,%2BCook,%2BIllinois%26z%3D11&usd=2&usg=ALhdy28o-smFGlAQ-_jlleH2EmcQ1ZqfIg"
+    "http://maps.googleapis.com/maps/api/staticmap?zoom=15&size=600x400&markers=#{venue_latitude},#{venue_longitude}&sensor=false"
   end
 
   def timeline_hash
