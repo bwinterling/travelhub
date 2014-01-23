@@ -1,14 +1,7 @@
 
 
     <div class="left col">
-      <div class="header row">
-
-                <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>    
-                 <span class="trip-name"><%= @trip.name %> </span>
-
-
-                 <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
-            </div>
+  
       <div class="body row scroll-y">
         <div>
 
@@ -47,9 +40,7 @@
           </div>
 
           <div class="right col">
-            <div class="header row">
-                My Trips >>
-            </div>
+    
 
             <div class="body row scroll-y">
                 <ul class="listview">

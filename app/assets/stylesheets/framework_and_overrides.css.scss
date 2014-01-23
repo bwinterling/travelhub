@@ -173,7 +173,8 @@ div.main {
  .left.col { left:0; right:375px;}
  .right.col { width:375px; right:0px;}
  .full.col { right:0px; left:0px;}
- .header.row { height: 75px; line-height: 75px; }
+ .header.row { height: 75px; line-height: 75px; z-index: 10000; }
+ .blank.row {height: 75px;}
  .body.row { top: 75px; bottom: 60px; }
  .footer.row { height: 60px; bottom: 0; line-height: 60px; }
 
