@@ -8,6 +8,7 @@
   <li><%= image_tag(current_user.avatar_url, id: "profile_image")%></li>
   
   <% if controller.class == TripsController && controller.action_name == "timeline" %>
+    <li><%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %></li>
     <li><%= link_to image_tag('dashboard.png', class: "dashboard-link"), trip_path(@trip.id) %></li>
   <% end %>
 
