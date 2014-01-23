@@ -13,7 +13,7 @@
 
   <% if controller.class == TripsController && controller.action_name == "show" %>
     <li><%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %></li>
-    <li><%= link_to image_tag('timeline.png'), timeline_path(@trip.id), {class: "timeline-link"} %></li>
+    <li><%= link_to image_tag('timeline-icon.png'), timeline_path(@trip.id), {class: "timeline-link"} %></li>
   <% end%>
 
 </span>
