@@ -1,14 +1,7 @@
 
 
     <div class="left col">
-      <div class="header row">
-
-                <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>    
-                 <span class="trip-name"><%= @trip.name %> </span>
-
-
-                 <%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %>
-            </div>
+  
       <div class="body row scroll-y">
         <div id="dash-toggle-wrapper">
           <%= link_to "Timeline View", timeline_path(@trip.id), :class => "dash-toggle" %>
@@ -42,8 +35,7 @@
                     <ul class="tripsters-avatars">
                 <% @trip.active_users.each do |user| %>
                 <li id="tripster_<%= user.id %>" class="tripster-avatar-each"><%= link_to image_tag(user.avatar_url),{:controller => "invite", :action => "destroy", :user_id => user.id} %>
-                    
-                  <%#= button_to "-", :action => "destroy", :controller => "invite", :user_id => user.id%></li>
+                </li>
                 <% end %>
               </ul>
 
@@ -51,9 +43,7 @@
           </div>
 
           <div class="right col">
-            <div class="header row">
-                My Trips >>
-            </div>
+    
 
             <div class="body row scroll-y">
                 <ul class="listview">
@@ -69,6 +59,7 @@
     <% unless @checkins.empty? %>
 
     <script>
+    $(document).ready(function(){
       var map = L.mapbox.map('map', 'rsoden.map-wjcj2udt');
         map.touchZoom.disable();
         map.scrollWheelZoom.disable();
@@ -85,5 +76,6 @@
             checkin.bindPopup(content);
           });
        });
+    });
     </script> 
     <% end %>

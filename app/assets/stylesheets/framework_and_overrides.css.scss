@@ -186,11 +186,12 @@ div.main {
   }
 
 /* Pane configuration */
-     
+
  .left.col { left:0; right:375px;}
  .right.col { width:375px; right:0px;}
  .full.col { right:0px; left:0px;}
- .header.row { height: 75px; line-height: 75px; }
+ .header.row { height: 75px; line-height: 75px; z-index: 10000; }
+ .blank.row {height: 75px;}
  .body.row { top: 75px; bottom: 60px; }
  .footer.row { height: 60px; bottom: 0; line-height: 60px; }
 
@@ -217,7 +218,7 @@ body { font-family: 'Helvetica Neue', Arial, Sans-Serif; }
 .header, .footer {
     color: #eee; background: #696f77; text-shadow: 1px 1px 1px rgba(0,0,0,0.5); padding: 0 0.5em;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#696f77), color-stop(100%,#28343b));
-    background: -webkit-linear-gradient(top, #696f77 0%,#28343b 100%); background: -ms-linear-gradient(top, #696f77 0%,#28343b 100%); 
+    background: -webkit-linear-gradient(top, #696f77 0%,#28343b 100%); background: -ms-linear-gradient(top, #696f77 0%,#28343b 100%);
 }
 .header { font-size: 1.4em; }
 .body, .pane { background: #ddd }
@@ -226,12 +227,12 @@ body { font-family: 'Helvetica Neue', Arial, Sans-Serif; }
 .listview { padding: 0; margin: 0; color: #444; }
 .listview li { list-style-type: none; background: #eee; padding: 1em; border-top: 1px solid #aaa; border-bottom: 1px solid #fff; cursor: pointer; padding-left:40px;}
 .listview li.selected { background-color: #37F; color: White; }
-            
+
 .listview.inset { margin: 1em 0; }
 .listview.inset li { background: white; border: 2px solid #aaa; border-bottom-width: 0; }
 .listview.inset li:first-child { border-radius: 1em 1em 0em 0em }
 .listview.inset li:last-child { border-radius: 0em 0em 1em 1em; border-bottom-width: 2px; }
-            
+
 .tiles { overflow-y: hidden; }
 .tiles > ul { width: 2000px; }
 .tiles ul { margin: 0; padding: 0; white-space: nowrap; }
@@ -249,8 +250,7 @@ a.trip-invite-link {
 
 a.trip-update-feed-link {
   display: inline-block;
-  float:right;
-  margin-top:10px;
+  margin-right: 20px;
 }
 
 ul.tripsters-avatars {
@@ -376,13 +376,25 @@ span.tweet-origin, span.photo-origin {
   top: 17px;
   height: 149px;
   width: 150px;
+  background: rgba(54, 25, 25, .5);
 }
 
 .photo-info-active {
   display: block;
-  
-  background: rgba(54, 25, 25, .5);
 }
 
+.tiles li:hover {
+  div {
+    display: block;
+  }
+}
 
+.tweet-left {
+  float:left;
+  width:55px;
+}
+
+.tweet-left img {
+  border-radius: 30px;
+}
 

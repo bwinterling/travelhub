@@ -6,6 +6,10 @@
   <span class="twitteraccount">
 	<li><%= link_to current_user.name, current_user.slug %></li>
   <li><%= image_tag(current_user.avatar_url, id: "profile_image")%></li>
+  <% if controller.class == TripsController && controller.action_name == "show" %>
+
+    <li><%= link_to image_tag('refresh.png'), trip_update_feed_path(@trip.id), {class: "trip-update-feed-link"} %></li>
+    <% end%>
 </span>
 <% else %>
 <li><%= link_to image_tag("sign-in-with-twitter-gray.png", alt: "Login with Twitter", class: "twitterlogin"), "/auth/twitter" %></li>

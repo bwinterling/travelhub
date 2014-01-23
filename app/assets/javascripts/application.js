@@ -18,19 +18,6 @@
 //= require timelineJS/embed
 //= require foundation
 //= require_tree .
-$(function() {
-  $(document).foundation();
-});
-
-// $('div.photo-info').each(function() {
-//   $(this).hover(
-//     funtion() {
-//       toggleClass("photo-info-active").fadeIn());
-//     });
-//   )};
 
 
-// $('.photo-info').hover( function() {
-//    $(this).toggleClass('photo-info-active');
-// } );
 

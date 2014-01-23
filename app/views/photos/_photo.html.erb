@@ -1,8 +1,8 @@
 <li>
-  <%= image_tag photo.thumbnail_url, :class => "photo-thumbnail" %><br/>
-  <span class="photo-info">
+  <%= image_tag photo.thumbnail_url, :class => "photo-thumbnail" %>
+  <div class="photo-info">
   	<span class="photo-origin">snapped by: <%= photo.user.name %> </span>
   	<span class="photo-time">...about <%= distance_of_time_in_words(photo.photo_taken, DateTime.now)%> ago </span>
-  </span>
+  </div>
   </li>
 

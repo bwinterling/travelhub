@@ -1,8 +1,11 @@
-<%# navigation styled for Zurb Foundation 5 %> 
+<%# navigation styled for Zurb Foundation 5 %>
 
 <div class="header row">
-   <%= link_to image_tag("logo.png", class: "logo_image"),root_path %> 
+   <%= link_to image_tag("logo.png", class: "logo_image"),root_path %>
+   <% if controller.class == TripsController && controller.action_name == "show" %>
+     <span class="trip-name"><%= @trip.name %> </span>
+   <% end %>
    <ul class="tripster-nav-links">
       <%= render 'layouts/navigation_links' %>
-    </ul>  
+    </ul>
 </div>
