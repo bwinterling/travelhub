@@ -387,3 +387,12 @@ span.tweet-origin, span.photo-origin {
   border-radius: 30px;
 }
 
+
+// --- override map on a tall screen ----
+
+@media screen and (min-height:800px)  {  /*1080p monitors*/
+  #map {
+    height: 475px;
+  }
+}
+
